@@ -10,6 +10,12 @@ type = "docs"  # Do not modify.
 
 math = true
 
+[git]
+  icon = "github"
+  repo = "https://github.com/Bertbk/course_4m053"
+  issue = "https://github.com/Bertbk/course_4m053/issues"
+  prose = "https://prose.io/#Bertbk/course_4m053/edit/master/"
+
 # Add menu entry to sidebar.
 [menu.4m053]
   parent = "dense"
