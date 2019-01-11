@@ -33,11 +33,17 @@ Les TPs associés au cours 4M053 "Calcul scientifique pour les grands systèmes 
   - Résoudre des systèmes linéaires avec les solveurs étudiés en cours (directs, itératifs, ...)
 2. **Analyser** le comportement des solveurs et des méthodes de stockage à l'aide de cette bibliothèque
 
+## Langages choisis
 
-## Langage choisi : `C++`
+### Pour le développement : `C++`
 
 Ces TPs vous demandent d'être **familié avec au moins un langage compilé** (`C`, `C++`, `Fortran`, ...) et le langage retenu ici sera le `C++`. Si vous n'êtes ni familié avec un langage compilé ni avec le `C++`, vous allez devoir **travailler dure** pour rattraper le retard : ces TPs **ne sont pas** des TPs d'informatique ! Rien n'est impossible mais nous **ne ferons pas le travail à votre place**. Nous avons mis en place [une section contenant des liens pour vous aider]({{<relref "help.md">}}).
 
+### Pour l'analyse : `Python`, `Julia`, `MATLAB`, ...
+
+À vous de décider le langage que vous préférez pour afficher les courbes et traiter les données. Nous vous incitons à utiliser [Python](https://www.python.org/) avec les bibliothèques [Matplotlib](https://matplotlib.org/) pour l'affichage et [Numpy](https://www.numpy.org/) pour toute opération de calcul scientifique (matrice, vecteur, ...). À noter que [Julia](https://julialang.org) peut également appeler Matplotlib.
+
+TODO: fournir un exemple de codes Matplotlib lisant un fichier de données ?
 
 ## Organisation
 
@@ -47,17 +53,26 @@ La partie ["Premiers pas"]({{<relref "hello_world.md">}}) présente la compilati
 
 ### OS
 
-Les terminaux mis à disposition tournent sous Linux et disposent des outils nécessaires (voir ci-après). Vous pouvez cependant utiliser votre propre machine, mais nous n'assurons pas le SAV dans ce cas et nous vous invitons à utiliser Linux ou Mac OS plutôt que Windows.
+Les terminaux mis à disposition tournent sous Linux et disposent des outils nécessaires (voir ci-après). Vous pouvez cependant utiliser votre propre machine, mais **nous n'assurons pas le SAV** dans ce cas et nous vous invitons à utiliser Linux ou Mac OS plutôt que Windows.
 
 ### Logiciels
 
-Sauf si vous disposez déjà de votre propre environnement de travail (ex. : emacs, vim, ...), nous vous suggérons les outils suivants. Remarquez qu'un éditeur de texte peut intégrer un certain nombre d'outils qui peuvent vous aider tels qu'un indenteur automatique, un débogueur, un compilateur, un analyseur statique, un profiler, etc. Maîtriser un (bon) éditeur de texte est un investissement (très) rentable !
+Sauf si vous disposez déjà de votre propre environnement de travail (*workflow*), alors c'est parfait ! Autrement, nous vous suggérons les outils suivants. 
 
-- [VSCode](https://code.visualstudio.com/) pour rédiger le code: intuitif, une prise en main rapide et [remplit de packages très agréables](https://ljll.math.upmc.fr/infomath/tools/vscode). VSCode est disponible sous windows, mac et linux. De base, vous disposez de GEdit, mais ce traitement de texte est (trop) basique.
-- [Git](https://git-scm.com/) pour gérer vos sources et vos versions, couplé avec par exemple un dépôt sut [Github](https://github.com)[^1] ou [Gitlab](https://gitlab.com). Nous n'avons toutefois et malheureusement pas le temps d'apprendre à utiliser cet outil - pourtant extrêmement utile ! Il faudrait que vous [appreniez par vous même](https://ljll.math.upmc.fr/infomath/tools/git).
+#### Traitement de textes
+
+Un éditeur de textes peut intégrer un certain nombre d'outils qui peuvent vous aider tels qu'un indenteur automatique, un débogueur, un compilateur, un analyseur statique, un profiler, etc. Maîtriser un (bon) éditeur de texte est un investissement (très) rentable ! De base, vous disposez de GEdit, mais ce traitement de texte est (trop) basique. Voici trois exemples :
+
+- [VSCode](https://code.visualstudio.com/) : intuitif avec une prise en main rapide et [rempli de packages très agréables](https://ljll.math.upmc.fr/infomath/tools/vscode). VSCode est disponible sous windows, mac et linux. Probablement et malheureusement pas disponible avec les terminaux de l'université.
+- [Emacs](https://www.gnu.org/software/emacs/) : extrêmement puissant mais avec une courbe d'apprentissage assez raide. Très probablement disponible. 
+- [Vim](https://www.vim.org/) : tout aussi puissant qu'emacs et avec une courbe d'apprentissage tout aussi raide.
+
+#### Gérez vos sources avec [Git](https://git-scm.com/)
+
+Stockez votre dépôt sut [Github](https://github.com)[^1] ou [Gitlab](https://gitlab.com). Nous n'avons toutefois et malheureusement pas le temps d'apprendre à utiliser cet outil - pourtant extrêmement utile ! Vous devez l'apprendre vous même [via des tutos en ligne](https://ljll.math.upmc.fr/infomath/tools/git). Nous vous **encourageons fortement** à apprendre à vous en servir.
 
 
-[^1]: En tant qu'étudiant(e) vous pouvez souscrire au [Student Developper Pack](https://education.github.com/pack) qui vous offre la possibilité d'obtenir des dépôts privés
+[^1]: En tant qu'étudiant(e) vous pouvez souscrire au [Student Developper Pack](https://education.github.com/pack).
 
 
 ## Comment lire ces TPs
