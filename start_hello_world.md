@@ -156,7 +156,7 @@ Implémentez ce qui suit ("Hello World! ").
 
 {{% /alert %}}
 
-Une fois l'exercice effectué, libre à vous de faire les exercices suivants pendant la séance de TP. Mais si vous êtes à l'aise, vous pouvez [passer à la suite]({{< ref "compilation.md" >}}).
+Une fois l'exercice effectué, libre à vous de faire les exercices suivants pendant la séance de TP. Mais si vous êtes à l'aise, vous pouvez [passer à la suite]({{< ref "start_compilation.md" >}}).
 
 {{% alert exercise %}}
 Facultatif :

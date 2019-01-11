@@ -46,7 +46,7 @@ TODO: fournir un exemple de codes Matplotlib lisant un fichier de données ?
 
 ## Organisation
 
-La partie ["Premiers pas"]({{<relref "hello_world.md">}}) présente la compilation pour le `C++` et surtout introduit une organisation possible pour le code et les fichiers. Les bonnes pratiques de programmation, à prendre *dès le début*, seront aussi soulignées. Ensuite seulement commencera l'implémentation de la bibliothèque.
+La partie ["Premiers pas"]({{<relref "start_hello_world.md">}}) présente la compilation pour le `C++` et surtout introduit une organisation possible pour le code et les fichiers. Les bonnes pratiques de programmation, à prendre *dès le début*, seront aussi soulignées. Ensuite seulement commencera l'implémentation de la bibliothèque.
 
 ## Environnement
 

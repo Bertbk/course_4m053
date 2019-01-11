@@ -38,7 +38,7 @@ Dans cette partie, le stockage des matrices sera *dense*, c'est-à-dire que chaq
 
 Petits rappels :
 
-- Utilisez le `Makefile`  [introduit précédemment]({{<relref "makefile.md">}}) pour gérer la compilation
+- Utilisez le `Makefile`  [introduit précédemment]({{<relref "start_makefile.md">}}) pour gérer la compilation
 - Chaque classe doit être déclarée et définie dans un header et un fichier source qui lui sont propres et qui seront rangés respectivement dans le dossier `include` et `src`
 - Créez un fichier `dense.cpp` à la racine pour effectuer des tests
 - Modifiez le `Makefile` pour compiler le fichier `dense.cpp`
