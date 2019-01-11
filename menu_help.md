@@ -17,7 +17,7 @@ type = "docs"  # Do not modify.
 # Add menu entry to sidebar.
 [menu.4m053]
     identifier = "help"
-    name = "Aides & Bonnes pratiques"
+    name = "Aides & Bonnes Pratiques"
     url = ""
     weight = 5
 
