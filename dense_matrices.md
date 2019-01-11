@@ -25,49 +25,68 @@ math = true
 
 +++
 
-## Objectif
+## Objectifs
 
 1. Implémenter une classe `Matrice` pour manipuler des matrices carrées
+2. Implémenter des opérations entre les classe `Matrice` et `Vecteur`
 
+## Fichiers
+
+Tout comme les vecteurs, il est largement préférable de créer un fichier header et un fichier source pour les matrices. 
 
 ## Stockage
 
- Nous souhaitons implémenter une classe `Matrice` qui représente les matrices **carrées** et les stocke de manière **dense**. Elle nous permettra aussi d'effectuer des opérations matricielles (multiplication, ...). Cette classe contient comme données privées :
+La classe `Matrice` représente des matrices **carrées** (uniquement) et les stocke sous forme **dense**. Cette classe permettra d'effectuer des opérations matricielles (multiplication, ...). Elle contient comme données privées (au moins, libre à vous d'en ajouter):
  
 - `int N_` : Le nombre de colonnes (= de lignes)
 - `std::vector<double> coef_` : Les coefficients, stockés dans un tableau à une dimension de la bibliothèque standard
 
-Les coefficients sont stockés de la façon suivante. Le coefficient positionné en $(i,j)$ dans la matrice sera à la position `i+j*N` dans le vecteur de coefficients, où `N` est le nombre de colonnes ou de lignes.
+Les coefficients sont stockés de la façon suivante. Le coefficient positionné en $(i,j)$ dans la matrice sera à la position `i+j*N_` dans le vecteur de coefficients, où `N_` est le nombre de colonnes ou de lignes.
 
-
-{{% alert exercise %}}
-À vous d'implémenter la classe `Matrice` ! Pour cela...
-
-- Implémentez un constructeur ...
-  - Vide
-  - Un prenant un entier en argument et qui crée une matrice carré remplie de zéros de taille cet entier
-  - Un par recopie
-
+Comme pour la classe `Vecteur`, la classe `Matrice` comporte des constructeurs :
 ```c++
 Matrice (); // constructeur vide
 Matrice (int N); // constructeur créant une matrice nulle de taille N
 Matrice (const Matrice & M); // constructeur par recopie
 ```
-- Ajoutez une méthode constante qui renvoie la taille de la matrice
-- Ajoutez une méthode constante qui affiche la matrice dans le terminal
-- Ajoutez les accesseurs suivants :
+et un destructeur 
+```c++
+~Matrice() = default;
+```
+
+Le fichier header pour les matrices ressemble à
+
+```cpp
+// Fichier include/matrice.hpp
+#pragma once
+#include<vector> // pour les std::vector
+
+class Matrice{
+private:
+  int N_;
+  std::vector<double> coef_;
+public: 
+  Matrice (); // constructeur vide
+  Matrice (int N); // constructeur créant une matrice nulle de taille N
+  Matrice (const Matrice & M); // constructeur par recopie
+  ~Matrice() = default;
+};
+```
+
+## Quelques méthodes
+
+- Méthode (constante) qui renvoie la taille de la matrice
+- Méthode (constante) qui affiche la matrice dans le terminal
+- Accesseurs :
 
 ```c++
 double & operator() (int i, int j);     // Accès à la référence
 double operator() (int i, int j) const; // Accès à la valeur (recopie)
-  ```
+```
 Le premier permet d'accéder au coefficient de la matrice par référence (permettant une modification ultérieure) tandis que le second ne fait que renvoyer (une copie de) la valeur du coefficient.
 
-{{% /alert %}}
-
-
 {{% alert tips %}}
-À partir de maintenant, vous ne devriez plus jamais accéder aux coefficients via `coef_` mais uniquement via les accesseurs.
+À partir de maintenant, vous ne devriez plus jamais accéder aux coefficients via `coef_` mais uniquement via les accesseurs ! Par exemple `A(i,j) = ...`.
 {{% /alert %}}
 
 ## Opérations élémentaires
@@ -78,13 +97,25 @@ En mathématique, une matrice n'est pas qu'un tableau de coefficients et des op�
 Améliorer votre classe `Matrice` avec les fonctionnalités suivantes :
 
 1. L'addition et la soustraction entre deux matrices en surchargeant les opérateur `+` et `-`
-2. La multiplication par une `Matrice`
+2. La multiplication par une autre `Matrice`
 3. La multiplication par un scalaire
+
+Pour ces deux dernières opérations, vous pouvez soit construire un `operator` dans la classe ou à l'extérieure de celle-ci via le mot clé `friend` (comme pour les `Vecteur`).
 {{% /alert %}}
 
+## Produit Matrice-Vecteur
+
+Implémentez le produit matrice vecteur sous forme d'un `operator` :
+```c++
+friend Vecteur operator*(const Matrice&, const Vecteur&);
+```
 
 {{% alert note %}}
-Quelques astuces :
+N'oubliez pas, alors, d'inclure le fichier header des vecteurs.
+{{% /alert %}}
+
+{{% alert note %}}
+Quelques astuces générales :
 
 - Pensez à utiliser des références en argument pour éviter les copies inutiles d'objets qui peuvent être lourdes en mémoire, ce qui est le cas pour les matrices
 - Dans le cas des références passées en argument, pensez à les déclarer constantes dans les cas pertinents
