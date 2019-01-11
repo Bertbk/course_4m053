@@ -17,8 +17,7 @@ type = "docs"  # Do not modify.
 
 # Add menu entry to sidebar.
 [menu.4m053]
-  parent = "introduction"
-  name = "Objectifs"
+  name = "Introduction"
   weight = 1
 
 
@@ -37,7 +36,7 @@ Les TPs associés au cours 4M053 "Calcul scientifique pour les grands systèmes 
 
 ### Pour le développement : `C++`
 
-Ces TPs vous demandent d'être **familié avec au moins un langage compilé** (`C`, `C++`, `Fortran`, ...) et le langage retenu ici sera le `C++`. Si vous n'êtes ni familié avec un langage compilé ni avec le `C++`, vous allez devoir **travailler dure** pour rattraper le retard : ces TPs **ne sont pas** des TPs d'informatique ! Rien n'est impossible mais nous **ne ferons pas le travail à votre place**. Nous avons mis en place [une section contenant des liens pour vous aider]({{<relref "help.md">}}).
+Ces TPs vous demandent d'être **familié avec au moins un langage compilé** (`C`, `C++`, `Fortran`, ...) et le langage retenu ici sera le `C++`. Si vous n'êtes ni familié avec un langage compilé ni avec le `C++`, vous allez devoir **travailler dure** pour rattraper le retard : ces TPs **ne sont pas** des TPs d'informatique ! Rien n'est impossible mais nous **ne ferons pas le travail à votre place**. Nous avons mis en place [une section contenant des liens pour vous aider]({{<relref "menu_help.md">}}).
 
 ### Pour l'analyse : `Python`, `Julia`, `MATLAB`, ...
 
@@ -69,8 +68,9 @@ Un éditeur de textes peut intégrer un certain nombre d'outils qui peuvent vous
 
 #### Gérez vos sources avec [Git](https://git-scm.com/)
 
-Stockez votre dépôt sut [Github](https://github.com)[^1] ou [Gitlab](https://gitlab.com). Nous n'avons toutefois et malheureusement pas le temps d'apprendre à utiliser cet outil - pourtant extrêmement utile ! Vous devez l'apprendre vous même [via des tutos en ligne](https://ljll.math.upmc.fr/infomath/tools/git). Nous vous **encourageons fortement** à apprendre à vous en servir.
+Stockez votre dépôt sur [Github](https://github.com)[^1] ou [Gitlab](https://gitlab.com). Nous n'avons toutefois et malheureusement pas le temps d'apprendre à utiliser cet outil - pourtant extrêmement utile ! Vous devez l'apprendre vous même [via des tutos en ligne](https://ljll.math.upmc.fr/infomath/tools/git). Nous vous **encourageons fortement** à apprendre à vous en servir.
 
+Notez que des packages pour utiliser Git directement dans le traitement de textes sont disponibles pour VScode, Emacs et Vim.
 
 [^1]: En tant qu'étudiant(e) vous pouvez souscrire au [Student Developper Pack](https://education.github.com/pack).
 

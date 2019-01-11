@@ -1,5 +1,5 @@
 +++
-title = "Aide & bonnes pratiques"
+title = "C++ : Aide & bonnes pratiques"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -16,8 +16,8 @@ type = "docs"  # Do not modify.
 
 # Add menu entry to sidebar.
 [menu.4m053]
-  parent = "introduction"
-  name = "Aides & bonnes pratiques"
+  parent = "help"
+  name = "C++"
   weight = 2
 
 
