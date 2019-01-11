@@ -24,6 +24,12 @@ math = true
   weight = 15
 
 +++
+
+## Objectif
+
+1. Implémenter une classe `Matrice` pour manipuler des matrices carrées
+
+
 ## Stockage
 
  Nous souhaitons implémenter une classe `Matrice` qui représente les matrices **carrées** et les stocke de manière **dense**. Elle nous permettra aussi d'effectuer des opérations matricielles (multiplication, ...). Cette classe contient comme données privées :
