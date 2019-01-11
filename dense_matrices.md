@@ -1,5 +1,5 @@
 +++
-title = "Matrices denses"
+title = "Matrices"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -19,13 +19,12 @@ math = true
 # Add menu entry to sidebar.
 [menu.4m053]
   parent = "dense"
-  name = "Matrices denses"
+  identifier = "matrices_denses"
+  name = "Matrices"
   weight = 15
 
 +++
 ## Stockage
-
-Chaque nouvelle fonction devra être **testée** dans le fichier `dense.cpp`.
 
  Nous souhaitons implémenter une classe `Matrice` qui représente les matrices **carrées** et les stocke de manière **dense**. Elle nous permettra aussi d'effectuer des opérations matricielles (multiplication, ...). Cette classe contient comme données privées :
  
