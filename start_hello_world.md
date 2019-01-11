@@ -24,8 +24,8 @@ type = "docs"  # Do not modify.
 
 ## Objectifs
 
-- Se remémorer/apprendre rapidement l'usage du terminal
-- Compiler un programme `C++` en utilisant le Terminal
+1. Se remémorer/apprendre rapidement l'usage du terminal
+2. Compiler un programme simple en `C++` en utilisant le terminal
 
 
 ## Terminal
@@ -38,10 +38,10 @@ Voici une liste non exhaustive de commandes à connaître pour ce cours (c'est u
 
 - `pwd` : donne la position du répertoire courant dans l'arborescence
 - `ls` : affiche le contenu du répertoire courant
-- `cd nom-repertoire` : positionne le répertoire courant à `nom-repertoire`
-- `mkdir dossier` : créer un dossier `dossier` dans le répertoire courant
-- `touch fichier` : créer un fichier vide nommé `fichier`
-- `more fichier` : affiche le contenu du `fichier`
+- `cd` `dossier` : positionne le répertoire courant à `dossier`
+- `mkdir` `dossier` : créer un dossier `dossier` dans le répertoire courant
+- `touch` `fichier` : créer un fichier vide nommé `fichier`
+- `more` `fichier` : affiche le contenu du `fichier`
 
 {{% alert note %}}
 Un autre raccourcis clavier très utile est `Ctrl + C`  pour annuler le programme en cours de lancement dans le terminal (pour mettre fin à une boucle infinie par exemple).
@@ -53,7 +53,7 @@ Un autre raccourcis clavier très utile est `Ctrl + C`  pour annuler le programm
 1. Ouvrez un terminal
 2. Utilisez la commande `pwd` pour vous situer dans l'arborescence
 3. Déplacez vous à l'endroit de votre choix à l'aide de `d`
-4. Créez un répertoire `TP1` avec la commande `mkdir TP1`
+4. Créez un répertoire `Test` avec la commande `mkdir Test`
 {{% /alert %}}
 
 {{% alert tips %}}
@@ -66,7 +66,7 @@ Notez que :
 
 ## Compilation
 
-Supposons que nous avons un fichier `hello_world.cpp` dans le répertoire `TP1` qui correspond au code source d'un programme qui affiche `Hello world` lors de son exécution. La manière la plus simple pour compiler un tel programme est d'ouvrir le terminal, de se positionner dans le répertoire `TP1` et d'utiliser la commande suivante :
+Supposons que nous avons un fichier `hello_world.cpp` dans le répertoire `Test` qui correspond au code source d'un programme qui affiche `Hello world` lors de son exécution. La manière la plus simple pour compiler un tel programme est d'ouvrir le terminal, de se positionner dans le répertoire `Test` et d'utiliser la commande suivante :
 
 ```bash
 g++ hello_world.cpp
@@ -105,6 +105,7 @@ Il existe de nombreuses options pour la commande `g++`. En voici quelques unes :
 - `-g` active les options de débogage et permet notamment l'utilisation d'un débogueur. Attention, cela ralentit considérablement la compilation et l'exécution : à n'utiliser que pour déboguer.
 - `-O2` ou `-O3` permet certaines optimisations lors de la compilation.
 - Le compilateur peut émettre une liste d'erreurs qu'il convient alors de corriger pour qu'il puisse créer l'exécutable. Il va vous falloir apprendre à lire ces erreurs.
+- `std=c++11` utilise les fonctions du standard `C++11`
 {{% /alert %}}
 
 

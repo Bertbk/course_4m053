@@ -137,10 +137,13 @@ En piste !
 
 {{% /alert %}}
 
-Cette arborescence et ce `Makefile` seront utilisé pour notre projet. La suite de cette partie permet de vous familiariser un peu plus avec le `C++`, l'algorithmique et le `Makefile`. Si vous êtes à l'aise avec tout cela, vous pouvez commencer le projet. Autrement, n'hésitez pas à investir (un peu de) votre temps dans ce qui suit. N'y passer tout de même pas plus d'une séance...
+Cette arborescence et ce `Makefile` seront utilisé pour notre projet. La suite de cette partie permet de vous familiariser un peu plus avec le `C++`, l'algorithmique et le `Makefile`. 
 
 
 ## Quelques applications
+
+
+Si vous êtes à l'aise avec ce qui précède, vous pouvez commencer le projet. Autrement, n'hésitez pas à investir (un peu de) votre temps dans ce qui suit mais **n'y passez tout de même pas plus d'une séance...**
 
 ### Génération de tableaux d'entiers et affichage
 

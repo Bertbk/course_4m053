@@ -25,27 +25,27 @@ type = "docs"  # Do not modify.
 
 ## Objectifs
 
-- Apprendre à séparer les définitions des déclarations de fonctions
-- Prémise de structure du projet (*workflow*)
+1. Apprendre à séparer les **définitions** des **déclarations** des fonctions
+2. Prémisse de structure du projet (*workflow*)
 
 ## Séparer la déclaration et la définition
 
-En `C++`, il est commun de séparer "physiquement" la **déclaration** des fonctions de leur **définition**. La déclaration fournit au compilateur les informations sur les arguments entrants et sortants de la fonction (*quel type ?*), tandis que la définition détaille le fonctionnement interne de la fonction (*comment ça marche ?*). En pratique, les décalrations sont stockées dans un fichier `.h` (ou `.hpp`), appelé *header*, tandis que les définitions le sont dans les fichiers `.cpp`, appelés *sources*. 
+En `C++`, il est commun de séparer "physiquement" la **déclaration** des fonctions de leur **définition**. La déclaration fournit au compilateur les informations sur les arguments entrants et sortants de la fonction (*quel type ?*), tandis que la définition détaille le fonctionnement interne de la fonction (*comment ça marche ?*). En pratique, les déclarations sont stockées dans un fichier `.h` (ou `.hpp`), appelé *fichier d'en-têtes* ou *fichier header* (ou *header*), tandis que les définitions le sont dans les fichiers `.cpp`, appelés *fichiers sources*. 
 
 Reprenons l'exemple du `Hello World` et réécrivons le dans la structure proposée. Au lieu de disposer d'un seul fichier, nous en avons maintenant trois :
 
-1. `hello.cpp` contiendra les définitions des fonctions dont nous avons besoin.
-2. `hello.hpp` contiendra les déclarations des fonctions dont nous avons besoin (c'est le fichier d'en-tête, *header* en anglais)
-3. `main.cpp` qui contiendra le programme final
+1. `hello.cpp` contiendra les définitions des fonctions dont nous avons besoin
+2. `hello.hpp` contiendra les déclarations des fonctions dont nous avons besoin (les *header*)
+3. `main.cpp` qui contiendra le programme à exécuter
 
-Et nous auvons alors, dans l'ordre
+Et nous avons alors, dans l'ordre
 
 ```cpp
 // fichier hello.hpp
 #pragma once // voire remarque ci-dessous
 void hello_world(); // Déclaration de la fonction
 ```
-
+---
 ```cpp
 // fichier hello.cpp
 #include "hello.hpp";
@@ -55,7 +55,7 @@ void hello_world(){
   std::cout << "Hello World!";
 }
 ```
-
+---
 ```cpp
 // fichier main.cpp
 #include "hello.hpp";
@@ -86,7 +86,7 @@ La différence réside dans [la recherche du fichier effectuée par le compilate
 - Guillemets : le compilateur recherche d'abord dans le répertoire courant (celui du fichier appelant) puis, en cas d'échec, suit la règle de recherche des chevrons. Les guillemets sont (en général) à privilégier pour vos fichiers d'en-tête.
 {{% /alert %}}
 
-### Compilation
+## Compilation
 
 Compilons maintenant notre petit projet avec la commande suivante :
 
