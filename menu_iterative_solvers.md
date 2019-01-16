@@ -1,5 +1,5 @@
 +++
-title = "Solveurs Linéaires Directs"
+title = "Solveurs Linéaires Itératifs"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -16,9 +16,9 @@ type = "docs"  # Do not modify.
 
 # Add menu entry to sidebar.
 [menu.4m053]
-  identifier = "direct_solvers"
-  name = "Solveurs Directs"
-  weight = 25
+  identifier = "iterative_solvers"
+  name = "Solveurs Itératifs"
+  weight = 40
   url = ""
 
 
