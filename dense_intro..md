@@ -25,10 +25,10 @@ math = true
 
 +++
 
-1. Prise en main des `class` en `C++` pour créer :
-  - une classe `Vecteur` pour les vecteurs
-  - une classe `Matrice` pour les matrices carrées
-2. Résoudre des systèmes linéaires triangulaires supérieurs et inférieurs
+Prise en main des `class` en `C++` pour créer :
+
+1. une classe `Vecteur` pour les vecteurs
+2. une classe `Matrice` pour les matrices carrées
 
 Dans cette partie, le stockage des matrices sera *dense*, c'est-à-dire que chaque coefficient sera stocké en mémoire, qu'il soit nul ou pas. Le coût mémoire d'une matrice carré de taille $N$ est donc de $O(N^2)$.
 

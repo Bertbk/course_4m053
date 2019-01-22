@@ -1,5 +1,5 @@
 +++
-title = "Matrices Triangulaires"
+title = "Systèmes Triangulaires"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -19,7 +19,7 @@ math = true
 # Add menu entry to sidebar.
 [menu.4m053]
   parent = "direct_solvers"
-  name = "Matrices Triangulaires"
+  name = "Systèmes Triangulaires"
   weight = 5
 
 +++

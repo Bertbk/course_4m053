@@ -68,11 +68,39 @@ Un éditeur de textes peut intégrer un certain nombre d'outils qui peuvent vous
 
 #### Gérez vos sources avec [Git](https://git-scm.com/)
 
-Stockez votre dépôt sur [Github](https://github.com)[^1] ou [Gitlab](https://gitlab.com). Nous n'avons toutefois et malheureusement pas le temps d'apprendre à utiliser cet outil - pourtant extrêmement utile ! Vous devez l'apprendre vous même [via des tutos en ligne](https://ljll.math.upmc.fr/infomath/tools/git). Nous vous **encourageons fortement** à apprendre à vous en servir.
+Stockez votre dépôt sur [Github](https://github.com)[^1] ou [Gitlab](https://gitlab.com). Notez que des packages pour utiliser Git directement dans le traitement de textes sont disponibles pour VScode, Emacs et Vim.
 
-Notez que des packages pour utiliser Git directement dans le traitement de textes sont disponibles pour VScode, Emacs et Vim.
+{{% alert tips %}}
+Vous ne savez pas utiliser Git ? C'est le moment d'apprendre ! [Aidez vous de tutos](https://ljll.math.upmc.fr/infomath/tools/git/). Nous n'avons toutefois et malheureusement pas le temps d'apprendre à utiliser cet outil - pourtant extrêmement utile ! Cependant, nous sommes disponible pour vous aider. Nous vous **encourageons fortement** à apprendre à vous en servir.
+{{% /alert %}}
 
 [^1]: En tant qu'étudiant(e) vous pouvez souscrire au [Student Developper Pack](https://education.github.com/pack).
+
+
+## Contribuez !
+
+Vous avez repéré une erreur : grammaire, typo, de mathématiques ou d'informatique ? Ou avez des suggestions ? C'est le moment de participer ! Le code des tps est en [accès libre sur github](https://github.com/Bertbk/course_4m053) (le lien est aussi fourni sur le menu à droite). Vous pouvez alors soumettre un Pull Request, soit :
+
+1. [Par la voie standard](https://help.github.com/articles/about-pull-requests/) :
+  - [Forker le dépôt](https://help.github.com/articles/fork-a-repo/) dans votre compte github
+  - Récupérer le code sur votre ordinateur avec `git clone`
+  - Créer une branche dédié
+  ```
+  git branch correction
+  git checkout correction
+  ```
+  - Effectuer les modifications
+  - Versionner et envoyer au serveur
+  ```
+  git commit -m "blabla" -a
+  git push
+  ```
+  - Retourner sur [le dépôt du cours](https://github.com/Bertbk/course_4m053) : on vous propose de faire un Pull Request
+  - De notre côté, nous validerons (ou pas ;-))
+
+
+2. Via le lien Prose.io à droite (Edit this Page), qui effectuera toutes les étapes précédentes en votre nom.
+
 
 
 ## Comment lire ces TPs
@@ -94,4 +122,3 @@ Parfois, vous rencontrerez des remarques indiquées comme cela...
 {{% alert warning %}}
 ... Ou encore des avertissements.
 {{% /alert %}}
-

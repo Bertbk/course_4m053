@@ -4,7 +4,7 @@ title = "Méthodes Standards"
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
 
-draft = true  # Is this a draft? true/false
+draft = false  # Is this a draft? true/false
 toc = true  # Show table of contents? true/false
 type = "docs"  # Do not modify.
 
@@ -60,7 +60,8 @@ While((|r| > tolerance * |b|) && (n < n_max))
 
 Pour chaque méthode itérative, nous construirons une classe spécifique.
 
-\paragraph{Notations.}
+### Notations
+
 La matrice $A$ se décompose comme $A = D - E -F$, où $D$, $E$ et $F$ sont des matrices de la même taille que $A$ et telles que :
 \begin{itemize}[label=\textbullet]
 \item $D$ : Matrice ne contenant que les termes diagonaux de $A$
