@@ -47,7 +47,7 @@ En reprenant l'exemple précédent du Hello World, nous travaillons dans le doss
 ```bash
 hello/
   └── Makefile  # Fichier Makefile
-  └── hello.cpp # Fichier "main"
+  └── main.cpp # Fichier "main"
   └── include/     # Contient les fichiers header
         └── hello_world.hpp
   └── src/         # Contient les fichiers sources
