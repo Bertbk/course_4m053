@@ -128,7 +128,7 @@ Voici une liste de méthodes qui nous seront utiles
 ```c++
 double & operator() (int i, int j);      // Accès à la référence
 double operator() (int i, int j) const; // Accès à la valeur (recopie)
-  ```
+```
 Le premier permet d'accéder au coefficient de la matrice par référence (permettant une modification ultérieure) tandis que le second ne fait que renvoyer (une copie de) la valeur du coefficient.
 
 {{% alert exercise %}}
@@ -154,16 +154,17 @@ C'est parti :
 
 Cela se fait en construisant un `operator*`. Vous pouvez définir une méthode, par exemple `void ScalarMult(double alpha);` mais cela peut s'avérer peu pratique. Le mieux (au sens mathématiques) est de définir un `operator*` afin d'écrire directement `alpha*v` dans votre code. Nous avons alors deux possibilités :
 
-1. Comme méthode de classe : 
+- Comme méthode de classe : 
+
+```cpp
+Vecteur operator*(double alpha) const; //Dans la classe Vecteur
+```
+
+- En dehors de la classe avec le mot clé `friend` comme ceci : 
         
-        ```cpp
-        operator*(double alpha); //Dans la classe Vecteur
-        ```
-2. En dehors de la classe avec le mot clé `friend` comme ceci : 
-        
-        ```cpp
-        friend Vecteur operator*(double alpha, const Vecteur &v); //En dehors de la classe Vecteur
-        ```
+```cpp
+friend Vecteur operator*(double alpha, const Vecteur &v); //En dehors de la classe Vecteur
+```
 
 La deuxième option présente l'avantage de clairement exposer les deux arguments de l'opération, contrairement à la méthode où l'argument `Vecteur` est implicite.
 
