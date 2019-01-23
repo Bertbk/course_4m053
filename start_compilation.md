@@ -48,7 +48,7 @@ void hello_world(); // Déclaration de la fonction
 ---
 ```cpp
 // fichier hello.cpp
-#include "hello.hpp";
+#include "hello.hpp"
 #include <iostream> //cin et cout
 // Déclaration de la fonction
 void hello_world(){
@@ -58,7 +58,7 @@ void hello_world(){
 ---
 ```cpp
 // fichier main.cpp
-#include "hello.hpp";
+#include "hello.hpp"
 
 int main(){
   hello_world(); //appel de la fonction
