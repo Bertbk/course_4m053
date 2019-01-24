@@ -48,39 +48,44 @@ $$
   d & e & f& 0 & 0\\\\\\
   g & h & i& j & 0\\\\\\
   k & l & m& n & p
-\end{pmatrix}}\_{\text{Triang. inf.}}\quad
+\end{pmatrix}}\_{\text{Triang. inf.}}\quad\text{et}\quad
 \underbrace{\begin{pmatrix}
   a & b & c& d & e\\\\\\
   0 & f & g& h & i\\\\\\
   0 & 0 & j& k & l\\\\\\
   0 & 0 & 0& m & n\\\\\\
   0 & 0 & 0& 0 & p
-\end{pmatrix}}\_{\text{Triang. sup.}}
+\end{pmatrix}}\_{\text{Triang. sup.}}.
 $$
 
 ## Algorithme de résolution
 
-Écrivez l'algorithme sur papier permettant de résoudre le système linéaire quand la matrice est triangulaire supérieure. En déduire l'algorithme pour une matrice triangulaire inférieure.
+{{% alert exercise %}}
+Écrivez (sur papier) l'algorithme permettant de résoudre le système linéaire quand la matrice est triangulaire supérieure. 
+
+En déduire l'algorithme pour une matrice triangulaire inférieure.
+{{% /alert %}}
+
 
 {{% alert warning %}}
-Cet algorithme ne doit en aucun cas calculer $A^{-1}$ mais uniquement $A^{-1}b$ !
+Cet algorithme ne doit en aucun cas calculer la matrice $A^{-1}$ mais uniquement le vecteur $A^{-1}b$ !
 {{% /alert %}}
 
 {{% alert note %}}
-Commencez petit avec une matrice 3x3 par exemple...
+Soyez humble et commencez petit avec une matrice 3x3 par exemple...
 {{% /alert %}}
 
 ## Implémentation
 
 ### Triangulaire inférieure
 
-Implémenter une fonction qui prend en argument une `Matrice` triangulaire inférieure `A` et un `Vecteur` `b` et qui renvoie le résultat $\texttt{A}^{-1}\texttt{b}$ :
+Implémentez une fonction qui prend en argument une `Matrice` triangulaire inférieure `A` et un `Vecteur` `b` et qui renvoie le résultat $\texttt{A}^{-1}\texttt{b}$ :
 
 ```c++
 Vecteur solve_triang_inf(const Matrice &A, const Vecteur& b);
 ```
-{{% alert note %}}
-Ne vérifiez pas a priori si la matrice est bien triangulaire ou non. Nous supposons que l'utilisatrice ou l'utilisateur sait ce qu'elle / il fait. En réalité, une telle vérification serait nuisible pour la suite...
+{{% alert warning %}}
+Ne vérifiez pas si la matrice est bien triangulaire ou non. Une telle vérification serait nuisible pour la suite.
 {{% /alert %}}
 
 

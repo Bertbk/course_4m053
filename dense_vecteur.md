@@ -61,6 +61,10 @@ public:
 };
 ```
 
+{{% alert note %}}
+[Rappel sur le choix de `N_`]({{< relref "help_cpp.md#nom-des-paramètres" >}}) ( et non `N` ou `_N`)
+{{% /alert %}}
+
 ## Constructeurs et destructeur
 
 Notre classe comporte (au moins) les trois constructeurs suivants         
