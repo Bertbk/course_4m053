@@ -183,6 +183,8 @@ $$
 Implémentez cette méthode en procédant de la même manière que pour les autres méthodes itératives.
 {{% /alert %}}
 
+
+
 ## Méthode de Richardson
 
 Pour cette méthode, nous avons
@@ -192,7 +194,7 @@ $$
 où $I$ est la matrice identité.
 
 {{% alert exercise %}}
-    Implémentez la méthode de Richardson de la même manière que les autres méthodes itératives.
+Implémentez la méthode de Richardson de la même manière que les autres méthodes itératives.
 {{% /alert %}}
 
 ## Méthode de Gradient à pas optimal
@@ -212,6 +214,7 @@ Implémentez la méthode de gradient à pas optimal de la même manière que pou
 {{% /alert %}}
 
 <!--
+
 ## [Optionnel] Une classe abstraite pour les gouverner toutes
 
 Vous avez sûrement remarqué que chaque classe partageait une bonne partie du même code. Dans un soucis d'obtenir un code plus propre, vous pouvez factoriser une bonne partie de celui-ci.
@@ -320,121 +323,4 @@ Pour utiliser les template, vous devez, *grosso-modo*, déplacer le code contenu
 Une fois la classe `Jacobi` ``templatisée'', attaquez vous aux autres !
 {{% /alert %}}
 
-
-
-
-## Analyse numérique
-
-Nous disposons maintenant d'une implémentation des quatre méthodes itératives, nous allons maintenant les analyser et les comparer. Pour cela, nous allons utiliser la matrice $A_N$ de taille $N\times N$:
-\[
-  A_N =
-  \begin{pmatrix}
-    2 & -1 & 0 & 0 & \ldots & 0 & 0\\
-    -1 & 2 & -1 &  0 & \ldots & 0 & 0\\
-     0 & -1 & 2 & -1 & \ldots & 0 & 0 \\
-     \vdots & \ddots& \ddots& \ddots & \ldots & \vdots  & \vdots\\
-     0 & 0 & 0 & 0 & \ldots & -1 & 2 \\
-  \end{pmatrix}
-\]
-
-Les $N$ valeurs propres de la matrice $A_N$ sont données par
-\begin{align*}
-\lambda_k = 4 \sin^2\left(\frac{k\pi}{2(N+1)}\right) \quad \text{ pour } k=1,\cdots, N.
-\end{align*}
-
-
-
-Pour atteindre une erreur $\varepsilon$, le nombre d'itérations estimé est donné par
-\begin{equation}\label{eq:niter}
-  n_{iter} = \frac{{ \ln}(\varepsilon)}{{ \ln}(\rho(\mathcal{L}))},
-\end{equation}
-  où $\mathcal{L} :=M^{-1}(M - A) $ est la matrice d'itération (Jacobi, Gauss-Seidel, etc.).
-
-
-
-### Méthode de Jacobi
-
-{{% alert exercise %}}
-  \label{ex:jacob1}
-À l'aide de ce qui précède :
-  \begin{enumerate}
-    \item Calculez analytiquement les valeurs propres de $J$, la matrice d'itération de Jacobi.
-    \item En déduire son rayon spectrale $\rho(J)$.
-    \item Effectuez un développement de Taylor à l'ordre 2 de $\rho(J)$ lorsque $N\to+\infty$.
-    \item Faites de même sur le nombre d'itérations donné par l'équation (\ref{eq:niter}).
-  \end{enumerate}
-{{% /alert %}}
-
-{{% alert exercise %}}
-  \label{ex:jacob2}
-Nous fixons $N=10$, la tolérance $\varepsilon = 0.1$ et le nombre maximal d'itérations $n_{max} = 10^5$.
-  \begin{enumerate}
-  \item Estimez le nombre d'itérations nécessaire pour converger à l'aide des développements de Taylor de l'exercice précédent
-  \item Comparez avec les résultats obtenus numériquement. Est-ce satisfaisant ?
-  \item Faites de même avec $N=50$ et $N=100$.
-  \end{enumerate}
-{{% /alert %}}
-
-### Méthode de Gauss-Seidel
-
-{{% alert exercise %}}
-  Comme la matrice $A_N$ est tri-diagonale, le rayon spectrale de la matrice de Gauss-Seidel $\rho(G)$ est donnée par $\rho(G) = \rho(J)^2$.  Sachant cela, procédez de la même manière que les exercices \ref{ex:jacob1} et \ref{ex:jacob2}.
-{{% /alert %}}
-
-### Méthode de Relaxation
-
-Comme $A_N$ est symétrique définie positive, alors le paramètre optimale $\omega^*$ pour la méthode de relaxation est donné par
-\begin{align*}
-\omega^* = \frac{2}{1 + \sqrt{1 - \rho(J)^2}}.
-\end{align*}
-
-{{% alert exercise %}}
-  à l'aide des exercices précédents, donnez une estimation de $\omega^*$ quand $N\to+\infty$.
-{{% /alert %}}
-
-{{% alert exercise %}}
-Sachant que, pour la méthode de relaxation, le rayon spectral de la matrice d'itération $G_{\omega}$ est donnée par $\rho(G_{\omega}) = \omega - 1$, procédez de la même manière que les exercices \ref{ex:jacob1} et \ref{ex:jacob2} pour le paramètre optimal $\omega^*$.
-{{% /alert %}}
-
-### Méthode de Richardson
-
-
-
-Pour une matrice définie positive, le pas optimal $\alpha$ est donné par
-$$
-\alpha = \frac{2}{\lambda_{min} + \lambda_{max}},
-$$
-où $\lambda_{min}$ et $\lambda_{max}$ sont respectivement les plus petites et plus grandes valeurs propres de la matrice du système linéaire.
-{{% alert exercise %}}
-  Calculez analytiquement le pas optimal $\alpha$ et, à l'aide des calculs précédents, en déduire le comportement de la méthode de Richardson.
-{{% /alert %}}
-
-
-
-## Comparaison des performances
-
-{{% alert exercise %}}
- Nous considérons une matrice $A_N$ de taille $200$ et un vecteur membre de droite $b$ rempli de $1$. Dans cet exercice, nous fixons de plus la tolérance à $0.1$ et le nombre d'itération maximal de 20000.
-  \begin{enumerate}[label=\Alph*)]
-\item **Préparation des données de sorties:**
-\begin{enumerate}[label=\arabic*.]
-\item Adaptez vos fonctions membres `Solve()` de chaque classe de méthode itérative pour pouvoir calculer le temps d'exécution de la résolution. \textit{Vous pouvez ajouter des paramètres/fonctions membres si vous le désirez}
-\item Résolvez le problème avec les méthodes de Jacobi, Gauss-Seidel, Relaxation ($\omega^*$), Richardson et de Gradient à pas optimal, pour des matrices creuses et denses.
-\item Pour chaque méthode, normalisez le vecteur de norme du résidu par rapport à la norme de $b$ (\textit{i.e.} stocker $\|r\|/\|b\|$) et prenez-en le logarithme ($\log_{10}$).
-\item Stockez les normes des résidus normalisés par la norme de $b$ pour chaque itération et chaque méthode et affichez les temps CPU mis par chaque méthode.
-\end{enumerate}
-\item **Analyse des résultats de convergence :**
-\begin{enumerate}[label=\arabic*.]
-\item Sur une même figure, affichez les courbes ``norme du résidu'' (normalisé) en fonction du ``numéro de l'itération'' pour chaque méthode itérative. Cette figure s'appelle l'historique de convergence.
-\item Quelle méthode itérative est la plus rapide (en terme de nombre d'itérations) ?
-\end{enumerate}
-\item **Comparaison des performances entre matrices denses et creuses :**
-\begin{enumerate}[label=\arabic*.]
-\item Affichez et comparez le temps CPU mis pour chaque méthode itérative pour chaque type de matrice.
-\item Pour la méthode de Gauss-Seidel uniquement, résolvez le problème avec une taille de la matrice différente (par ex. $N=100$ à $2000$ avec un pas de $100$). Pour chaque taille, stockez le temps CPU (en secondes) mis par la méthode avec stockage dense et creux de la matrice. Affichez la courbe et comparez les deux méthodes de stockage.
-\end{enumerate}
-\end{enumerate}
-{{% /alert %}}
-
-
-\end{document}
+-->
