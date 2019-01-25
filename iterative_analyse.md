@@ -183,30 +183,52 @@ Calculez analytiquement le pas optimal $\alpha$ et, à l'aide des calculs préc�
 
 -->
 
-## Comparaison des performances (temps CPU)
+## Comparaison des méthodes
+
+### Préparation des Classes
+
+#### Temps CPU
+
+Adaptez les fonctions membres `Solve()` de chaque classe de méthode itérative pour pouvoir calculer le temps d'exécution de la résolution. **Vous pouvez bien entendu ajouter des paramètres/méthodes si vous le désirez**.
+
+Naturellement, vous pouvez réutiliser le code TODO:. 
+
+#### Norme de résidu
+
+À chaque itération, nous calculons la norme de $\|r\|$ et nous souhaitons la stocker dans `resvec`. Cependant, plutôt que de stocker cette valeur, il est préférable de stocker sa valeur normalisé et pris en logarithme (nous l'appelerons *résidu relatif*): 
+\begin{equation}
+\label{eq:rel}
+\log\_{10}\left(\frac{\|r\|}{\|b\|}\right).
+\end{equation}
 
 {{% alert exercise %}}
- Nous considérons une matrice $A_N$ de taille $200$ et un vecteur membre de droite $b$ rempli de $1$. Dans cet exercice, nous fixons de plus la tolérance à $10^{-1}$ et le nombre d'itération maximal de 20000.
-\begin{enumerate}[label=\Alph*)]
-\item **Préparation des données de sorties:**
-\begin{enumerate}[label=\arabic*.]
-\item Adaptez vos fonctions membres `Solve()` de chaque classe de méthode itérative pour pouvoir calculer le temps d'exécution de la résolution. \textit{Vous pouvez ajouter des paramètres/fonctions membres si vous le désirez}
-\item Résolvez le problème avec les méthodes de Jacobi, Gauss-Seidel, Relaxation ($\omega^*$), Richardson et de Gradient à pas optimal, pour des matrices creuses et denses.
-\item Pour chaque méthode, normalisez le vecteur de norme du résidu par rapport à la norme de $b$ (\textit{i.e.} stocker $\|r\|/\|b\|$) et prenez-en le logarithme ($\log_{10}$).
-\item Stockez les normes des résidus normalisés par la norme de $b$ pour chaque itération et chaque méthode et affichez les temps CPU mis par chaque méthode.
-\end{enumerate}
-\item **Analyse des résultats de convergence :**
-\begin{enumerate}[label=\arabic*.]
-\item Sur une même figure, affichez les courbes ``norme du résidu'' (normalisé) en fonction du ``numéro de l'itération'' pour chaque méthode itérative. Cette figure s'appelle l'historique de convergence.
-\item Quelle méthode itérative est la plus rapide (en terme de nombre d'itérations) ?
-\end{enumerate}
-\item **Comparaison des performances entre matrices denses et creuses :**
-\begin{enumerate}[label=\arabic*.]
-\item Affichez et comparez le temps CPU mis pour chaque méthode itérative pour chaque type de matrice.
-\item Pour la méthode de Gauss-Seidel uniquement, résolvez le problème avec une taille de la matrice différente (par ex. $N=100$ à $2000$ avec un pas de $100$). Pour chaque taille, stockez le temps CPU (en secondes) mis par la méthode avec stockage dense et creux de la matrice. Affichez la courbe et comparez les deux méthodes de stockage.
-\end{enumerate}
-\end{enumerate}
+Adaptez les fonctions membres `Solve()` de chaque classe de méthode itérative pour que :
+
+- Le temps d'exécution de la méthode soit calculé et stocké dans un paramètre
+- Le tableau paramètre `std::vector<double> resvec` contienne  les résidus relatifs \eqref{eq:rel} de chaque itération
+
+**Vous pouvez bien entendu ajouter des paramètres/méthodes si vous le désirez**, notamment pour pouvoir avoir accès à ces valeurs.
+
 {{% /alert %}}
 
+### Historique de Convergence
 
-\end{document}
+Nous considérons une matrice $A\_N$ de taille $200$ et un vecteur membre de droite $b$ rempli de $1$. Dans cet exercice, nous fixons de plus la tolérance à $10^{-1}$ et le nombre d'itérations maximal de 20000.
+
+{{% alert exercise %}}
+Sur une même figure, affichez les courbes "norme du résidu" (normalisé \eqref{eq:rel}) en fonction du "numéro de l'itération" pour chaque méthode itérative. Cette figure s'appelle **l'historique de convergence**.
+
+Quelle méthode itérative est la plus rapide (en terme de nombre d'itérations) ?
+{{% /alert %}}
+
+TODO: figure ?
+
+### Temps CPU
+
+{{% alert exercise %}}
+Pour $N=10$ à $200$, avec un pas de $10$, calculez le temps CPU (en secondes) pour chaque méthode itérative. Affichez sur une même figure chaque courbe "temps CPU (s)" en fonction du "numéro de l'itération".
+
+Quelle méthode itérative est la plus rapide (en terme de temps CPU) ?
+{{% /alert %}}
+
+TODO: figure ?
