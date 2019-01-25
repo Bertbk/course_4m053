@@ -1,5 +1,5 @@
 +++
-title = "Analyse"
+title = "Analyse Numérique"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -19,37 +19,20 @@ math = true
 # Add menu entry to sidebar.
 [menu.4m053]
   parent = "iterative_solvers"
-  name = "Analyse"
+  name = "Analyse Numérique"
   weight = 10
 
 +++
 
-## Objectif
+## Objectifs
 
 Pour les différentes méthodes itératives standards, nous souhaitons comparer :
 
-1. La **vitesse de convergence** 
-2. Le **temps CPU** (*time to solution*)
+1. **Estimer la vitesse de convergence** (*ie* le nombre d'itérations) 
+2. **Comparer cette estimation** à celle **obtenue numériquement**
 
 
-
-#### Méthodes d'affichage
-
-Pensez à ajouter des fonctions membres permettant de :
-
-- Afficher le nombre d'itérations (après résolution).
-- Afficher le vecteur `resvec_`, ou plutôt le stocker sur disque [au format JSON](https://fr.wikipedia.org/wiki/JavaScript_Object_Notation). 
-
-Pour simplifier, le format JSON est un format de transfers de données. À chaque clé (*key*) est associé une valeur ou un tableau de valeurs. Vous pouvez ajouter autant de clés que vous le voulez. Par exemple, le fichier de sortie pourrait ressembler à celui-ci (valeurs choisies au hasard !):
-
-```json
-{ "method": "jacobi" }
-{ "niter" : 3 }
-{ "resvec": [ 12.1, 8.2, 5.4, 3.2]}
-```
-[Les scripts mis à dispositions]({{< relref "help_matplotlib.md" >}}) permettent de lire un fichier au format JSON et d'afficher la courbe associée à un tableau. Nous serons par exemple intéressés pour afficher la courbe $\log\_{10}($`resvec_`$)$ en fonction du numéro de l'itération. 
-
-## Vitesse de Convergence
+## Problème modèle
 
 Nous disposons maintenant d'une implémentation des trois principales méthodes itératives standards : nous devons maintenant les analyser et les comparer. Pour cela, nous utilisons la matrice $A\_N$ de taille $N\times N$:
 $$
@@ -72,9 +55,12 @@ En notant $L :=M^{-1}(M - A) = I - M^{-1}A$ la matrice d'itération de la métho
   n_{iter} = \frac{{ \ln}(\varepsilon)}{{ \ln}(\rho(L))},
 \end{equation}
 
+En particulier, si nous connaissons le rayon spectral de la matrice d'itération, alors nous disposons d'une estimation du nomre d'itérations nécessaires pour aboutir à la convergence.
 
 
-### Méthode de Jacobi
+## Méthode de Jacobi
+
+### Nombre d'itérations : analytique
 
 Nous cherchons à estimer le nombre d'itérations de la méthode pour une tolérance $\varepsilon$ donnée, tout d'abord pour la méthode de Jacobi. Pour cette technique, nous rappelons que $M = {\rm diag}(A)$ ce qui, dans notre cas, ce simplifie par $M = \frac{1}{2}I$ où $I$ est la matrice identité. La matrice d'itération $J$ est alors donnée par :
 $$
@@ -93,34 +79,41 @@ Ensuite, en utilisant le fait que $\cos(\pi - x) = \cos(x)$, nous en déduisons 
 \label{eq:rhoj}
 \rho(J) = \cos\left(\frac{\pi}{N+1}\right).
 \end{equation}
-Avec cette expression, nous pouvons calculer une estimation théorique du nombre d'itérations nécessaires à la convergence. Cependant, nous pouvons également obtenir une estimation plus facile à calculer (et à interpréter). Pour cela, après avoir appliqué [un développement limité de Taylor](http://www.h-k.fr/publications/data/adc.ps__annexes.maths.pdf) à l'ordre 2 de $\rho(J)$ lorsque $N\to+\infty$, nous donne :
-$$
-\rho(J) = 1 - \frac{\pi^2}{2(N+1)^2} + O\left(\left(\frac{1}{N+1}\right)^4\right)
-$$
-Enfin, utilisant l'équation \eqref{eq:niter}, nous en déduisons une estimation du nombre d'itérations :
+Nous en déduisons le nombre d'itérations :
+\begin{equation}
+\label{eq:iterJanalytique}
+n\_{iter}(J) = \frac{\ln(\varepsilon)}{\ln\left(\cos\left(\frac{\pi}{N+1}\right)\right)}.
+\end{equation}
 
-{{% boxed red %}}
+### Nombre d'itérations : estimation par DL
+
+L'expression \eqref{eq:iterJanalytique} est très précise mais difficilement interprétable pour les humains que nous sommes. Nous calculons ici une estimation de cette estimation. Pour cela, après avoir appliqué [un développement limité de Taylor](http://www.h-k.fr/publications/data/adc.ps__annexes.maths.pdf) à l'ordre 2 de $\rho(J)$ lorsque $N\to+\infty$, nous obtenons :
+$$
+\rho(J) = 1 - \frac{\pi^2}{2(N+1)^2} + O\left(\left(\frac{1}{N+1}\right)^4\right).
+$$
+En reportant cette relation dans l'équation \eqref{eq:niter}, nous en déduisons une estimation du nombre d'itérations :
 \begin{equation}
 \label{eq:iterJ}
 n\_{iter}(J) \simeq - 2\frac{\ln(\varepsilon)}{\pi^2}(N+1)^2.
 \end{equation}
-{{% /boxed %}}
 
 {{% alert exercise %}}
 Optionnel : refaites les calculs.
 {{% /alert %}}
 
+### Comparaison des estimations avec le numérique
+
 Nous fixons la tolérance $\varepsilon = 10^{-1}$ et le nombre maximal d'itérations $n\_{max} = 10^5$. Nous pouvons calculer deux estimations du nombre d'itérations nécessaires : 
 
-1. "Analytique" : en utilisant les expressions \eqref{eq:niter} et \eqref{eq:rhoj}
-2. "Dév. Lim." : en appliquant \eqref{eq:iterJ} obtenue par développement limité. 
+1. "Analytique" : l'équation \eqref{eq:iterJanalytique}
+2. "DL" : l'équation \eqref{eq:iterJ} 
 
-Ensuite, nous pouvons bien entendu calculer le nombre d'itérations nécessaires numériquement (*ie* : en pratique par l'ordinateur) et comparer avec les estimations.
+Ensuite, nous pouvons bien entendu calculer le nombre d'itérations de manière numérique (*ie* : en pratique par l'ordinateur) et comparer avec les estimations.
 
 {{% alert exercise %}}
 Pour $N=10$, $50$ et $N=100$, calculez ces trois valeurs : estimation "analytique", estimation "Dév. Lim." et le nombre d'itérations obtenu numériquement :
 
-| Nb. d'iterations...   | Analytique (\eqref{eq:niter} +\eqref{eq:rhoj})  | "Dév. Lim." \eqref{eq:iterJ}   | Numérique  |
+| Nb. d'iterations...   | Analytique \eqref{eq:iterJanalytique}  | "DL" \eqref{eq:iterJ}   | Numérique  |
 | --- | --- | --- | --- |
 | $N = 10$    | ?  | ? |?  |
 | $N = 50$    | ? | ? | ? |
@@ -143,12 +136,10 @@ $$
 \end{array}
 $$
 Nous pouvons alors en déduire une estimation du nombre d'itérations :
-{{% boxed red %}}
 \begin{equation}
 \label{eq:iterG}
 n\_{iter}(G) \simeq - \frac{\ln(\varepsilon)}{\pi^2}(N+1)^2 \simeq \frac{n\_{iter}(J)}{2}.
 \end{equation}
-{{% /boxed %}}
 
 {{% alert exercise %}}
 Comparez le nombre d'itérations théoriques, estimés et pratiques pour $N=10$, $50$ et $N=100$.
@@ -178,75 +169,3 @@ La dépendance en $N$ est maintenant linéaire et non plus quadratique !
 {{% alert exercise %}}
 Comparez le nombre d'itérations théoriques, estimés et pratiques pour $N=10$, $50$ et $N=100$.
 {{% /alert %}}
-
-### Comparaison et conclusion
-
-{{% alert exercise %}}
-Des trois méthodes, quelle est la plus rapide en terme de nombre d'itérations ?
-{{% /alert %}}
-
-
-<!--
-### Méthode de Richardson
-
-Pour une matrice définie positive, le pas optimal $\alpha$ est donné par
-$$
-\alpha = \frac{2}{\lambda_{min} + \lambda_{max}},
-$$
-où $\lambda_{min}$ et $\lambda_{max}$ sont respectivement les plus petites et plus grandes valeurs propres de la matrice du système linéaire.
-
-{{% alert exercise %}}
-Calculez analytiquement le pas optimal $\alpha$ et, à l'aide des calculs précédents, en déduire le comportement de la méthode de Richardson.
-{{% /alert %}}
-
--->
-
-## Comparaison des méthodes
-
-### Préparation des Classes
-
-#### Temps CPU
-
-Adaptez les fonctions membres `Solve()` de chaque classe de méthode itérative pour pouvoir calculer le temps d'exécution de la résolution. **Vous pouvez bien entendu ajouter des paramètres/méthodes si vous le désirez**.
-
-Naturellement, vous pouvez réutiliser le code TODO:. 
-
-#### Norme de résidu
-
-À chaque itération, nous calculons la norme de $\|r\|$ et nous souhaitons la stocker dans `resvec`. Cependant, plutôt que de stocker cette valeur, il est préférable de stocker sa valeur normalisé et pris en logarithme (nous l'appelerons *résidu relatif*): 
-\begin{equation}
-\label{eq:rel}
-\text{Résidu relatif} = \log\_{10}\left(\frac{\\|r\\|}{\\|b\\|}\right).
-\end{equation}
-
-{{% alert exercise %}}
-Adaptez les fonctions membres `Solve()` de chaque classe de méthode itérative pour que :
-
-- Le temps d'exécution de la méthode soit calculé et stocké dans un paramètre
-- Le tableau paramètre `std::vector<double> resvec` contienne  les résidus relatifs \eqref{eq:rel} de chaque itération
-
-**Vous pouvez bien entendu ajouter des paramètres/méthodes si vous le désirez**, notamment pour **afficher** ou avoir **accès** à ces valeurs.
-
-{{% /alert %}}
-
-### Historique de Convergence
-
-Nous considérons une matrice $A\_N$ de taille $200$ et un vecteur membre de droite $b$ rempli de $1$. Dans cet exercice, nous fixons de plus la tolérance à $10^{-1}$ et le nombre d'itérations maximal de 20000.
-
-{{% alert exercise %}}
-Sur une même figure, affichez les courbes "norme du résidu" (normalisé \eqref{eq:rel}) en fonction du "numéro de l'itération" pour chaque méthode itérative. Cette figure s'appelle **l'historique de convergence**.
-
-Quelle méthode itérative est la plus rapide (en terme de nombre d'itérations) ?
-{{% /alert %}}
-
-TODO: figure ?
-
-### Temps CPU
-
-{{% alert exercise %}}
-Pour $N=10$ à $200$, avec un pas de $10$, calculez le temps CPU (en secondes) pour chaque méthode itérative. Affichez sur une même figure chaque courbe "temps CPU (s)" en fonction du "numéro de l'itération".
-
-Quelle méthode itérative est la plus rapide (en terme de temps CPU) ?
-{{% /alert %}}
-
-TODO: figure ?
