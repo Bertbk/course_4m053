@@ -31,6 +31,24 @@ Pour les différentes méthodes itératives standards, nous souhaitons comparer 
 1. La **vitesse de convergence** 
 2. Le **temps CPU** (*time to solution*)
 
+
+
+#### Méthodes d'affichage
+
+Pensez à ajouter des fonctions membres permettant de :
+
+- Afficher le nombre d'itérations (après résolution).
+- Afficher le vecteur `resvec_`, ou plutôt le stocker sur disque [au format JSON](https://fr.wikipedia.org/wiki/JavaScript_Object_Notation). 
+
+Pour simplifier, le format JSON est un format de transfers de données. À chaque clé (*key*) est associé une valeur ou un tableau de valeurs. Vous pouvez ajouter autant de clés que vous le voulez. Par exemple, le fichier de sortie pourrait ressembler à celui-ci (valeurs choisies au hasard !):
+
+```json
+{ "method": "jacobi" }
+{ "niter" : 3 }
+{ "resvec": [ 12.1, 8.2, 5.4, 3.2]}
+```
+[Les scripts mis à dispositions]({{< relref "help_matplotlib.md" >}}) permettent de lire un fichier au format JSON et d'afficher la courbe associée à un tableau. Nous serons par exemple intéressés pour afficher la courbe $\log\_{10}($`resvec_`$)$ en fonction du numéro de l'itération. 
+
 ## Vitesse de Convergence
 
 Nous disposons maintenant d'une implémentation des trois principales méthodes itératives standards : nous devons maintenant les analyser et les comparer. Pour cela, nous utilisons la matrice $A\_N$ de taille $N\times N$:
@@ -198,7 +216,7 @@ Naturellement, vous pouvez réutiliser le code TODO:.
 À chaque itération, nous calculons la norme de $\|r\|$ et nous souhaitons la stocker dans `resvec`. Cependant, plutôt que de stocker cette valeur, il est préférable de stocker sa valeur normalisé et pris en logarithme (nous l'appelerons *résidu relatif*): 
 \begin{equation}
 \label{eq:rel}
-\log\_{10}\left(\frac{\|r\|}{\|b\|}\right).
+\text{Résidu relatif} = \log\_{10}\left(\frac{\\|r\\|}{\\|b\\|}\right).
 \end{equation}
 
 {{% alert exercise %}}
@@ -207,7 +225,7 @@ Adaptez les fonctions membres `Solve()` de chaque classe de méthode itérative 
 - Le temps d'exécution de la méthode soit calculé et stocké dans un paramètre
 - Le tableau paramètre `std::vector<double> resvec` contienne  les résidus relatifs \eqref{eq:rel} de chaque itération
 
-**Vous pouvez bien entendu ajouter des paramètres/méthodes si vous le désirez**, notamment pour pouvoir avoir accès à ces valeurs.
+**Vous pouvez bien entendu ajouter des paramètres/méthodes si vous le désirez**, notamment pour **afficher** ou avoir **accès** à ces valeurs.
 
 {{% /alert %}}
 
