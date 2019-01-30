@@ -148,22 +148,23 @@ Comparez le nombre d'itérations théoriques, estimés et pratiques pour $N=10$,
 
 ### Méthode de Relaxation
 
-Pour la méthode de relaxation, le rayon spectral de la matrice d'itération $G\_{\omega}$ est donnée par $\rho(G\_{\omega}) = \omega - 1$. D'autre part, comme $A\_N$ est symétrique définie positive, alors le paramètre optimal $\omega^\*$ pour la méthode de relaxation est donné par
+Pour la méthode de relaxation, comme $A\_N$ est symétrique définie positive, alors le paramètre optimal $\omega^\*$ pour la méthode de relaxation est donné par
 $$
-\omega^* = \frac{2}{1 + \sqrt{1 - \rho(J)^2}}.
+\omega^\* = \frac{2}{1 + \sqrt{1 - \rho(J)^2}},
 $$
+et le rayon spectral de la matrice d'itération est alors donné par $\rho(G\_{\omega^\*}) = \omega^\* - 1$. 
+<div id="relaxation"></div>
+<script type="text/javascript" src="../relaxation.js"></script>
 Quand $N\to+\infty$, nous obtenons le développement limité de $\omega^\*$ :
 $$
 \omega^\* = 2\left(1 - \frac{\pi}{N+1}  \right)+O\left(\left(\frac{1}{N+1}\right)^2\right).
 $$
 Nous pouvons en déduire une estimation du nombre d'itérations
 
-{{% boxed red %}}
 \begin{equation}
 \label{eq:iterR}
 n\_{iter}(G\_{\omega^\*}) \simeq - \frac{\ln(\varepsilon)}{\pi^2}(N+1).
 \end{equation}
-{{% /boxed %}}
 La dépendance en $N$ est maintenant linéaire et non plus quadratique !
 
 {{% alert exercise %}}

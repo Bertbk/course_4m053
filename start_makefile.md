@@ -76,7 +76,7 @@ CC      := g++
 VPATH	:=
 LDFLAGS :=
 LIBRARY :=
-CFLAGS  := -std=c++11 -Wall -I $(INCLDIR)
+CFLAGS  := -std=c++11 -Wall -I$(INCLDIR)
 
 #Source and object files (automatic)
 SRCS = $(wildcard $(SRCDIR)/*.cpp)
