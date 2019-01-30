@@ -153,27 +153,35 @@ C'est parti :
 1. d'addition entre deux vecteurs en surchargeant l'opérateur `+`
 2. de soustraction avec l'opérateur `-`
 
-
-## Multiplication par un scalaire
-
-Cela se fait en construisant un `operator*`. Vous pouvez définir une méthode, par exemple `void ScalarMult(double alpha);` mais cela peut s'avérer peu pratique. Le mieux (au sens mathématiques) est de définir un `operator*` afin d'écrire directement `alpha*v` dans votre code. Nous avons alors deux possibilités :
+Nous avons plusieurs possibilités pour de tels opérateurs :
 
 - Comme méthode de classe : 
 
 ```cpp
-Vecteur operator*(double alpha) const; //Dans la classe Vecteur
+Vecteur operator+(const Vecteur &w) const; //Dans la classe Vecteur
 ```
 
-- En dehors de la classe avec le mot clé `friend` comme ceci : 
-        
+- Comme méthode de classe binaire avec le mot clé `friend ` :
+
 ```cpp
-friend Vecteur operator*(double alpha, const Vecteur &v); //En dehors de la classe Vecteur
+friend Vecteur operator+(const Vecteur &v, const Vecteur &w); //Dans la classe Vecteur avec friend
 ```
 
-La deuxième option présente l'avantage de clairement exposer les deux arguments de l'opération, contrairement à la méthode où l'argument `Vecteur` est implicite.
+- En dehors de la classe : 
 
+```cpp
+Vecteur operator+(const Vecteur &v, const Vecteur &w); //En dehors de la classe Vecteur
+```
+        
+
+Les deux dernières options présentent l'avantage de clairement exposer les deux arguments de l'opération (*opération binaire*), contrairement à la méthode où le premier `Vecteur` est implicite (*opération unaire*).
 
 {{% alert note %}}
 La commande `const Vecteur &v` permet d'envoyer le `Vecteur` `v` par référence (plutôt que par copie), le mot clé `const` nous garanti qu'il ne sera pas modifié par la fonction appelante.
 {{% /alert %}}
+
+## Multiplication par un scalaire
+
+Cela se fait en construisant un `operator*`. Vous pouvez définir une méthode, par exemple `void ScalarMult(double alpha);` mais cela peut s'avérer peu pratique. Le mieux (au sens mathématiques) est de définir un `operator*` afin d'écrire directement `alpha*v` dans votre code. Vous avez ici le choix de définir cet `opérator` comme une méthode, avec ou sans `friend`, ou comme une fonction en dehors de la classe.
+
 
