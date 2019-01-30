@@ -1,5 +1,5 @@
 +++
-title = "C++ : Prérequis"
+title = "Rappels & Prérequis"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -11,7 +11,7 @@ type = "docs"  # Do not modify.
 # Add menu entry to sidebar.
 [menu.4m053]
     identifier = "first_part"
-    name = "C++ : Prérequis"
+    name = "Rappels & Prérequis"
     url = ""
     weight = 10
 

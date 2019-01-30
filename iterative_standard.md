@@ -82,7 +82,7 @@ Cette décomposition $A = D - E -F$ n'a aucun rapport avec la factorisation $LU$
 
 ## Une Classe en Détail : Jacobi
 
-Pour chaque méthode, nous implémentons une classe distincte et donc, nous créons deux fichiers (un en-tête et un source). Par exemple, pour Jacobi : `include/jacobi.hpp` et `src/jacobi.cpp`. Ces classes se ressembleront beaucoup. Nous détaillons ici la classe `Jacobi`, cependant, pour Gauss-Seidel et la Relaxation, la classe sera similaire à quelques modifications près (par exemple la Relaxation nécessite un paramètre $\omega$ en plus).
+Pour chaque méthode, nous proposons d'implémenter une classe distincte et donc, de créer deux fichiers (un en-tête et un source). Par exemple, pour Jacobi : `include/jacobi.hpp` et `src/jacobi.cpp`. Les méthodes se ressemblant, ces différentes classes se ressembleront naturellement. Nous détaillons ici la classe `Jacobi`, cependant, pour Gauss-Seidel et la Relaxation, la classe sera similaire à quelques modifications près (par exemple la Relaxation nécessite un paramètre $\omega$ en plus).
 
 ### Données Membres (ou paramètres)
 
@@ -110,9 +110,15 @@ Celles-ci seront séparées en deux, les données "entrantes", fournies par l'ut
 Pour gagner en efficacité et limiter le coût mémoire, il est plus intéressant de ne pas stocker les Matrice et Vecteur, mais plutôt leur adresse (référence ou pointeur)
 {{% /alert  %}}
 
+
+{{% alert note %}}
+Libre à vous d'ajouter d'autres paramètres, de ne pas utiliser ceux que l'on propose ou d'en changer le nom.
+{{% /alert  %}}
+
+
 ### Constructeurs
 
-Libre à vous de décider ce dont vous avez besoin :  un constructeur vide ? Un qui prend toutes les données d'entrée en argument, par exemple :
+À vous de décider ce dont vous avez besoin :  un constructeur vide ? Un qui prend toutes les données d'entrée en argument, par exemple :
 ```cpp
 Jacobi(const Matrice &A, const Vecteur &b, double tol, int maxit);
 ```
@@ -120,7 +126,7 @@ Jacobi(const Matrice &A, const Vecteur &b, double tol, int maxit);
 
 ### Méthodes
 
-Outre les accesseurs (*getter*) et les mutateurs (*setter*) habituels pour accéder et modifier les paramètres, nous avons besoin d'une fonctions membre qui résout le système linéaire en appliquant [l'algorithme de résolution générique](http://localhost:1313/bthierry/course/4m053/iterative_standard/#algorithme-g%C3%A9n%C3%A9rique). Celle-ci aura (probablement) le prototype suivant :
+Outre les accesseurs (*getter*) et les mutateurs (*setter*) habituels pour respectivement accéder et modifier les paramètres, nous avons au moins besoin d'une fonctions membre qui résout le système linéaire en appliquant [l'algorithme de résolution](http://localhost:1313/bthierry/course/4m053/iterative_standard/#algorithme-g%C3%A9n%C3%A9rique). Celle-ci aura (probablement) le prototype suivant :
 
 ```cpp
 void Jacobi::Solve();
@@ -158,7 +164,7 @@ $$
   1 \\\\\\
 \end{pmatrix}.
 $$
-La solution de ce problème est $X = [2.5, 4,4.5, 4,2.5]^T$.
+La solution exacte de ce problème est $X = [2.5, 4,4.5, 4,2.5]^T$.
 
 {{% alert exercise %}}
 Construisez une telle classe `Jacobi`. N'oubliez surtout pas de :
@@ -167,7 +173,6 @@ Construisez une telle classe `Jacobi`. N'oubliez surtout pas de :
 2. Testez le résultat de votre implémentation sur un cas petit et simple.
 3. Comparez la solution obtenue avec Jacobi avec celle obtenue par résolution directe.
 4. Tant que les trois points ci-dessus ne sont pas validés, ne passez pas à la suite !
-
 {{% /alert %}}
 
 ## Classes Gauss-Seidel et Relaxation
