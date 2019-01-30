@@ -130,8 +130,8 @@ Voici une liste de méthodes qui nous seront utiles
 - Accesseurs :
 
 ```c++
-double & operator() (int i, int j);      // Accès à la référence
-double operator() (int i, int j) const; // Accès à la valeur (recopie)
+double & operator() (int i);      // Accès à la référence
+double operator() (int i) const; // Accès à la valeur (recopie)
 ```
 Le premier permet d'accéder au coefficient de la matrice par référence (permettant une modification ultérieure) tandis que le second ne fait que renvoyer (une copie de) la valeur du coefficient.
 
