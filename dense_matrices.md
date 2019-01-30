@@ -100,14 +100,14 @@ Améliorer votre classe `Matrice` avec les fonctionnalités suivantes :
 2. La multiplication par une autre `Matrice`
 3. La multiplication par un scalaire
 
-Pour ces deux dernières opérations, vous pouvez soit construire un `operator` dans la classe ou à l'extérieure de celle-ci via le mot clé `friend` (comme pour les `Vecteur`).
+Pour ces deux dernières opérations, vous pouvez soit construire un `operator` dans la classe (avec ou sans `friend`) ou à l'extérieure de celle-ci (comme pour les `Vecteur`).
 {{% /alert %}}
 
 ## Produit Matrice-Vecteur
 
 Implémentez le produit matrice vecteur sous forme d'un `operator` :
 ```c++
-friend Vecteur operator*(const Matrice&, const Vecteur&);
+Vecteur operator*(const Matrice&, const Vecteur&);
 ```
 
 {{% alert note %}}
