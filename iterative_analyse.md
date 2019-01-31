@@ -170,5 +170,5 @@ La dépendance en $N$ est maintenant linéaire et non plus quadratique !
 Comparez le nombre d'itérations théoriques, estimés et pratiques pour $N=10$, $50$ et $N=100$.
 {{% /alert %}}
 
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script type="text/javascript" src="../relaxation.js"></script>
