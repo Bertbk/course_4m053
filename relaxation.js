@@ -3,7 +3,6 @@ function makeplot() {
 };
 
 var layout = {
-  height: 300,
   title: {text:'Relaxation : rayon spectral vs. Omega'},
   xaxis: {
     title: {
@@ -13,7 +12,8 @@ var layout = {
   yaxis: {
     title: {
       text: 'Rayon Spectral',
-    }
+    },
+    range: [0, 1],
   }
 };
 
@@ -32,7 +32,7 @@ function makePlotly( x, y){
   var plotDiv = document.getElementById("plot");
   var traces = [{
     x: x,
-    y: y
+    y: y,
   }];
 
 
