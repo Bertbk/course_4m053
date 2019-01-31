@@ -20,8 +20,6 @@ var layout = {
 
 function processData(allRows) {
   var x = [], y = [];
-  alert("yo");
-
   for (var i=0; i<allRows.length; i++) {
     row = allRows[i];
     x.push( row['omega'] );
