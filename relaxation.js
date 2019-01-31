@@ -13,7 +13,7 @@ var layout = {
     title: {
       text: 'Rayon Spectral',
     },
-    range: [0, 1],
+    range: [0, 1.1],
   }
 };
 
