@@ -154,7 +154,6 @@ $$
 $$
 et le rayon spectral de la matrice d'itération est alors donné par $\rho(G\_{\omega^\*}) = \omega^\* - 1$. 
 <div id="relaxation"></div>
-<script type="text/javascript" src="../relaxation.js"></script>
 Quand $N\to+\infty$, nous obtenons le développement limité de $\omega^\*$ :
 $$
 \omega^\* = 2\left(1 - \frac{\pi}{N+1}  \right)+O\left(\left(\frac{1}{N+1}\right)^2\right).
@@ -170,3 +169,6 @@ La dépendance en $N$ est maintenant linéaire et non plus quadratique !
 {{% alert exercise %}}
 Comparez le nombre d'itérations théoriques, estimés et pratiques pour $N=10$, $50$ et $N=100$.
 {{% /alert %}}
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript" src="../relaxation.js"></script>
