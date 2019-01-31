@@ -36,6 +36,6 @@ function makePlotly( x, y){
   }];
 
 
-  Plotly.newPlot('relaxation', traces,layout);
+  Plotly.newPlot('relaxation', traces,layout, {responsive: true});
 };
 makeplot();
