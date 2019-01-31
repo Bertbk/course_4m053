@@ -126,7 +126,7 @@ Jacobi(const Matrice &A, const Vecteur &b, double tol, int maxit);
 
 ### Méthodes
 
-Outre les accesseurs (*getter*) et les mutateurs (*setter*) habituels pour respectivement accéder et modifier les paramètres, nous avons au moins besoin d'une fonctions membre qui résout le système linéaire en appliquant [l'algorithme de résolution](http://localhost:1313/bthierry/course/4m053/iterative_standard/#algorithme-g%C3%A9n%C3%A9rique). Celle-ci aura (probablement) le prototype suivant :
+Outre les accesseurs (*getter*) et les mutateurs (*setter*) habituels pour respectivement accéder et modifier les paramètres, nous avons au moins besoin d'une fonctions membre qui résout le système linéaire en appliquant [l'algorithme de résolution]({{< relref "iterative_standard.md#algorithme-g%C3%A9n%C3%A9rique" >}}). Celle-ci aura (probablement) le prototype suivant :
 
 ```cpp
 void Jacobi::Solve();

@@ -1,5 +1,5 @@
 function makeplot() {
-  Plotly.d3.csv("http://localhost:1313/bthierry/course/4m053/data.csv", function(data){ processData(data) } );
+  Plotly.d3.csv("../data.csv", function(data){ processData(data) } );
 };
 
 var layout = {
