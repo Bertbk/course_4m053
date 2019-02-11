@@ -96,7 +96,7 @@ Ce théorème nous dit que dès lors qu'on arrive à décomposer un bloc de la d
 
 ## Algorithme
 
-Pour obtenir la factorisation complète, un algorithme itératif possible est le suivant. Nous commençons par **factoriser partiellement** \eqref{eq:factorisation_partielle} la matrice $A$ dans le cas où $A\_{0,0}=A\_{0,0}$ et $L\_{0,0}=\ell\_{0,0}=1$ (le bloc $A\_{0,0}$ est réduit à un seul coefficient). Pour cela, nous calculons les coefficients de $L\_{0,1}, U\_{1,0}$ et $S\_{1,1}$ (voir exercice précédent). Nous pouvons remarquer que $L\_{1,0}$ et $U\_{0,1}$ sont les "bons" blocs des (futures) matrices $L$ et $U$ : ils ne seront plus modifiés. Nous effectuons ensuite la factorisation partielle de $S\_{1,1}$ de la même manière, c'est à dire en considérant le bloc supérieur gauche de la taille d'un seul et un unique coefficient :
+Pour obtenir la factorisation complète, un algorithme itératif possible est le suivant. Nous commençons par **factoriser partiellement** \eqref{eq:factorisation_partielle} la matrice $A$ dans le cas où $A\_{0,0}=a\_{0,0}$ et $L\_{0,0}=\ell\_{0,0}=1$ (le bloc $A\_{0,0}$ est réduit à un seul coefficient). Pour cela, nous calculons les coefficients de $L\_{0,1}, U\_{1,0}$ et $S\_{1,1}$ (voir exercice précédent). Nous pouvons remarquer que $L\_{1,0}$ et $U\_{0,1}$ sont les "bons" blocs des (futures) matrices $L$ et $U$ : ils ne seront plus modifiés. Nous effectuons ensuite la factorisation partielle de $S\_{1,1}$ de la même manière, c'est à dire en considérant le bloc supérieur gauche de la taille d'un seul et un unique coefficient :
 $$
   S\_{1,1}=
   \begin{pmatrix}
@@ -186,8 +186,8 @@ $$-->
 {{% alert exercise %}}
 À vous d'écrire le pseudo-code. Pour cela, suivez les indications suivantes :
 
-1. Déterminez, dans le cas d'une **factorisation partielle** \eqref{eq:factorisation_partielle} avec $A\_{0,0}=A\_{0,0}$ et $L\_{0,0}=\ell\_{0,0}=1$, les expressions des coefficients de $L\_{1,0}$ et $U\_{0,1}$ en fonction des coefficients de $A$ ainsi que les expressions des coefficients de $S$ en fonction de ceux de $A, L$ et $U$.
-2. Écrivez sur le papier un algorithme en [**pseudo-code**](https://fr.wikipedia.org/wiki/Pseudo-code) permettant de construire la **factorisation partielle** de $A$ avec $A\_{0,0}=A\_{0,0}$ et $L\_{0,0}=\ell\_{0,0}=1$. Nous rappelons que les matrices $S\_{i,i}$ peuvent être stockées dans une seule matrice $S$ qui sera modifiée à chaque incrément.
+1. Déterminez, dans le cas d'une **factorisation partielle** \eqref{eq:factorisation_partielle} avec $A\_{0,0}=a\_{0,0}$ et $L\_{0,0}=\ell\_{0,0}=1$, les expressions des coefficients de $L\_{1,0}$ et $U\_{0,1}$ en fonction des coefficients de $A$ ainsi que les expressions des coefficients de $S$ en fonction de ceux de $A, L$ et $U$.
+2. Écrivez sur le papier un algorithme en [**pseudo-code**](https://fr.wikipedia.org/wiki/Pseudo-code) permettant de construire la **factorisation partielle** de $A$ avec $A\_{0,0}=a\_{0,0}$ et $L\_{0,0}=\ell\_{0,0}=1$. Nous rappelons que les matrices $S\_{i,i}$ peuvent être stockées dans une seule matrice $S$ qui sera modifiée à chaque incrément.
 3. Modifiez votre pseudo-code de la question précédente pour obtenir la **factorisation complète** de $A$. Pour cela, il peut être utile d'initialiser l'algorithme par $S = A$.
 4. Modifiez encore votre pseudo-code de l'item 3. pour que les matrices $L$ et $U$ soient stockées directement dans la matrice $A$. Autrement dit, après application de l'algorithme, la matrice $A$ sera modifiée de telle sorte que sa partie triangulaire inférieure soit égale à $L$ (sans la diagonale unitaire), et sa partie triangulaire supérieure sera égale à $U$ (diagonale incluse). Cette méthode permet de diminuer le coût mémorie de stockage mais, attention, le produit matrice vecteur n'a alors plus de sens une fois cette algorithme appliqué !
 {{% /alert %}}
