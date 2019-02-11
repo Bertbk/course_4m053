@@ -36,7 +36,7 @@ Cette méthode permet de transformer une matrice carré $A$ en un produit d'une 
 $$
 AX=B \iff LUX = B
 $$
-o\`u $X$ et $B$ sont les vecteurs solution et second membre respectivement. En introduisant la quantité $Y = L^{-1}B$, nous remarquons que nous avons $X = U^{-1}Y$. Ainsi, pour calculer $X$, il suffit de résoudre successivement deux systèmes linéaires triangulaires, l'un inférieur et l'autre supérieur. C'est parfait, nous venons tout juste d'implémenter ces fonctions !
+où $X$ et $B$ sont les vecteurs solution et second membre respectivement. En introduisant la quantité $Y = L^{-1}B$, nous remarquons que nous avons $X = U^{-1}Y$. Ainsi, pour calculer $X$, il suffit de résoudre successivement deux systèmes linéaires triangulaires, l'un inférieur et l'autre supérieur. C'est parfait, nous venons tout juste d'implémenter ces fonctions !
 
 ## Factorisations partielle et complète
 
@@ -59,7 +59,7 @@ Notons $a\_{i,j}$ le coefficient $(i,j)$ de la matrice $A$. Nous allons tout d'a
     \end{pmatrix}
 \label{eq:factorisation_partielle}
 \end{equation}
-o\`u $I$ est la matrice identité, les $A\_{I,J}$ sont des sous-blocs de $A$, $S\_{1,1}=A\_{1,1}-A\_{1,0}A\_{0,0}^{-1}A\_{0,1}$ est appelé le complément de Schur, tandis que $L\_{0,0}$ est triangulaire inférieure et $U\_{0,0}$ est triangulaire supérieure telles que $A\_{0,0}=L\_{0,0}U\_{0,0}$.
+où $I$ est la matrice identité, les $A\_{I,J}$ sont des sous-blocs de $A$, $S\_{1,1}=A\_{1,1}-A\_{1,0}A\_{0,0}^{-1}A\_{0,1}$ est appelé le complément de Schur, tandis que $L\_{0,0}$ est triangulaire inférieure et $U\_{0,0}$ est triangulaire supérieure telles que $A\_{0,0}=L\_{0,0}U\_{0,0}$.
 
 {{% alert note %}}
 Afin d'éviter toute confusion, nous utilisons des lettres minuscules pour les coefficients : $i,j$ et des lettres majuscules pour les indices des blocs : $I,J$.
@@ -89,7 +89,7 @@ $$
        0 & U\_{1,1}
      \end{pmatrix}
 $$
-  o\`u $L\_{1,0}$ et $U\_{0,1}$ sont ceux de la factorisation partielle \eqref{eq:factorisation_partielle}.
+  où $L\_{1,0}$ et $U\_{0,1}$ sont ceux de la factorisation partielle \eqref{eq:factorisation_partielle}.
 {{% /thm %}}
 
 Ce théorème nous dit que dès lors qu'on arrive à décomposer un bloc de la diagonale $A\_{0,0}$ sous forme $LU$, nous n'avons plus qu'à calculer $L\_{1,0}$, $U\_{0,1}$ et $S\_{1,1}$ puis on cherche la décomposition $LU$ de $S\_{1,1}$. Autrement dit, si nous disposons d'une fonction permettant de réaliser une **factorisation partielle** d'une matrice donnée, nous pouvons envisager un algorithme itératif pour obtenir la **factorisation complète** de la matrice.
@@ -148,7 +148,7 @@ $$
   \;\right).
 $$
 -->
-Nous recommençons ensuite sur $S\_{2,2}$, $S\_{3,3}$,\ldots, pour finalement obtenir les matrices $L$ et $U$ avec :
+Nous recommençons ensuite sur $S\_{2,2}$, $S\_{3,3}$, $\ldots$, pour finalement obtenir les matrices $L$ et $U$ avec :
 
 {{< figure src="../u_l_lu2.png" >}}
 
