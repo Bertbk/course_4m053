@@ -148,7 +148,7 @@ Comparez le nombre d'itérations théoriques, estimés et pratiques pour $N=10$,
 
 ### Méthode de Relaxation
 
-Pour la méthode de relaxation, comme $A\_N$ est symétrique définie positive, alors le paramètre optimal $\omega^\*$ pour la méthode de relaxation est donné par
+Pour la méthode de relaxation, comme $A\_N$ est triagonale alors le paramètre optimal $\omega^\*$ pour la méthode de relaxation est donné par
 $$
 \omega^\* = \frac{2}{1 + \sqrt{1 - \rho(J)^2}},
 $$
