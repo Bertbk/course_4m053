@@ -62,7 +62,7 @@ En particulier, si nous connaissons le rayon spectral de la matrice d'itération
 
 ### Nombre d'itérations : analytique
 
-Nous cherchons à estimer le nombre d'itérations de la méthode pour une tolérance $\varepsilon$ donnée, tout d'abord pour la méthode de Jacobi. Pour cette technique, nous rappelons que $M = {\rm diag}(A)$ ce qui, dans notre cas, ce simplifie par $M = \frac{1}{2}I$ où $I$ est la matrice identité. La matrice d'itération $J$ est alors donnée par :
+Nous cherchons à estimer le nombre d'itérations de la méthode pour une tolérance $\varepsilon$ donnée, tout d'abord pour la méthode de Jacobi. Pour cette technique, nous rappelons que $M = {\rm diag}(A)$ ce qui, dans notre cas, se simplifie par $M = \frac{1}{2}I$ où $I$ est la matrice identité. La matrice d'itération $J$ est alors donnée par :
 $$
 J = I - ({\rm diag}(A))^{-1}A = I - \frac{1}{2}A.
 $$ 
