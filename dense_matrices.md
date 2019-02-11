@@ -41,7 +41,7 @@ La classe `Matrice` représente des matrices **carrées** (uniquement) et les st
 - `int N_` : Le nombre de colonnes (= de lignes)
 - `std::vector<double> coef_` : Les coefficients, stockés dans un tableau à une dimension de la bibliothèque standard
 
-Les coefficients sont stockés de la façon suivante. Le coefficient positionné en $(i,j)$ dans la matrice sera à la position `i+j*N_` dans le vecteur de coefficients, où `N_` est le nombre de colonnes ou de lignes.
+Les coefficients sont stockés de la façon suivante. Le coefficient positionné en $(i,j)$ dans la matrice sera à la position `j+i*N_` dans le vecteur de coefficients, où `N_` est le nombre de colonnes ou de lignes.
 
 Comme pour la classe `Vecteur`, la classe `Matrice` comporte des constructeurs :
 ```c++
@@ -91,7 +91,7 @@ Le premier permet d'accéder au coefficient de la matrice par référence (perme
 
 ## Opérations élémentaires
 
-En mathématique, une matrice n'est pas qu'un tableau de coefficients et des opérations comme la multiplication ou l'addition sont possibles : Ne nous privons pas de les implémenter !
+En mathématique, une matrice n'est pas qu'un tableau de coefficients et des opérations comme la multiplication ou l'addition sont possibles : ne nous privons pas de les implémenter !
 
 {{% alert exercise %}}
 Améliorer votre classe `Matrice` avec les fonctionnalités suivantes :
@@ -100,14 +100,14 @@ Améliorer votre classe `Matrice` avec les fonctionnalités suivantes :
 2. La multiplication par une autre `Matrice`
 3. La multiplication par un scalaire
 
-Pour ces deux dernières opérations, vous pouvez soit construire un `operator` dans la classe (avec ou sans `friend`) ou à l'extérieure de celle-ci (comme pour les `Vecteur`).
+Pour ces deux dernières opérations, vous pouvez soit construire un `operator` dans la classe (avec ou sans `friend`) ou à l'extérieur de celle-ci (comme pour les `Vecteur`).
 {{% /alert %}}
 
 ## Produit Matrice-Vecteur
 
 Implémentez le produit matrice vecteur sous forme d'un `operator` :
 ```c++
-Vecteur operator*(const Matrice&, const Vecteur&);
+Vecteur operator*(const Matrice& M, const Vecteur& v);
 ```
 
 {{% alert note %}}
@@ -121,5 +121,3 @@ Quelques astuces générales :
 - Dans le cas des références passées en argument, pensez à les déclarer constantes dans les cas pertinents
 - De même, pensez à déclarer les méthodes de vos classes comme constantes dans les cas qui conviennent
 {{% /alert %}}
-
-
