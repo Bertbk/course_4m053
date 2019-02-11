@@ -69,7 +69,7 @@ Afin d'éviter toute confusion, nous utilisons des lettres minuscules pour les c
  Vérifiez que la relation précédente est vraie. Entre autres, trouvez les expressions de $L\_{1,0}$ et $U\_{0,1}$.
 {{% /alert %}}
 
-### Factorisaton complète
+### Factorisation complète
 
 Le lien entre factorisation partielle et factorisation complète est donné par le théorème suivant :
 
@@ -148,7 +148,7 @@ $$
   \;\right).
 $$
 -->
-Nous recommençons ensuite sur $S\_{2,2}$, $S\_{3,3}$, $\ldots$, pour finalement obtenir les matrices $L$ et $U$ avec :
+Nous recommençons ensuite sur $S\_{2,2}$, $S\_{3,3}$, $\hdots$, pour finalement obtenir les matrices $L$ et $U$ avec :
 
 {{< figure src="../u_l_lu2.png" >}}
 
@@ -189,7 +189,7 @@ $$-->
 1. Déterminez, dans le cas d'une **factorisation partielle** \eqref{eq:factorisation_partielle} avec $A\_{0,0}=a\_{0,0}$ et $L\_{0,0}=\ell\_{0,0}=1$, les expressions des coefficients de $L\_{1,0}$ et $U\_{0,1}$ en fonction des coefficients de $A$ ainsi que les expressions des coefficients de $S$ en fonction de ceux de $A, L$ et $U$.
 2. Écrivez sur le papier un algorithme en [**pseudo-code**](https://fr.wikipedia.org/wiki/Pseudo-code) permettant de construire la **factorisation partielle** de $A$ avec $A\_{0,0}=a\_{0,0}$ et $L\_{0,0}=\ell\_{0,0}=1$. Nous rappelons que les matrices $S\_{i,i}$ peuvent être stockées dans une seule matrice $S$ qui sera modifiée à chaque incrément.
 3. Modifiez votre pseudo-code de la question précédente pour obtenir la **factorisation complète** de $A$. Pour cela, il peut être utile d'initialiser l'algorithme par $S = A$.
-4. Modifiez encore votre pseudo-code de l'item 3. pour que les matrices $L$ et $U$ soient stockées directement dans la matrice $A$. Autrement dit, après application de l'algorithme, la matrice $A$ sera modifiée de telle sorte que sa partie triangulaire inférieure soit égale à $L$ (sans la diagonale unitaire), et sa partie triangulaire supérieure sera égale à $U$ (diagonale incluse). Cette méthode permet de diminuer le coût mémorie de stockage mais, attention, le produit matrice vecteur n'a alors plus de sens une fois cette algorithme appliqué !
+4. Modifiez encore votre pseudo-code de l'item 3. pour que les matrices $L$ et $U$ soient stockées directement dans la matrice $A$. Autrement dit, après application de l'algorithme, la matrice $A$ sera modifiée de telle sorte que sa partie triangulaire inférieure soit égale à $L$ (sans la diagonale unitaire), et sa partie triangulaire supérieure sera égale à $U$ (diagonale incluse). Cette méthode permet de diminuer le coût mémoire de stockage mais, attention, le produit matrice vecteur n'a alors plus de sens une fois cet algorithme appliqué !
 {{% /alert %}}
 
 
@@ -203,7 +203,7 @@ void Matrice::decomp_LU();
 {{% /alert %}}
 
 {{% alert warning %}}
-Nous rappelons que, une fois la factorisation LU effectuée sur place, la matrice est profondément modifiée. En particulier, le produit matrice-vecteur (resp. matrice-matrice) deviendra inutilisable. Nous pouvons toutefois le rendre de nouveau utilisable si nous ajoutons un `booleen` (un "flag") permettant de déterminer si une matrice a été, ou non, déjà factorisée, et modifier le produit matrice-vecteur (resp. matrice-matrice) en fonction. Ajouter cette option est facultative pour la suite.
+Nous rappelons que, une fois la factorisation LU effectuée sur place, la matrice est profondément modifiée. En particulier, le produit matrice-vecteur (resp. matrice-matrice) deviendra inutilisable. Nous pouvons toutefois le rendre de nouveau utilisable si nous ajoutons un `booleen` (un "flag") permettant de déterminer si une matrice a été, ou non, déjà factorisée, et modifier le produit matrice-vecteur (resp. matrice-matrice) en fonction. Ajouter cette option est facultatif pour la suite.
 {{% /alert %}}
 
 
