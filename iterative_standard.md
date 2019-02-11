@@ -57,7 +57,7 @@ WHILE( (|r|/|b| > tolerance) && (n < n_max))
     r = b - Ax   // Mise à jour du résidu (vecteur)
     n = n + 1    // Mise à jour du numéro de l'itération
 ```
-Les méthodes itératives que nous détaillons ici ne diffèrent que par le choix de la matrice $M$. Pour chacune d'entres elles, nous construirons une classe dédiée, bien qu'elles partagerons toutes des codes similaires (nous pourrions utiliser l'héritage, mais cela compliquera la "templatisation").
+Les méthodes itératives que nous détaillons ici ne diffèrent que par le choix de la matrice $M$. Pour chacune d'entres elles, nous construirons une classe dédiée, bien qu'elles partagent toutes des codes similaires (nous pourrions utiliser l'héritage, mais cela compliquera la "templatisation").
 
 ## Méthodes standards
 
@@ -86,9 +86,9 @@ Pour chaque méthode, nous proposons d'implémenter une classe distincte et donc
 
 ### Données Membres (ou paramètres)
 
-Celles-ci seront séparées en deux, les données "entrantes", fournies par l'utilisateur, et les données "sortantes", calculées lors de la résolution du problème linéaire. En pratique, rien ne les différencie ces deux types de données qui sont de type `private`, seule leur utilisation permet de les distinguer. Les données sortantes pourront ensuite être, par exemple, affichées sur l'écran ou imprimées dans un fichier pour un traitement ultérieur.
+Celles-ci seront séparées en deux, les données "entrantes", fournies par l'utilisateur, et les données "sortantes", calculées lors de la résolution du problème linéaire. En pratique, rien ne différencie ces deux types de données qui sont de type `private`, seule leur utilisation permet de les distinguer. Les données sortantes pourront ensuite être, par exemple, affichées sur l'écran ou imprimées dans un fichier pour un traitement ultérieur.
 
-- En entrées :
+- En entrée :
 
 | Type | Nom (suggestion) | Fonction |
 | ---- |---| ---- |
@@ -126,7 +126,7 @@ Jacobi(const Matrice &A, const Vecteur &b, double tol, int maxit);
 
 ### Méthodes
 
-Outre les accesseurs (*getter*) et les mutateurs (*setter*) habituels pour respectivement accéder et modifier les paramètres, nous avons au moins besoin d'une fonctions membre qui résout le système linéaire en appliquant [l'algorithme de résolution]({{< relref "iterative_standard.md#algorithme-g%C3%A9n%C3%A9rique" >}}). Celle-ci aura (probablement) le prototype suivant :
+Outre les accesseurs (*getter*) et les mutateurs (*setter*) habituels pour respectivement accéder et modifier les paramètres, nous avons au moins besoin d'une fonction membre qui résout le système linéaire en appliquant [l'algorithme de résolution]({{< relref "iterative_standard.md#algorithme-g%C3%A9n%C3%A9rique" >}}). Celle-ci aura (probablement) le prototype suivant :
 
 ```cpp
 void Jacobi::Solve();
@@ -135,8 +135,8 @@ void Jacobi::Solve();
 D'autre part, voici quelques propositions pour définir la méthode :
 
 - La solution sera stockée dans `x_`
-- Le nombre d'itérations sera stockée dans `niter_`
-- À chaque itération, la norme du rédidu relatif $\frac{\\|r\\|}{\\|b\\|}$ doit être calculé pour vérifier si la convergence est atteinte ou non. Cette quantité sera stockée dans le tableau `resvec_` au fur et à mesure des itérations. Ceci nous sera utile pour la partie analyse.
+- Le nombre d'itérations sera stocké dans `niter_`
+- À chaque itération, la norme du résidu relatif $\frac{\\|r\\|}{\\|b\\|}$ doit être calculé pour vérifier si la convergence est atteinte ou non. Cette quantité sera stockée dans le tableau `resvec_` au fur et à mesure des itérations. Ceci nous sera utile pour la partie analyse.
 
 
 {{% alert note %}}
@@ -182,8 +182,5 @@ Construisez deux autres classes supplémentaires : une pour la méthode de Gauss
 {{% /alert %}}
 
 {{% alert note %}}
-Contrairement à la méthode de Jacobi, les méthodes de Gauss-Seidel et de Relaxation requièrent la résolution d'un système linéaire triangulaire supérieure. Pour cela, nous pourrons utiliser la fonction résolvant un système linéaire triangulaire supérieur que vous avez déjà implémentée.
+Contrairement à la méthode de Jacobi, les méthodes de Gauss-Seidel et de Relaxation requièrent la résolution d'un système linéaire triangulaire supérieur. Pour cela, nous pourrons utiliser la fonction résolvant un système linéaire triangulaire supérieur que vous avez déjà implémentée.
 {{% /alert  %}}
-
-
-
