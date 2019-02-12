@@ -23,6 +23,9 @@ math = true
   weight = 20
 
 +++
+{{% alert warning%}}
+En cours de construction...
+{{% /alert %}}
 
 ## Objectifs
 

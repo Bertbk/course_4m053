@@ -24,6 +24,10 @@ math = true
 
 +++
 
+{{% alert warning%}}
+En cours de (re-)construction...
+{{% /alert %}}
+
 ## Objectifs
 
 1. Calculer la factorisation de Cholesky d'une matrice
