@@ -153,7 +153,13 @@ $$
 \omega^\* = \frac{2}{1 + \sqrt{1 - \rho(J)^2}},
 $$
 et le rayon spectral de la matrice d'itération est alors donné par $\rho(G\_{\omega^\*}) = \omega^\* - 1$. 
+
 <div id="relaxation"></div>
+
+{{% alert note %}}
+Pour $\omega \geq \omega^\*$, nous avons $\rho(G\_{\omega}) = \omega - 1$. La courbe ci-dessus montre qu'il est préférable de choisir $\omega$ légèrement plus grand que $\omega^\*$ plutôt que plus petit.
+{{% /alert %}}
+
 Quand $N\to+\infty$, nous obtenons le développement limité de $\omega^\*$ :
 $$
 \omega^\* = 2\left(1 - \frac{\pi}{N+1}  \right)+O\left(\left(\frac{1}{N+1}\right)^2\right).
