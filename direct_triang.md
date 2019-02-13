@@ -61,9 +61,9 @@ $$
 ## Algorithme de résolution
 
 {{% alert exercise %}}
-Écrivez (sur papier) l'algorithme permettant de résoudre le système linéaire quand la matrice est triangulaire supérieure. 
+Écrivez (sur papier) l'algorithme permettant de résoudre le système linéaire quand la matrice est triangulaire inférieure. 
 
-En déduire l'algorithme pour une matrice triangulaire inférieure.
+En déduire l'algorithme pour une matrice triangulaire supérieure.
 {{% /alert %}}
 
 
