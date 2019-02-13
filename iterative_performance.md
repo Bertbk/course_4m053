@@ -34,43 +34,9 @@ Pour les différentes méthodes itératives standards, nous souhaitons comparer 
 1. Les **historiques de convergence** 
 2. Le **temps CPU** (*time to solution*)
 
-
-## Format des Données Sortantes 
-
-Nous nous intéressons maintenant
-
-
-
-
-## Calcul du temps CPU
-
-TODO:
-
-## JSON: de C++ à Python
-
-### Format JSON
-
-Pour simplifier, [le format JSON](https://fr.wikipedia.org/wiki/JavaScript_Object_Notation) est un format spécialisé dans le transfert de données. À chaque clé (*key*) est associée une valeur ou un tableau de valeurs. Vous pouvez ajouter autant de clés que vous le voulez. 
-
-Par exemple, imaginons que l'on ait lancé une résolution avec $N=4$, la méthode de Jacobi, que notre vecteur `resvec_` contiennent trois valeures (au hasard) et le tout avec un temps CPU de 3.2s. Notre fichier de sortie pourrait ressembler à celui-ci (rappel : les valeurs ont été choisies au hasard):
-
-```json
-{ "method": "jacobi" }
-{ "N": 4}
-{ "niter": 3 }
-{ "resvec": [ 12.1, 8.2, 5.4, 3.2] }
-{ "cpu_time": 3.2 }
-```
-
-Un tel format présente l'avantage d'être lisible par Python à travers certaines bibliothèques. En particulier, [les scripts mis à dispositions]({{< relref "help_matplotlib.md" >}}) peuvent lire un tel fichier au format JSON et affiche la courbe associée à `resvec` en échelle logarithmique. Vous pouvez alors librement l'adapter pour afficher une autre quantité.
-
-### *Writer* JSON
-TODO: Dans un fichier à part, par exemple `src/JSON.cpp` (et `include/JSON.hpp`), créez une classe `JSON` permettant d'écrire des données à la suite.
-
-### Données de sortie
-
-Ajoutez une fonction membre à vos classes de méthode itérative pour écrire un fichier de sortie JSON contenant les données que vous souhaitez. Réutilisez bien entendu votre *writer* écrit précédemment.
-
+{{% alert note %}}
+Pensez à préparer vos classes/fonctions pour [sortir et traiter vos données]({{< relref "help_format.md">}}).
+{{% /alert %}}
 
 ## Problème modèle
 
