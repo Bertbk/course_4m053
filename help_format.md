@@ -1,5 +1,5 @@
 +++
-title = "Données Sortantes : Format"
+title = "Données de Sortie : Format & Visualisation"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -19,7 +19,7 @@ math = true
 # Add menu entry to sidebar.
 [menu.4m053]
   parent = "help"
-  name = "Données Sortantes : Format"
+  name = "Sortie : Format & Visu"
   weight = 10
 
 +++

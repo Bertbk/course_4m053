@@ -1,5 +1,5 @@
 +++
-title = "Matplotlib & Python"
+title = "Debug"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -17,18 +17,8 @@ type = "docs"  # Do not modify.
 # Add menu entry to sidebar.
 [menu.4m053]
   parent = "help"
-  name = "Matplotlib & Python"
-  weight = 10
+  name = "Debug"
+  weight = 5
 
 
 +++
-
-TODO:
-
-import json
-from pprint import pprint
-
-with open('data.json') as f:
-    data = json.load(f)
-
-pprint(data)
