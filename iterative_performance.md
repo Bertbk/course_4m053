@@ -34,6 +34,14 @@ Pour les différentes méthodes itératives standards, nous souhaitons comparer 
 1. Les **historiques de convergence** 
 2. Le **temps CPU** (*time to solution*)
 
+
+## Format des Données Sortantes 
+
+Nous nous intéressons maintenant
+
+
+
+
 ## Calcul du temps CPU
 
 TODO:
