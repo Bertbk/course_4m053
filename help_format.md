@@ -72,7 +72,7 @@ Un fichier JSON est compatimentés entre des accolades `{` et `}`. Par exemple, 
 }
 ```
 
-Un tel format présente l'avantage d'être lisible par Python ou JavaScript (d'où son nom) à travers certaines bibliothèques. En particulier, un script mis à disposition en fin de page permet de lire un tel fichier au format JSON et affiche la courbe associée à la clé `resvec` en échelle logarithmique. Vous pouvez alors librement l'adapter pour afficher une autre quantité.
+Un tel format présente l'avantage d'être lisible par Python ou JavaScript (d'où son nom) à travers certaines bibliothèques. En particulier, un script mis à disposition en fin de page permetx de lire un tel fichier au format JSON et affiche la courbe associée à la clé `resvec` en échelle logarithmique. Vous pouvez alors librement l'adapter pour afficher une autre quantité.
 
 ### En détail
 
