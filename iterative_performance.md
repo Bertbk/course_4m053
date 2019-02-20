@@ -67,6 +67,10 @@ Sur une même figure, affichez les courbes de la norme du résidu relatif $\frac
 Quelle méthode itérative est la plus rapide (en terme de nombre d'itérations) ?
 {{% /alert %}}
 
+Vous devriez obtenir une courbe ressemblant à celle ci-dessous :
+
+<div id="convergence_history"></div>
+
 
 ## Temps CPU
 
@@ -76,3 +80,6 @@ Pour $N=10$ à $200$, avec un pas de $10$, calculez le temps CPU (en secondes) p
 Quelle méthode itérative est la plus rapide (en terme de secondes) ?
 {{% /alert %}}
 
+
+<script type="text/javascript" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript" src="../standard_iterative.js"></script>

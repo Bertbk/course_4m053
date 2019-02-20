@@ -24,10 +24,6 @@ math = true
 
 +++
 
-{{% alert warning%}}
-En cours de (re-)construction...
-{{% /alert %}}
-
 ## Objectifs
 
 1. Calculer la factorisation de Cholesky d'une matrice
@@ -39,16 +35,16 @@ Si $A$ est symétrique définie positive, une alternative à la décomposition $
 $$
 A=LL^T
 $$
-o\`u $L$ est une matrice triangulaire inférieure.
+où $L$ est une matrice triangulaire inférieure.
 
 ## Algorithme
 
 {{% alert exercise %}}
 Comme pour la factorisation LU, suivez les instructions :
 
-1. Pour une factorisation partielle de $A$ avec $A\_{0,0}=A\_{0,0}$ et $L\_{0,0}=\ell\_{0,0}=\sqrt{A\_{0,0}}$, donnez l'expression analytique de tous les coefficients.
+1. Pour une factorisation partielle de $A$ avec $A\_{0,0}=A\_{0,0}$ et $L\_{0,0}=\ell\_{0,0}=\sqrt{a\_{0,0}}$, donnez l'expression analytique de tous les coefficients.
 2. Écrire sur papier un algorithme en pseudo-code pour construire cette factorisation partielle.
-3. Modifiez votre algorithme, en utilisant le théorème \ref{th:decomp_part} et en admettant que le complément de Schur est aussi symétrique définie positif, pour obtenir la factorisation complète de la matrice $A$. Pensez à utiliser la symétrique de la matrice $A$.
+3. En admettant que le complément de Schur est aussi symétrique définie positif, modifiez l'algorithme pour obtenir la factorisation complète de la matrice $A$. Pensez à utiliser la symétrie de la matrice $A$.
 4. De la même manière que pour la factorisation $LU$, modifiez votre algorithme pour stocker la matrice $L$ directement dans $A$. Autrement dit, $A$ est modifiée à la suite de votre algorithme.
 {{% /alert %}}
 
