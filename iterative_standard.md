@@ -106,8 +106,15 @@ Celles-ci seront séparées en deux, les données "entrantes", fournies par l'ut
 | `std::vector<double>` | `resvec_` | Tableau des normes des résidus relatifs (*RESidual VECtor*)|
 
 
-{{% alert note %}}
-Pour gagner en efficacité et limiter le coût mémoire, il est plus intéressant de ne pas stocker les Matrice et Vecteur, mais plutôt leur adresse (référence ou pointeur)
+{{% alert tips %}}
+Pour gagner en efficacité et limiter le coût mémoire, il est plus intéressant de ne pas stocker les Matrice et Vecteur, mais plutôt leur adresse (référence ou pointeur). Attention alors, si le paramètre est de type `const Matrice & A_`, l'affectation de cette valeur doit s'effectuer *avant* l'entrée dans le constructeur à l'aide [d'une liste d'initialisation](https://openclassrooms.com/fr/courses/1894236-programmez-avec-le-langage-c/1897606-creez-les-classes-partie-2-2#/id/r-1907275) :
+```cpp
+Jacobi(const Matrice & A, ...):A_(A), ... // Initisalition avant le "{"
+{
+    blabla
+}
+```
+Il en va de même, bien évidemment, pour `const Vecteur &B_`.
 {{% /alert  %}}
 
 

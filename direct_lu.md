@@ -23,21 +23,18 @@ math = true
   weight = 10
 
 +++
-{{% alert warning%}}
-En cours de (re-)construction...
-{{% /alert %}}
 
 ## Objectifs
 
 1. Calculer la factorisation LU d'une matrice
 2. Résoudre le système linéaire une fois la factorisation effectuée
-3. Comparer le temps d'exécution de ces méthodes en fonction de la taille des matrices
+<!--3. Comparer le temps d'exécution de ces méthodes en fonction de la taille des matrices-->
 
 ## Principe
 
 Cette méthode permet de transformer une matrice carré $A$ en un produit d'une matrice triangulaire inférieur $L$ et d'une matrice triangulaire supérieur $U$. Cette décomposition permet notamment de résoudre des problèmes d'algèbre linéaire du type
 $$
-AX=B \iff LUX = B
+AX=b \iff LUX = B
 $$
 où $X$ et $B$ sont les vecteurs solution et second membre respectivement. En introduisant la quantité $Y = L^{-1}B$, nous remarquons que nous avons $X = U^{-1}Y$. Ainsi, pour calculer $X$, il suffit de résoudre successivement deux systèmes linéaires triangulaires, l'un inférieur et l'autre supérieur. C'est parfait, nous venons tout juste d'implémenter ces fonctions !
 
@@ -69,7 +66,13 @@ Afin d'éviter toute confusion, nous utilisons des lettres minuscules pour les c
 {{% /alert %}}
 
 {{% alert exercise %}}
- Vérifiez que la relation précédente est vraie. Entre autres, trouvez les expressions de $L\_{1,0}$ et $U\_{0,1}$.
+Dans l'ordre :
+
+1. Vérifiez que la relation précédente est vraie
+2. Donnez les expressions de :
+   - $L\_{1,0}$ en fonction des blocs $U\_{0,0}$ et $A\_{1,0}$
+   - $U\_{0,1}$ en fonction des blocs $L\_{0,0}$ et $A\_{0,1}$
+3. Dans le cas où $A\_{0,0}= a\_{0,0}$ est un bloc réduit à un seul coefficient, calculez les coefficients exactes de $L\_{0,1}$ et $U\_{1,0}$ en fonction de ceux de $A$, ainsi que les coefficients de $S\_{1,1}$ en fonction de ceux de $A,L$ et $L$.
 {{% /alert %}}
 
 ### Factorisation complète
@@ -99,7 +102,25 @@ Ce théorème nous dit que dès lors qu'on arrive à décomposer un bloc de la d
 
 ## Algorithme
 
-Pour obtenir la factorisation complète, un algorithme itératif possible est le suivant. Nous commençons par **factoriser partiellement** \eqref{eq:factorisation_partielle} la matrice $A$ dans le cas où $A\_{0,0}=a\_{0,0}$ et $L\_{0,0}=\ell\_{0,0}=1$ (le bloc $A\_{0,0}$ est réduit à un seul coefficient). Pour cela, nous calculons les coefficients de $L\_{0,1}, U\_{1,0}$ et $S\_{1,1}$ (voir exercice précédent). Nous pouvons remarquer que $L\_{1,0}$ et $U\_{0,1}$ sont les "bons" blocs des (futures) matrices $L$ et $U$ : ils ne seront plus modifiés. Nous effectuons ensuite la factorisation partielle de $S\_{1,1}$ de la même manière, c'est à dire en considérant le bloc supérieur gauche de la taille d'un seul et un unique coefficient :
+Pour obtenir la factorisation complète, un algorithme itératif possible est le suivant :
+
+1. **Factorisation partielle** \eqref{eq:factorisation_partielle} de la matrice $A$ dans le cas où $A\_{0,0}=a\_{0,0}$ et $L\_{0,0}=\ell\_{0,0}=1$ (le bloc $A\_{0,0}$ est réduit à un seul coefficient ; voir exercice précédent) :
+$$
+A = L^{(1)} U^{(1)}
+$$
+{{% alert note %}}
+Deux remarques :
+
+1. Les exposants $(1)$ indiquent que ce sont les matrices obtenues pour cette première itération.
+2. Les blocs $L\_{1,0}^{(1)}$ et $U\_{0,1}^{(1)}$ sont les "bons" blocs des (futures) matrices $L$ et $U$ : ils ne seront en réalité plus modifiés à travers les itérations : 
+$$
+\begin{cases}
+L\_{1,0}^{(1)} = L\_{1,0}^{(2)} = \ldots = L\_{1,0}^{(N)}\\\\\\
+U\_{0,1}^{(1)} = U\_{0,1}^{(2)} = \ldots = U\_{0,1}^{(N)}
+\end{cases}
+$$
+{{% /alert %}}
+1. Factorisation partielle de $S\_{1,1}$ à l'intérieur de $U^{(1)}$ de la même manière, c'est à dire en considérant le bloc supérieur gauche de la taille d'un seul et un unique coefficient :
 $$
   S\_{1,1}=
   \begin{pmatrix}
@@ -111,6 +132,7 @@ $$
     0 & S\_{2,2}
   \end{pmatrix},
 $$
+TODO: redo figure
 
 ce qui donne
 {{< figure src="../u_l_lu.png" >}}
@@ -151,7 +173,7 @@ $$
   \;\right).
 $$
 -->
-Nous recommençons ensuite sur $S\_{2,2}$, $S\_{3,3}$, $\hdots$, pour finalement obtenir les matrices $L$ et $U$ avec :
+Nous recommençons ensuite sur $S\_{2,2}$, $S\_{3,3}$, ..., pour finalement obtenir les matrices $L$ et $U$ avec :
 
 {{< figure src="../u_l_lu2.png" >}}
 
@@ -181,7 +203,11 @@ $$-->
 
 
 {{% alert note%}}
-À l'itération $j$, nous devons calculer une sous-matrice $S\_{j,j}$. Plutôt que de construire à chaque étape une matrice de taille $(N-j)\times(N-j)$, nous pouvons travailler avec une unique matrice $S$ dont seul le bloc $S\_{j,j}$ sera modifié à chaque itération.
+Quelques remarques :
+
+1. À l'itération $k$, nous devons calculer une sous-matrice $S\_{k,k}$. Plutôt que de construire à chaque étape une matrice de taille $(N-k)\times(N-k)$, nous pouvons travailler directement dans $U^{(k)}$ où le bloc "en bas à droite" correspond à $S\_{k,k}$.
+2. Dans le cours, la matrice $U^{(k)}$ est notée $A^{(k)}$.
+3. Il n'est nul besoin de stocker $N$ matrices $(U^{(k)})\_{1\leq k \leq N}$ étant donné que les blocs lignes et colonnes déjà calculés ne seront plus modifiés par la suite : modifions directement $U$.
 {{% /alert %}}
 
 ## Pseudo-codes
@@ -189,24 +215,28 @@ $$-->
 {{% alert exercise %}}
 À vous d'écrire le pseudo-code. Pour cela, suivez les indications suivantes :
 
-1. Déterminez, dans le cas d'une **factorisation partielle** \eqref{eq:factorisation_partielle} avec $A\_{0,0}=a\_{0,0}$ et $L\_{0,0}=\ell\_{0,0}=1$, les expressions des coefficients de $L\_{1,0}$ et $U\_{0,1}$ en fonction des coefficients de $A$ ainsi que les expressions des coefficients de $S$ en fonction de ceux de $A, L$ et $U$.
-2. Écrivez sur le papier un algorithme en [**pseudo-code**](https://fr.wikipedia.org/wiki/Pseudo-code) permettant de construire la **factorisation partielle** de $A$ avec $A\_{0,0}=a\_{0,0}$ et $L\_{0,0}=\ell\_{0,0}=1$. Nous rappelons que les matrices $S\_{i,i}$ peuvent être stockées dans une seule matrice $S$ qui sera modifiée à chaque incrément.
-3. Modifiez votre pseudo-code de la question précédente pour obtenir la **factorisation complète** de $A$. Pour cela, il peut être utile d'initialiser l'algorithme par $S = A$.
-4. Modifiez encore votre pseudo-code de l'item 3. pour que les matrices $L$ et $U$ soient stockées directement dans la matrice $A$. Autrement dit, après application de l'algorithme, la matrice $A$ sera modifiée de telle sorte que sa partie triangulaire inférieure soit égale à $L$ (sans la diagonale unitaire), et sa partie triangulaire supérieure sera égale à $U$ (diagonale incluse). Cette méthode permet de diminuer le coût mémoire de stockage mais, attention, le produit matrice vecteur n'a alors plus de sens une fois cet algorithme appliqué !
+1. Écrivez sur le papier un algorithme en [**pseudo-code**](https://fr.wikipedia.org/wiki/Pseudo-code) permettant de construire la **factorisation partielle** de $A$ avec $A\_{0,0}=a\_{0,0}$ et $L\_{0,0}=\ell\_{0,0}=1$. Nous rappelons que les matrices $S\_{I,I}$ peuvent être stockées dans la matrice $U$ qui sera modifiée à chaque incrément.
+2. Modifiez votre pseudo-code de la question précédente pour obtenir la **factorisation complète** de $A$. Pour cela, il peut être utile d'initialiser l'algorithme par $U = A$.
+3. Modifiez encore votre pseudo-code pour que les matrices $L$ et $U$ soient stockées directement dans la matrice $A$. 
+   
+Autrement dit, après application de l'algorithme, la matrice $A$ sera modifiée de telle sorte que sa partie triangulaire inférieure soit égale à $L$ (sans la diagonale unitaire), et sa partie triangulaire supérieure sera égale à $U$ (diagonale incluse). Cette méthode permet de diminuer le coût mémoire de stockage mais, attention, le **produit matrice vecteur n'a alors plus de sens** une fois cet algorithme appliqué !
 {{% /alert %}}
 
 
 ## Implémentation en C++
 
 {{% alert exercise %}}
-Implémentez une méthode de la classe `Matrice` qui calcule la factorisation $LU$ de la `Matrice` telle que les matrices $L$ et $U$ soient stockées dans la matrice (pseudo-code 4. de l'exercice précédent). Le prototype de votre méthode sera donc de la forme suivante :
+Implémentez une méthode de la classe `Matrice` qui calcule la factorisation $LU$ de la `Matrice` *sur place*, c'est à dire telle que les matrices $L$ et $U$ sont stockées dans la matrice appelante. Le prototype de votre méthode sera donc de la forme suivante :
 ```cpp
 void Matrice::decomp_LU();
 ```
 {{% /alert %}}
 
 {{% alert warning %}}
-Nous rappelons que, une fois la factorisation LU effectuée sur place, la matrice est profondément modifiée. En particulier, le produit matrice-vecteur (resp. matrice-matrice) deviendra inutilisable. Nous pouvons toutefois le rendre de nouveau utilisable si nous ajoutons un `booleen` (un "flag") permettant de déterminer si une matrice a été, ou non, déjà factorisée, et modifier le produit matrice-vecteur (resp. matrice-matrice) en fonction. Ajouter cette option est facultatif pour la suite.
+Nous rappelons que, une fois la factorisation LU effectuée sur place, la matrice est profondément modifiée. En particulier, le produit matrice-vecteur (resp. matrice-matrice) deviendra inutilisable. Il peut être intéressant de stocker un paramètre de type `booleen` (un "flag") permettant de déterminer si une matrice a été, ou non, déjà factorisée afin de :
+
+1. Ne pas refactoriser une matrice déjà factorisée
+2. Adapter le produit matrice-vecteur (resp. matrice-matrice) en fonction. Cependant, une matrice transformée en LU n'a plus vocation à être utilisée pour des opérations d'algèbres linéaires donc ce dernier point ne serait *a priori* pas d'une grande utilité.
 {{% /alert %}}
 
 
@@ -230,5 +260,5 @@ $$
   1 \\\\\\
 \end{pmatrix}.
 $$
-La construction d'une telle matrice a été demandée dans un TP précédent.  Vous devriez obtenir $X = [2.5, 4,4.5, 4,2.5]^T$.
+Vous devriez obtenir $X = [2.5, 4,4.5, 4,2.5]^T$. Notez que cette matrice fait partie [des matrices de test régulière]({{<relref "dense_matrices_test.md">}}). 
 {{% /alert %}}

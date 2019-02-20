@@ -23,9 +23,6 @@ math = true
   weight = 20
 
 +++
-{{% alert warning%}}
-En cours de construction...
-{{% /alert %}}
 
 ## Objectifs
 
@@ -34,13 +31,13 @@ Pour les différentes méthodes itératives standards, nous souhaitons comparer 
 1. Les **historiques de convergence** 
 2. Le **temps CPU** (*time to solution*)
 
-{{% alert note %}}
+{{% alert tips %}}
 Pensez à préparer vos classes/fonctions pour [sortir et traiter vos données]({{< relref "help_format.md">}}).
 {{% /alert %}}
 
 ## Problème modèle
 
-Nous utilisons toujours la matrice $A\_N$ de taille $N\times N$:
+Nous utilisons toujours la matrice $A\_N$ du Laplacien, [introduite précédemment]({{<relref "dense_matrices_test.md">}}), de taille $N\times N$:
 $$
 A\_N =
 \begin{pmatrix}
@@ -57,7 +54,7 @@ $$
 
 Adaptez les fonctions membres `Solve()` de chaque classe de méthode itérative pour pouvoir calculer le temps d'exécution de la résolution. **Vous pouvez bien entendu ajouter des paramètres/méthodes si vous le désirez**.
 
-Naturellement, vous pouvez réutiliser le code TODO:. 
+Naturellement, vous pouvez réutiliser [le code minimaliste proposé dans ces tps]({{<relref "help_cpu.md">}}).
 
 
 ## Historiques de Convergence
@@ -65,19 +62,17 @@ Naturellement, vous pouvez réutiliser le code TODO:.
 Nous considérons une matrice $A\_N$ de taille $200$ et un vecteur membre de droite $b$ rempli de $1$. Dans cet exercice, nous fixons de plus la tolérance à $10^{-1}$ et le nombre d'itérations maximal de 20000.
 
 {{% alert exercise %}}
-Sur une même figure, affichez les courbes "norme du résidu" (normalisé \eqref{eq:rel}) en fonction du "numéro de l'itération" pour chaque méthode itérative. Cette figure s'appelle **l'historique de convergence**.
+Sur une même figure, affichez les courbes de la norme du résidu relatif $\frac{\\|\mathbf{r}\\|}{\\|\mathbf{b}\\|}$ en fonction du numéro de l'itération pour chaque méthode itérative. Cette figure s'appelle **l'historique de convergence**.
 
 Quelle méthode itérative est la plus rapide (en terme de nombre d'itérations) ?
 {{% /alert %}}
 
-TODO: figure ?
 
 ## Temps CPU
 
 {{% alert exercise %}}
-Pour $N=10$ à $200$, avec un pas de $10$, calculez le temps CPU (en secondes) pour chaque méthode itérative. Affichez sur une même figure chaque courbe "temps CPU (s)" en fonction du "numéro de l'itération".
+Pour $N=10$ à $200$, avec un pas de $10$, calculez le temps CPU (en secondes) pour chaque méthode itérative. Affichez sur une même figure chaque courbe ["temps CPU (s)"]({{<relref "help_cpu.md">}}) en fonction du "numéro de l'itération".
 
-Quelle méthode itérative est la plus rapide (en terme de temps CPU) ?
+Quelle méthode itérative est la plus rapide (en terme de secondes) ?
 {{% /alert %}}
 
-TODO: figure ?

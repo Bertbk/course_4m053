@@ -57,6 +57,10 @@ En notant $L :=M^{-1}(M - A) = I - M^{-1}A$ la matrice d'itération de la métho
 
 En particulier, si nous connaissons le rayon spectral de la matrice d'itération, alors nous disposons d'une estimation du nomre d'itérations nécessaires pour aboutir à la convergence.
 
+{{% alert tips %}}
+Notez que cette matrice $A\_N$ fait partie [des matrices de test régulière]({{<relref "dense_matrices_test.md">}}). 
+{{% /alert %}}
+
 
 ## Méthode de Jacobi
 

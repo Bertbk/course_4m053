@@ -32,7 +32,6 @@ En cours de (re-)construction...
 
 1. Calculer la factorisation de Cholesky d'une matrice
 2. Résoudre le système linéaire une fois la factorisation effectuée
-3. Comparer le temps d'exécution avec la factorisation LU
 
 ## Factorisation de Cholesky
 
@@ -80,26 +79,5 @@ $$
   1 \\\\\\
 \end{pmatrix}.
 $$
-La construction d'une telle matrice a déjà été demandée précédemment. Vous devriez obtenir $X = [2.5, 4,4.5, 4,2.5]^T$.
+Vous devriez obtenir $X = [2.5, 4,4.5, 4,2.5]^T$. Notez que cette matrice fait partie [des matrices de test régulière]({{<relref "dense_matrices_test.md">}}). 
 {{% /alert %}}
-
-## Comparaison avec la factorisation LU
-
-
-{{% alert exercise %}}
-En utilisant la fonction `clock` de la bibliothèque standard `ctime` :
-
-1. Comparez les temps d'exécution des deux méthodes.
-2. Dessinez les graphes du temps d'exécution par rapport à la taille de la matrice. On fera attention à se placer en échelle logarithmique sur l'axe des abscisse afin de retrouver la complexité des algorithmes ($N^3$ pour les deux). Vous pouvez utiliser Python avec matplotlib.
-{{% /alert %}}
-
-<!-- % 		\begin{lstlisting}[language=C++]
-% #include <ctime>
-% int main (){
-% clock_t start , end;
-% double msecs;
-% start = clock ();
-% /* any stuff here ... */
-% end = clock ();
-% msecs = (( double ) (end - start)) / CLOCKS\_PER_SEC ;
-% 	        \end{lstlisting} -->
