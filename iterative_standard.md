@@ -1,5 +1,5 @@
 +++
-title = "Méthodes Standards"
+title = "Méthodes Itératives Stationnaires Standards"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -61,23 +61,23 @@ Les méthodes itératives que nous détaillons ici ne diffèrent que par le choi
 
 ## Méthodes standards
 
-La matrice $A$ se décompose comme $A = D + E +F$, où $D$, $E$ et $F$ sont des matrices de la même taille que $A$ et telles que :
+La matrice $A$ se décompose comme $A = D - E - F$, où $D$, $E$ et $F$ sont des matrices de la même taille que $A$ et telles que (attention au signe des coefficents de $E$ et $F$) :
 
 - $D = {\rm diag}(A)$ : Matrice ne contenant que **les termes diagonaux** de $A$
-- $E$ : Matrice ne contenant que la partie **triangulaire supérieure** de $A$
-- $F$ : Matrice ne contenant que la partie **triangulaire inférieure** de $A$
+- $E$ : Matrice ne contenant que la partie **triangulaire supérieure** de $-A$
+- $F$ : Matrice ne contenant que la partie **triangulaire inférieure** de $-A$
 
 
 
 | Méthode | Matrice $M$ | Remarques|
 | ---------|----|----------|
-| Jacobi   | $D$ | $M^{-1}$ est analytique        |
-| Gauss-Seidel   | $D + E$ |  $M$ est triangulaire supérieure       |
-| Relaxation   | $\frac{1}{\omega}D + E$ | $0 < \omega < 2$ paramètre à controller        |
+| Jacobi   | $D$ | $M^{-1} = D^{-1}$ est explicite        |
+| Gauss-Seidel   | $D - E$ |  $M$ est triangulaire supérieure       |
+| Relaxation   | $\frac{1}{\omega}D - E$ | $0 < \omega < 2$ paramètre à contrôler        |
 
 
 {{% alert warning %}}
-Cette décomposition $A = D - E -F$ n'a aucun rapport avec la factorisation $LU$.
+Cette décomposition $A = D - E -F$ n'a **aucun rapport** avec la factorisation $LU$ !
 {{% /alert  %}}
 
 ## Une Classe en Détail : Jacobi
