@@ -18,9 +18,9 @@ math = true
 
 # Add menu entry to sidebar.
 [menu.4m053]
-  parent = "iterative_solvers"
+  parent = "krylov_solvers"
   name = "Gradient Conjugué"
-  weight = 40
+  weight = 10
 
 +++
 
