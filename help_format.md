@@ -1,5 +1,5 @@
 +++
-title = "Données de Sortie : Format & Visualisation"
+title = "Data visualization"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -19,13 +19,11 @@ math = true
 # Add menu entry to sidebar.
 [menu.4m053]
   parent = "help"
-  name = "Sortie : Format & Visu"
+  name = "Data visualization"
   weight = 10
 
 +++
-{{% alert warning%}}
-En cours de construction...
-{{% /alert %}}
+
 
 ## Contexte
 
@@ -62,7 +60,7 @@ Un fichier JSON est compatimentés entre des accolades `{` et `}`. Par exemple, 
 
 ```json
 {
-  "simu1": {
+  "jacobi": {
     "method": "jacobi",
     "N": 4,
     "ntier": 3,
@@ -81,10 +79,10 @@ Un fichier JSON commence par `{` et se termine par `}`. Entre les accolades se t
 1. Une paire clé/valeur, ex. `"method" : "jacobi"
 2. Une liste ordonnée de valeurs : `"resvec" : [ 12.1, 8.2, 5.4, 3.2]`
 
-Une clé peut aussi faire référence à un objet, entouré alors d'accolades, comme `"simu1"` ci-dessous qui regroupe plusieurs paramètres :
+Une clé peut aussi faire référence à un objet, entouré alors d'accolades, comme `"jacobi"` ci-dessous qui regroupe plusieurs paramètres :
 ```json
 {
-  "simu1": {
+  "jacobi": {
     "method": "jacobi",
     "N": 4,
     "ntier": 3,
@@ -96,18 +94,17 @@ Une clé peut aussi faire référence à un objet, entouré alors d'accolades, c
 
 Nous pouvons concaténer ainsi plusieurs résultats de simulations dans un même fichier :
 
-<div id="#jsonfile"></div>
 
 ```json
 {
-  "simu1": {
+  "jacobi": {
     "method": "jacobi",
     "N": 4,
     "ntier": 4,
     "resvec":  [ 12.1, 8.2, 5.4, 3.2],
     "cpu_time": 3.2323
   },
-  "simu2": {
+  "gauss": {
     "method": "gauss",
     "N": 4,
     "ntier": 2,
@@ -126,87 +123,143 @@ Selon les lecteurs JSONS, il n'est pas nécessaire que le dernier élément se t
 
 Il existe naturellement des [parser JSON pour le C++](https://github.com/nlohmann/json), cependant nous proposons d'apprendre à le faire nous même, étant donné nos besoins "minimes".
 
-Dans des fichiers à part, par exemple `src/JSON.cpp` et `include/JSON.hpp`, créez une classe `JSON` permettant d'écrire des données relative à une simulation dans un fichier (ou plutôt, à la suite, dans un fichier).
+Nous pouvons créer un writer "manuellement", c'est à dire ouvrir un fichier et le remplir au fur et à mesure de vos besoins : cela fonctionnera parfaitement.
 
+
+{{% alert tips %}}
 Vous pouvez vous aider de lecteur en ligne pour mieux comprendre le format, comme [jsonviewer](http://jsonviewer.stack.hu/), et valider les fichiers de sortie.
+{{% /alert %}}
 
-Nous proposons que cette classe `JSON` ait les méthodes et paramètres suivants. Bien entendu, à vous de vous adapter à vos besoins : ce n'est ici qu'une proposition !
+Nous proposons une classe `JSON` relativement simple qui ajoute les données ligne par ligne dans le fichier de sortie. Cela simplifie les méthodes mais rend impossible la modification a posteriori de données déjà imprimées sur disque : à l'utilisateur / utilisatrice d'utiliser correctement cette classe. Nous vous fournissons les débuts, à vous de l'adapter pour ajouter d'autres fonctionnalités. Nous vous fournissons les fichiers `src/JSON.cpp` et `include/JSON.hpp` permettant de créer cette classe avec le constructeur de base ainsi qu'une méthode pour ajouter des entiers.
 
-### Besoins
-
-Nous aurons besoin d'imprimer sur fichier des `int`, `double`, `string` ainsi que des tableaux de `double`.
-
-### Paramètres
-
-- `filename_` : nom du fichier de sortie
-- `main_key_` : nom de la clé principale
-
-### Méthodes
-
-- Constructeur par nom de fichier et par clé principale
+### `JSON.hpp`
 
 ```cpp
-JSON(std::string filename, std::string main_key);
+#pragma once
+#include<fstream>
+#include<string>
+class JSON{
+private:
+  std::ofstream file_;
+  bool comma_add_;   // Should we place a comma between two JSON::add ?
+  bool comma_start_; // same for JSON::start ?
+public:
+  JSON(std::string filename);
+  void start(std::string key);
+  void end();
+  void add(std::string key, int val);
+  void close();
+};
 ```
 
-- Ajout d'un entier `int`
+### `JSON.cpp`
 
 ```cpp
-JSON::add(std::string key, int val);
+#include "json.hpp"
+#include <string>
+//Constructeur
+JSON::JSON(std::string filename):comma_start_(false),comma_add(false)
+{
+  file_.open(filename, std::ofstream::out);
+  file_ << "{";
+}
+// Fermeture du fichier
+void JSON::close(){
+  if(file_.is_open())
+    {
+      file_ << "\n}";
+      file_.close();
+    }
+}
+// Début d'un jeu de données
+void JSON::start(std::string key){
+  if(file_.is_open())
+    {
+      if(comma_start_)
+      	file_ << ",";
+      file_ << "\n  \"" << key << "\" : {";
+      comma_start_ = true; //Le prochain appel à JSON::start écrira une virgule
+      comma_add_ = false; // Mais pas le prochain appel à JSON::add()
+    }
+}
+// Clôture d'un jeu de données
+void JSON::end(){
+  if(file_.is_open())
+    {
+    file_ << "\n  }" << suffix;
+    comma_add_ = false; //Le prochain appel à JSON::add n'écrira pas de virgule
+    }
+}
+// Ajout d'une donnée de type int
+void JSON::add(std::string key, int val){
+  if(file_.is_open())
+    {
+      if(comma_add_)
+	file_ << ",";
+      file_ << "\n    \"" << key << "\" : " << std::to_string(a) << suffix;
+      comma_add_ = true; // Pas de virgule pour les prochains appels
+    }
+}
 ```
+{{% alert warning %}}
+Un des soucis est la virgule en fin de ligne : doit-on la placer ou non ? Ce problème est ici contourné par l'ajout de deux paramètres de type `bool` permettant de détecter si `JSON::start()` a déjà été appelé ou non, de même pour `add()` au sein d'un jeu de données.
+{{% /alert %}}
 
-- Ajout d'un entier `double`
 
-```cpp
-JSON::add(std::string key, double val);
-```
-
-- Ajout d'un entier `string`
-
-```cpp
-JSON::add(std::string key, std::string val);
-```
-
-- Ajout d'un tableau de double `std::vector<double>` (par pointeur ou référence !)
-
-```cpp
-JSON::add(std::string key, const std::vector<double> val);
-```
+{{% alert note %}}
+Le programme que nous vous fournissons ne peut ajouter que des entiers, à vous de rajouter des méthodes `JSON::add(...)` pour pouvoir ajouter des `std::vector<double>` ou autre...
+{{% /alert %}}
 
 ### Exemple d'utilisation
 
 ```cpp
-//calcul de données...
-//...
-// Ouvre le fichier sortie.json et place le curseur en fin de fichier (et supprime l'éventuelle accolade fermante)
-JSON json("sortie.json", "iterative");
-//Imprime un jeu de données de type int/double/string
-double cpu_time = 23.2;
-json.add("cpu_time", cpu_time);
-std::string method = "jacobi";
-json.add("method", jacobi);
-//Imprime un tableau de données
-std::vector<double> resvec = {2.3, 2.1, 23.1};
-json.add("resvec", resvec);
-// Ferme le fichier et ajoute les accolades fermantes
-json.close();
+//Les données sont écrites ici en "dure" pour l'exemple...
+int N=4;
+std::vector<double> resvecJ = {12.1, 8.2, 5.4, 3.2};
+std::vector<double> resvecG = {6.1, 2.2};
+//
+JSON json("sortie.json");
+//Jacobi
+json.start("jacobi");
+json.add("method", "jacobi");
+json.add("N", 4);
+json.add("n_iter", static_cast<int>(resvecJ.size());
+json.add("resvec", resvecJ);
+json.add("cpu_time", 3.2323);
+json.end()
+//Gauss
+json.start("gauss");
+json.add("method", "Gauss");
+json.add("N", 2);
+json.add("n_iter", static_cast<int>(resvecG.size());
+json.add("resvec", resvecG);
+json.add("cpu_time", 1.397);
+json.end()
+json.close3.2323
 ```
 
-Le résultat serait le suivant ici :
+Le résultat serait le suivant :
 ```
 {
-  "iterative":
-  {
+  "jacobi": {
     "method": "jacobi",
-    "cpu_time": 23.2,
-    "resvec": [2.3, 2.1, 23.1],
+    "N": 4,
+    "ntier": 4,
+    "resvec":  [ 12.1, 8.2, 5.4, 3.2],
+    "cpu_time": 3.2323
+  },
+  "gauss": {
+    "method": "gauss",
+    "N": 4,
+    "ntier": 2,
+    "resvec":  [ 6.1, 2.2],
+    "cpu_time": 1.397
   }
 }
 ```
-
 ## Python & Matplotlib
 
-Nous pouvons utiliser [Pandas](https://pandas.pydata.org/) pour lire le fichier JSON ou alors, le petit script ci-dessous affichera la courbe de convergence associée à la quantité `resvec` de la clé `simu1`, du fichier JSON précédént :
+Nous pouvons utiliser [Pandas](https://pandas.pydata.org/) pour lire le fichier JSON ou alors, le petit script ci-dessous affichera la courbe de convergence associée à la quantité `resvec` de la clé `jacobi`, du fichier JSON précédént :
 
 ```python
 # Python 3
@@ -215,10 +268,10 @@ import matplotlib.pyplot as plt
 
 data_file = open('data.json', 'r')
 data = json.load(data_file)
-print(data['simu1']['resvec'])
+print(data['jacobi']['resvec'])
 data_file.close()
 
 fig, ax = plt.subplots()
-ax.plot(data['simu1']['resvec'])
+ax.plot(data['jacobi']['resvec'])
 plt.show()
 ```

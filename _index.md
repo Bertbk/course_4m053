@@ -42,7 +42,7 @@ Ces TPs vous demandent d'être **familié avec au moins un langage compilé** (`
 
 À vous de décider le langage que vous préférez pour afficher les courbes et traiter les données. Nous vous incitons à utiliser [Python](https://www.python.org/) avec les bibliothèques [Matplotlib](https://matplotlib.org/) pour l'affichage et [Numpy](https://www.numpy.org/) pour toute opération de calcul scientifique (matrice, vecteur, ...). À noter que [Julia](https://julialang.org) peut également appeler Matplotlib.
 
-TODO: fournir un exemple de codes Matplotlib lisant un fichier de données ?
+Dans la rubrique d'aide, nous fournissons [un script Python]({{<relref "help_format.md">}}) permettant de lire un fichier JSON, d'en extraire des données et d'afficher une courbe.
 
 ## Organisation
 
