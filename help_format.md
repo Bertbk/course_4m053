@@ -1,5 +1,5 @@
 +++
-title = "Data visualization"
+title = "Visualisation & Sortie"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -19,7 +19,7 @@ math = true
 # Add menu entry to sidebar.
 [menu.4m053]
   parent = "help"
-  name = "Data visualization"
+  name = "Visualisation & Sortie"
   weight = 10
 
 +++
