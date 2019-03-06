@@ -38,5 +38,8 @@ double temps_en_secondes = static_cast<double>(end - start) / CLOCKS_PER_SEC ;
 ```
 
 {{% alert warning %}}
-Si votre temps est inférieur à la milliseconde, vous risquez de mesurer du bruit.
+Si votre temps est inférieur à la milliseconde, vous risquez de mesurer du bruit. Vous pouvez, au choix :
+
+- [Mieux] Augmenter la taille du problème
+- [Moins bien] Effectuer N fois la même opération et diviser ensuite le temps par N
 {{% /alert %}}
