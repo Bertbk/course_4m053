@@ -19,7 +19,7 @@ math = true
 # Add menu entry to sidebar.
 [menu.4m053]
   parent = "sparse_matrices"
-  name = "Format COO et CSR"
+  name = "Formats COO et CSR"
   weight = 10
 
 +++
