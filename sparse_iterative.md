@@ -1,5 +1,5 @@
 +++
-title = "Format CSR"
+title = "Méthodes Itératives"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -19,14 +19,12 @@ math = true
 # Add menu entry to sidebar.
 [menu.4m053]
   parent = "sparse_matrices"
-  name = "Format CSR"
-  weight = 30
+  name = "Méthodes Itératives"
+  weight = 50
 
 +++
 
-
-
 ## Objectifs
 
-- Implémenter une classe de matrice creuse au format CSR (*Compressed Storage Row*)
-
+- Modifier les méthodes itératives pour prendre en charge une matrice creuse
+  
