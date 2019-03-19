@@ -1,5 +1,5 @@
 +++
-title = "Matrices Creuses : Format CSR"
+title = "Format COO"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -7,6 +7,8 @@ date = 2018-09-09T00:00:00
 draft = false  # Is this a draft? true/false
 toc = true  # Show table of contents? true/false
 type = "docs"  # Do not modify.
+
+math = true
 
 [git]
   icon = "github"
@@ -16,10 +18,9 @@ type = "docs"  # Do not modify.
 
 # Add menu entry to sidebar.
 [menu.4m053]
-  identifier = "csr_matrices"
-  name = "Matrices Creuses  : CSR"
-  weight = 90
-  url = ""
-
+  parent = "sparse_matrices"
+  name = "COO"
+  weight = 10
 
 +++
+

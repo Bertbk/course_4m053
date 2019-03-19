@@ -53,7 +53,6 @@ Comparez le nombre d'itérations et le temps CPU avec les autres méthodes itér
 {{% alert exercise %}}
 TODO: parametres. 
 Sur une même courbe, affichez l'historique de convergence du gradient conjugué et des autres méthodes itératives.
-
 {{% /alert %}}
 
 ## Préconditionnement
