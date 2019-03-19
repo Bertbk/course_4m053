@@ -61,10 +61,6 @@ Notons $a\_{i,j}$ le coefficient $(i,j)$ de la matrice $A$. Nous allons tout d'a
 \end{equation}
 où $I$ est la matrice identité, les $A\_{I,J}$ sont des sous-blocs de $A$ (notons que $A\_{0,0} = a\_{0,0}$ est un coefficient). Le bloc $S\_{1,1}=A\_{1,1}-A\_{1,0}A\_{0,0}^{-1}A\_{0,1}$ est appelé le complément de Schur.
 
-{{% alert note %}}
-Afin d'éviter toute confusion, nous utilisons des lettres minuscules pour les coefficients : $i,j$ et des lettres majuscules pour les indices des blocs : $I,J$.
-{{% /alert %}}
-
 {{% alert exercise %}}
 Vérifiez que :
 
@@ -73,12 +69,37 @@ Vérifiez que :
 - $S\_{1,1}=A\_{1,1}-A\_{1,0}A\_{0,0}^{-1}A\_{0,1} = A\_{1,1} - L\_{1,0}U\_{0,1}$
 {{% /alert %}}
 
+
+{{% alert note %}}
+Afin d'éviter toute confusion, nous utilisons des lettres et des indices minuscules pour les coefficients (*e.g.* $a\_{i,j}$) et des lettres et indices majuscules pour les blocs (*e.g* $A\_{I,J}$).
+{{% /alert %}}
+
+{{% alert note %}}
+La factorisation partielle peut aussi être opérérée par bloc :
+$$
+A=\begin{pmatrix}
+  A\_{0,0} & A\_{0,1} \\\\\\
+  A\_{1,0}  & A\_{1,1}
+\end{pmatrix} =
+  \begin{pmatrix}
+    I & 0 \\\\\\
+    L\_{1,0} & I
+  \end{pmatrix}
+  \begin{pmatrix}
+    U\_{0,0} & U\_{0,1} \\\\\\
+    0 & S\_{1,1}
+  \end{pmatrix}
+$$
+{{% /alert %}}
+
+
+
 ### Factorisation complète
 
 Le lien entre factorisation partielle et factorisation complète est donné par le théorème suivant :
 
 {{% thm theorem %}}
-  La matrice $A$ admet une factorisation $LU$ si et seulement si le bloc $A\_{0,0}$ et le complément de Schur $S\_{1,1}$ sont eux-mêmes factorisables. La décomposition $LU$ de la matrice est déterminée par les factorisations des blocs $A\_{0,0}=L\_{0,0}U\_{0,0}$ et $S\_{1,1} = L\_{1,1}U\_{1,1}$ selon la formule :
+La matrice $A$ admet une factorisation $LU$ si et seulement si le bloc $A\_{0,0}$ et le complément de Schur $S\_{1,1}$ sont eux-mêmes factorisables. La décomposition $LU$ de la matrice est déterminée par les factorisations des blocs $A\_{0,0}=L\_{0,0}U\_{0,0} (=u\_{0,0})$ et $S\_{1,1} = L\_{1,1}U\_{1,1}$ selon la formule :
 $$
     \begin{pmatrix}
       A\_{0,0} & A\_{0,1} \\\\\\
@@ -131,26 +152,23 @@ for k =0:N-1
   // Complément de Schur
   for i = k+1:N-1
     for j = k+1:N-1
-      S(i,j) = S(i,j) - L(i,k)*U(k,i);
+      S(i,j) = S(i,j) - L(i,k)*U(k,j);
 ```
 
 ### Factorisation *sur place*
 
 Plutôt que de stocker 3 matrices `L`, `U` et `S`, on remarque que l'on peut se passer de ...:
 
-- ... la matrice `S` en modifiant directement `U` : le bloc $U\_{k,k}$ contiendra le complément de Schur
-- ... la matrice `L` en la stockant dans `U` et en supprimant son terme diagonal (qui vaut 1)
+- ... la matrice `S` en modifiant directement `U` : le bloc $U\_{k,k}$ (en "bas à droite") contiendra le complément de Schur
+- ... la matrice `L` en la stockant dans `U` et en supprimant son terme diagonal (qui vaut 1 et peut donc devenir "implicite")
 - ... la matrice `U` et travailler directement dans `A` 
-
-{{% alert exercise %}}
-
-Modifier le pseudo code pour calculer la factorisation `LU` de `A` directement dans la matrice. Certaines opérations deviennent alors inutiles et d'autres sont à supprimer.
-
-Après application de l'algorithme, la `Matrice A` sera modifiée de telle sorte que sa partie triangulaire inférieure soit égale à $L$ (sans la diagonale unitaire), et sa partie triangulaire supérieure sera égale à $U$ (diagonale incluse). Cette méthode permet de diminuer le coût mémoire de stockage mais, attention, le **produit matrice vecteur n'a alors plus de sens** une fois cet algorithme appliqué !
-{{% /alert %}}
 
 
 ## Implémentation en C++
+
+{{% alert exercise %}}
+Avant de coder quoi que ce soit, modifiez le **pseudo code** pour que factorisation `LU` de `A` soit effectuée **directement dans la matrice** `A`. En particulier, le pseudo-code peut alors être nettoyer de certaines opérations rendues inutiles.
+{{% /alert %}}
 
 {{% alert exercise %}}
 Implémentez une méthode de la classe `Matrice` qui factorise la `Matrice` *sur place* :
@@ -160,10 +178,13 @@ void Matrice::decomp_LU();
 {{% /alert %}}
 
 {{% alert warning %}}
-Rappel : une fois la factorisation LU effectuée, le produit matrice-vecteur (resp. matrice-matrice) deviendra inutilisable. Il peut être intéressant de stocker un paramètre de type `booleen` (un "flag") permettant de déterminer si une matrice a été, ou non, déjà factorisée afin de :
+Après application de l'algorithme, la `Matrice A` sera modifiée de telle sorte que sa partie triangulaire inférieure soit égale à $L$ (sans la diagonale unitaire), et sa partie triangulaire supérieure sera égale à $U$ (diagonale incluse). Cette méthode permet de diminuer le coût mémoire de stockage mais, attention :
 
-1. Ne pas refactoriser une matrice déjà factorisée
-2. Adapter le produit matrice-vecteur (resp. matrice-matrice) en fonction. Cependant, une matrice transformée en LU n'a plus vocation à être utilisée pour des opérations d'algèbres linéaires donc ce dernier point ne serait *a priori* pas d'une grande utilité.
+- Le **produit matrice vecteur n'a alors plus de sens** une fois cet algorithme appliqué !
+- Il ne faut pas ré-appliquer la factorisation LU sur A (c'est de toute façon inutile, mais une erreur arrive si vite...)
+
+
+Il peut être intéressant de rajouter un paramètre à la classe `Matrice` de type `booleen` (un "flag") permettant de déterminer si une matrice a été, ou non, déjà factorisée.
 {{% /alert %}}
 
 
@@ -187,5 +208,5 @@ $$
   1 \\\\\\
 \end{pmatrix}.
 $$
-Vous devriez obtenir $X = [2.5, 4,4.5, 4,2.5]^T$. Notez que cette matrice fait partie [des matrices de test régulière]({{<relref "dense_matrices_test.md">}}). 
+Vous devriez obtenir $X = [2.5, 4,4.5, 4,2.5]^T$. Notez que cette matrice fait partie [des matrices de test régulières]({{<relref "dense_matrices_test.md">}}). 
 {{% /alert %}}
