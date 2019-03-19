@@ -33,12 +33,16 @@ Bien qu'extrêmement intéressant, cette partie est "optionnelle" : privilégiez
 {{% /alert %}}
 
 {{% alert warning %}}
-Votre programme de factorisation **LU doit être fonctionnel** avant d'aller plus loin ! Autrement dit, vous l'avez **validé** sur une ou des systèmes linéaires.
+Votre programme de factorisation LU doit être **fonctionnel** et **effectué dans la matrice** avant d'aller plus loin ! Autrement dit, vous l'avez **validé** sur une ou des systèmes linéaires !
 {{% /alert %}}
 
 ## Principe
 
-Lors du calcul de la factorisation $LU$, le pivot, c'est-à-dire le premier coefficient de la sous-matrice (complément de Schur) $S\_{k,k}(0,0)$ peut être nul. Pour obtenir une (l'unicité étant perdue) factorisation LU, une méthode consiste à chercher un coefficient non nul dans cette sous-matrice et à *pivoter* les lignes et colonnes pour lui donner le rôle de pivot.
+Lors du calcul de la factorisation $LU$, le pivot, c'est-à-dire le premier coefficient de la sous-matrice (complément de Schur) $S\_{k,k}(0,0)$ peut être nul. Pour obtenir une factorisation LU, une méthode consiste à chercher un coefficient non nul dans cette sous-matrice et à *pivoter* les lignes et colonnes pour lui donner le rôle de pivot. 
+
+{{% alert tips %}}
+L'unicité de la factorisation LU est perdue, celle-ci dépendant du choix du pivot.
+{{% /alert %}}
 
 ## Pivotage partiel 
 
@@ -138,7 +142,7 @@ Il est possible aussi de ne pas pivoter directement les lignes de la matrice mai
 
 
 ### Permutation de lignes : `Vecteur` et `Matrice`
-Dans les classes `Vecteur` et `Matrice`, ajoutez de telles méthodes de prototype :
+Dans les classes `Vecteur` et `Matrice`, ajoutez deux méthodes permettant de pivoter intégralement deux lignes de prototype suivant :
 
 ```cpp
 void Vecteur::permute(int i, int j);
@@ -170,3 +174,13 @@ Avant chaque factorisation partielle :
       - Pivoter les deux lignes dans la `Matrice` et dans le `Vecteur` membre de droite
     - Continuer la factorisation (comme précédemment)
 ```
+
+{{% alert warning %}}
+La comparaison `double a == 0` est très risquée en `C++` du fait des approximations numériques : une quantité théoriquement nulle peut ne pas l'être tout en étant extrêmement petit, de l'ordre de 1e-16. Ainsi, quand vous vérifiez que le pivot est nul, préférez garder une tolérance, par exemple :
+
+```cpp
+if( abs(pivot) < 1e-14)   //Pivot considéré comme nulle
+```
+
+Notons qu'un pivot très petit peut entrainer des instabilités numériques (car on divise par celui-ci). Il peut dès lors être utile de choisir une tolérance plus grande que 1e-14 ou de rechercher systématiquement le plus grand pivot, mais cela augmente le nombre d'opérations effectuées.
+{{% /alert %}}
