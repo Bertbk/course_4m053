@@ -35,11 +35,25 @@ math = true
 
 ### Pseudo-code
 
+```
+x_0 = 0
+r_0 = b - A*x_0
+p_0 = r_0
+k = 0
+while (|r| / |b| > tolerance && k < nmax)
+  k++
+  alpha_k = |r_k|²/|p_k|²
+  x_{k+1} = x_k + alpha_k * p_k
+  r_{k+1} = r_k - alpha_k*(A*p_k)
+  beta_k  = |r_{k+1}|²/|r_k|²
+  p_{k+1} = r_{k+1} + beta_k*p_k
+end
+return x_{k+1}
+```
+
 ### Implémentation
 
-{{% alert exercise %}}
 Implémentez la méthode du Gradient Conjugué. Validez ensuite votre code la sur la [matrice du Laplacien]({{<relref "dense_matrices_test.md">}}).
-{{% /alert %}}
 
 ### Comparaison  des performances
 
@@ -51,8 +65,7 @@ Comparez le nombre d'itérations et le temps CPU avec les autres méthodes itér
 {{% /alert %}}
 
 {{% alert exercise %}}
-TODO: parametres. 
-Sur une même courbe, affichez l'historique de convergence du gradient conjugué et des autres méthodes itératives.
+Pour une tolérance de 0.01 et une taille N = 1000, affichez les historiques de convergence du gradient conjugué et des autres méthodes itératives sur une même
 {{% /alert %}}
 
 ## Préconditionnement
@@ -67,7 +80,7 @@ P^{-1}Ax = P^{-1}b.
 $$
 Le vecteur $x$ est également solution du système original. La matrice $P$ doit être choisie de telle sorte que :
 
-1. Elle soit ``facilement'' inversible, au sens où le coût de calcul de $P^{-1}$ doit rester faible
+1. Elle soit "facilement" inversible, au sens où le coût de calcul de $P^{-1}$ doit rester faible
 2. Le conditionnement de la matrice $P^{-1}A$ soit le plus proche possible de 1 ($P^{-1}A$ doit être proche de l'identité).
 3. Si l'on souhaite utiliser la méthode du Gradient Conjugué pour résoudre le nouveau système, $P^{-1}A$ soit toujours symétrique et définie positive.
 
@@ -75,9 +88,25 @@ Notez que le meilleur préconditionneur possible, au sens du critère 2, est bie
 
 ### Pseudo-code
 
-Le gradient conjugué préconditionné est modifié ainsi :
+Le gradient conjugué préconditionné est modifié ainsi (`(z,r)` représente le produit scalaire en `z` et `r`)
 
-TODO: pseudo code
+```
+x_0 = 0
+r_0 = b - A*x_0
+z_0 = P^{-1}*r0
+p_0 = z_0
+k = 0
+while (|r| / |b| > tolerance && k < nmax)
+  k++
+  alpha_k = (r_k, zk)/(p_k, A*p_k)
+  x_{k+1} = x_k + alpha_k * p_k
+  r_{k+1} = r_k - alpha_k*(A*p_k)
+  z_{k+1} = P^{-1}*r_{k+1}
+  beta_k  = (z_{k+1}, r_{k+1})/(z_k,r_k)
+  p_{k+1} = z_{k+1} + beta_k*p_k
+end
+return x_{k+1}
+```
 
 ## Préconditionneur simple : Jacobi
 
@@ -115,11 +144,11 @@ P\_n^{-1}H\_n x = P\_n^{-1}b\_n.
 \end{equation}
 
 {{% alert exercise %}}
-Pour une tolérance de $0.01$ et une taille $n = 1000$, résolvez les système \eqref{eq:hnsystem} ainsi que sa variante préconditionnée \eqref{eq:pnhnsystem} à l'aide des méthodes itératives standards et du gradient conjugué. 
+Pour une tolérance de 0.01 et une taille N = 1000, résolvez les système \eqref{eq:hnsystem} ainsi que sa variante préconditionnée \eqref{eq:pnhnsystem} à l'aide des méthodes itératives standards et du gradient conjugué. 
 
 Comparez le nombre d'itérations pour chaque méthodes et affichez, sur une même courbe, l'historique de convergence de chaque méthode.
 {{% /alert %}}
 
 {{% alert note %}}
-Pour les méthodes itératives standards, vous devez calculer la matrice $P\_n^{-1}H\_n$, cependant pour le gradient conjugué, vous devez utiliser la version préconditionnée de la méthode.
+Pour les méthodes itératives standards, vous devez calculer la matrice $P\_n^{-1}H\_n$, cependant pour le gradient conjugué, vous devez utiliser la version préconditionnée de l'algorithme.
 {{% /alert %}}
