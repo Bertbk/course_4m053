@@ -28,9 +28,8 @@ $\newcommand{\nnz}{\texttt{nnz}}$
 
 ## Objectifs
 
-- Implémenter une classe de matrice creuse au format COO (COOrdinates)
-- Comparer les performances (temps CPU / coût mémoire) entre les matrices creuses COO et denses.
-
+- Comprendre les formats COO et CSR
+  
 ## Matrice Creuse ?
 
 De nombreuses méthodes discrétisations mènent à la résolution de problème du type :
@@ -56,7 +55,7 @@ Relativement naturel et simple à comprendre et utiliser. La matrice est stocké
 \label{eq:coo}
 A(\texttt{row}[i],\texttt{col}[i]) = \texttt{val}[i].
 \end{equation}
-L'avantage de ce format est la facilité d'implémentation et la possibilité d'ajouter des coefficients "à la volée". En effet, les tableaux `row`, `col` et `val` n'ont pas besoin d'être triés selon l'ordre indices. De plus, une redondance (ou une dupplication) des coefficients est autorisée, c'est-à-dire que plusieurs coefficients avec les mêmes indices ligne et colonne peuvent cohabiter sans problème.
+L'avantage de ce format est la facilité d'implémentation et la possibilité d'ajouter des coefficients "à la volée". En effet, les tableaux `row`, `col` et `val` n'ont pas besoin d'être triés selon l'ordre indices. 
 
 Prenons la matrice exemple suivante avec `nnz`=10 :
 
@@ -79,7 +78,14 @@ Le stockage COO de cette matrice prendra alors la forme suivante :
 | `col`  | 0   | 3   | 4   | 2   | 3   | 1   | 2   | 2   | 2   | 3   |
 | `val`  | 3   | 2   | 1   | 5   | 8   | 1   | 2   | 9   | 10  | 4   |
 
-Pour illustrer la redondance (ou dupplication), voici un autre stockage possible en divisant le dernier coefficient :
+{{% alert note %}}
+Même si cela n'est pas nécessaire a priori, les trois tableaux sont souvent classés de sorte que `row` est croissant et `col` est "croissant par morceaux" (ou "croissant par ligne"). Autrement dit, les trois tableaux sont ordonnés selon les lignes.
+{{% /alert %}}
+
+### Doublons
+
+
+Le format COO peut autoriser les doublons, c'est-à-dire des coefficients ayant les mêmes indices ligne et colonne qu'un autre. En reprenant l'exemple ci-dessus et en divisant le dernier coefficient en deux, nous pourrions obtenir le stockage suivant :
 
 | Indice | 0   | ... | 8   | 9   | 10  |
 | ------ | --- | --- | --- | --- | --- |
@@ -87,8 +93,9 @@ Pour illustrer la redondance (ou dupplication), voici un autre stockage possible
 | `col`  | 0   | ... | 2   | 3   | 3   |
 | `val`  | 3   | ... | 10  | 1   | 3   |
 
-{{% alert note %}}
-Même si cela n'est pas nécessaire a priori, les trois tableaux sont souvent classés de sorte que `row` est croissant et `col` est "croissant par morceaux" (ou "croissant par ligne"). Autrement dit, les trois tableaux sont ordonnés selon les lignes.
+
+{{% alert warning %}}
+Dans notre implémentation et pour simplifier, nous n'autoriserons pas les doublons !
 {{% /alert %}}
 
 ### Du COO au Dense
@@ -98,9 +105,13 @@ Pour reconstuire la matrice sous format dense, le pseudo-code ci-dessous fonctio
 ```
 A = zeros(N,N)
 for (i = 0; i < row.size(); i++)
-  A(row[i], col[i]) += val[i]
+  A(row[i], col[i]) = val[i]
 end
 ```
+
+{{% alert note %}}
+En cas de doublon de coefficient, il suffirait d'utiliser `+=` plutôt que le signe `=`. Cependant, nous n'autoriserons pas les doublons pour faciliter le convertisseur vers [le format CSR]({{<relref "#du-coo-au-csr">}}).
+{{% /alert %}}
 
 ### Produit Matrice-Vecteur
 
@@ -114,22 +125,32 @@ for (i = 0; i < n; i++)
 end
 ```
 
+### Triplets
+
+Plutôt que 3 tableaux, une matrice au format COO peut aussi être stockée sous forme d'un tableau de triplets (i,j,val), ce qui donnerait pour la matrice \eqref{eq:matA} :
+
+| Indice   | 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   |
+| -------- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Triplets | [0,0,3]   | [0,3,2]   | [0,4,1]   | [1,2,5]   | [1,3,8]   | [2,1,1]   | [2,2,2]   | [3,2,9]   | [4,2,10]   | [4,3,4]   |
+
 ### Conclusion
 
-Le format COO est très souple et permet de construire une matrice aisément, cependant il présente les défauts suviants :
+Le format COO est très souple et permet de construire une matrice aisément, cependant il présente les défauts suivants :
 
 - Deux adressages indirects sont nécessaires pour effectuer le produit matrice vecteur
 - Les accès aux données ne sont pas *a priori* connus
 - Absence de méthode rapide pour obtenir un terme de la matrice connaissant ses indices ligne et colonne 
 
+Dans la pratique, le format COO est souvent utilisée comme format "tampon" pour stocker la matrice au format CSR, bien plus efficace pour les opérations d'algèbre linéaire. Le stockage **sous forme de triplets** est alors le plus pratique.
+
 ## Format CSR
 
 ### Principe
 
-Le format CSR propose de pallier les défauts du COO en compressant le tableau `row`. Plus précisément, les deux tableaux `col` et `val` sont identiques à ceux utilisés pour le format COO (et ordonnés par "lignes"), seul le tableau `row` est modifié : 
+Le format CSR est spécialisé dans les opérations d'algèbres linéaires et pallie les défauts du COO. Son nom vient du fait que le tableau `row` est *compressé*. Une matrice au format CSR est composée des deux tableaux `col` et `val`, comme pour le COO et ordonnés par "lignes", et le tableau `row` est défini ainsi : 
 
-- Sa taille est fixée à n+1 (n=nombre de lignes de la matrice)
-- **`row[i]` est maintenant l'indice du premier élément non nul de la ligne `i` dans les tableaux `col` et `val`**
+- Sa **taille est fixée à n+1** (n=nombre de lignes de la matrice)
+- **`row[i]`** est maintenant **l'indice du premier élément non nul de la ligne `i` dans les tableaux `col` et `val`**
 
 Par exemple, le stockage CSR de la matrice \eqref{eq:matA} est :
 
@@ -139,7 +160,7 @@ Par exemple, le stockage CSR de la matrice \eqref{eq:matA} est :
 | `col`  | 0   | 3   | 4   | 2   | 3   | 1   | 2   | 2   | 2   | 3   |
 | `val`  | 3   | 2   | 1   | 5   | 8   | 1   | 2   | 9   | 10  | 4   |
 
-Le tableau `row` est **compressé** par rapport au format COO puisque sa taille est maintenant de n+1, bien inférieure à `nnz` ! Sur une petite matrice, le gain mémoire est très faible, mais sur une matrice à plusieurs millions d'entrée, cette stratégie devient payante.
+Le tableau `row` est **compressé** par rapport au format COO puisque sa taille est maintenant de n+1, bien inférieure à `nnz` ! Sur une petite matrice, le gain mémoire est très faible, mais sur une matrice à plusieurs millions d'entrée, cette stratégie devient payante. D'autre part, l'absence de doublon de coefficients et le fait que les tableaux sont triés permettent d'améliorer significativement les opérations d'algèbres linéaires.
 
 ### Du CSR au Dense
 
@@ -178,41 +199,43 @@ Le pseudo-code est le suivant
 y = zeros(row.size() - 1)
 for (i = 0; i < row.size(); i++)
   for (j = row[i]; j < row[i+1]; j++)
-    y[i] += A(i, col[j])
+    // Parcours des indices colonnes de la ligne i
+    y[col[j]] = val[j];
   end
 end
 ```
 
+Nous noterons que, cette fois-ci, les coefficients des vecteurs sont parcourus consécutivement.
+
+### Conclusion
+
+Le format CSR est rigide : il est très coûteux d'ajouter des éléments dans la matrice. Ainsi et afin de ne pas perdre en efficacité, il est nécessaire de **connaître à l'avance l'emplacement des coefficients non nuls** de la matrice avant de la construire. En revanche, une fois construire, cette forme de stockage est très efficace.
+
 
 ## Du COO au CSR
 
-TODO:
+### Principe
 
-Afin de ne pas perdre en efficacité, il est nécessaire de **connaître à l'avance l'emplacement des coefficients non nuls** de la matrice afin de pouvoir la stocker sous format CSR. Ce format n'est pas adapté pour modifier ou construire une matrice "à la volée", contrairement au format COO. Une stratégie intéressante consiste à utiliser le format COO pour construire la matrice, puis, avant de lancer les solveurs linéaires, de transformer la matrice au format CSR.
+La souplesse du format COO permet de construire la matrice en ajoutant les triplets des coefficients (i,j,val) au fur et à mesure. Ensuite, une fois tous les triplets sauvegardés, ils sont triés (ou *assemblés*) et les doublons fusionnés. Il ne reste alors plus qu'à extraire les tableaux `raw`, `col` et `val` du tableau de triplets et à compresser le vecteur `raw` pour obtenir une matrice CSR.
 
-Ce n'est pas le plus efficace, mais le pseudo-code suivant permet de passer du COO au CSR, en supposant disposer d'une fonction permettant de trier et fusionner les éventuelles redondances dans les tableaux `raw`, `col` et `val` de A :
+
+{{< figure src="../coo_to_csr.svg" title="Construction de matrices COO à l'aide de Triplet et convertisseur en CSR" numbered="true" >}}
+
+
+### Utilisation
+
+En supposant les fonctions existantes, le pseudo-code suivant permet de passer d'une matrice A au format COO à une matrice B au format CSR :
 
 ```
-MatriceCOO A // COO
-MatriceCSR B // CSR
-// Tri des tableaux de A
-A.sort()
-nnz = A.nnz // Nombre de coefficients non nul
-// Construction de B
-B.raw.resize(N+1)
-B.col.resize(nnz)
-B.val.resize(nnz)
-iraw = 0  //numéro de la ligne scannée
-ncoef = 0 //nombre de coef sur la ligne en cours
-B.raw[0] = 0
-B.col = A.col
-B.val = A.val
-for (i = 0; i < nnz; i ++)
-  if(A.raw[i] > iraw) //changement de ligne
-    //Nous supposons qu'aucune ligne de A est nulle (sinon A est non inversible)
-    iraw = iraw++ // Ligne suivante
-    B.raw[iraw] = B.raw[iraw-1] + ncoef
-    ncoef = 0 // remise à zéro du compteur
-  endif
-end
+MatriceCOO A(n) // COO
+MatriceCSR B(n) // CSR
+// Ajout des triplets
+A.add(0,0,2.);
+A.add(0,1,-1.1);
+[...]
+// Tri du tableau de triplets et fusion des doublons
+A.sort();
+// Convertisseur en CSR
+B = A.to_csr();
 ```
+

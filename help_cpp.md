@@ -132,3 +132,7 @@ L'utilisation d'un débugueur (un vrai) est conseillé, comme gdb (notez qu'il y
   1. Surveillez l'utilisation que vous avez des pointeurs/références
   2. Surveillez les sorties de vos fonctions : retournez vous une variable qui est, en fait, détruite ?
 2. Le **résultat est faux** : bon courage, il faut mettre les mains dans le cambouis ! Car non, **l'erreur ne vient pas** de l'ordinateur, mais bien de **votre code**.
+
+## Quelques mauvaises habitudes
+
+ - Évitez le plus possible `using namespace std` : [voir ici](https://stackoverflow.com/a/1453605/14065) et surtout **à prohiber** [dans les fichiers header](https://stackoverflow.com/questions/5849457/using-namespace-in-c-headers) !

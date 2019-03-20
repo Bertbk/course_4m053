@@ -1,5 +1,5 @@
 +++
-title = "Format COO"
+title = "Implémentation des Matrices Creuses"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -19,7 +19,7 @@ math = true
 # Add menu entry to sidebar.
 [menu.4m053]
   parent = "sparse_matrices"
-  name = "Implémentation : COO"
+  name = "Implémentation"
   weight = 30
 
 +++
@@ -28,8 +28,8 @@ $\newcommand{\nnz}{\texttt{nnz}}$
 
 ## Objectifs
 
-- Implémenter les matrices creuses au format COO
-- Comparer les performances (temps CPU / coût mémoire) entre les matrices denses et creuses
+- Implémenter les matrices creuses au format COO et CSR
+
 
 {{% alert warning %}}
 Ne vous aventurez pas ici sans avoir lu (et compris) la [section dédiée aux formats COO et CSR]({{< relref "sparse_format.md">}}) !
@@ -37,35 +37,30 @@ Ne vous aventurez pas ici sans avoir lu (et compris) la [section dédiée aux fo
 
 {{% alert note %}}
 Une classe pour les gouverner toutes ~~et dans les ténèbres les lier~~ ? Vous pouvez utiliser [l'héritage en C++](https://openclassrooms.com/fr/courses/1894236-programmez-avec-le-langage-c/1898475-decouvrez-lheritage) afin que chaque classe matricielle (dense, COO, CSR) héritent d'une classe mère abstraite. Cependant, pour simplifier, nous proposons, dans un premier temps au moins, de constuire deux classes `MatriceCOO` et `MatriceCSR` distinctes et indépendantes.
-
 {{% /alert %}}
 
+{{% alert warning %}}
+Rappelons que notre implémentation du COO **n'autorise pas** les doublons !
+{{% /alert %}}
 
-Plutôt que de stocker trois tableaux `raw`, `col` et `val`, nous proposons de les concaténer ensemble dans un unique tableau de triplets (i,j,k), où i et j sont entiers (`int`) et k est un réel (`double`). Le tri et la suppression des éventuels doublons se fera selon une relation d'ordre que nous aurons établis entre deux triplets.
+ Plutôt que de stocker trois tableaux `raw`, `col` et `val`, nous proposons de les concaténer ensemble dans un unique tableau de triplets (i,j,k), où i et j sont entiers (`int`) et k est un réel (`double`). Le tri et la suppression des éventuels doublons se fera selon une relation d'ordre que nous aurons établis entre deux triplets.
 
 ## Class `Triplet`
 
-Dans un fichier `include/Triplet.hpp`, nous introduisons la classe `Triplet` très simple :
+Un `Triplet` est défini par 3 valeurs : les indices ligne i et colonne j ainsi que la valeur du coefficient val. Cette classe devra également comporter des opérations de comparaison pour pouvoir trier facilement le vecteur de `Triplet` à l'aide de la méthode `sort` de `std::vector`. Nous définissons ainsi la comparaison entre deux `Triplet` :
+
 
 ```cpp
 class Triplet{
-  private:
-    int i_;    // indice ligne
-    int j_;    // indice colonne
-    double k_; // valeur du coefficient
-
-  public:
-    // Constructeur prenant (i,j,k) et les recopiant
-    Triplet(int i, int j, double k):i_(i),j_(j),k_(k){}
-    // Surchage des opérations de comparaison
-    friend bool operator<(const Triplet &S, const Triplet &T);
-    friend bool operator>(const Triplet &S, const Triplet &T);
-    friend bool operator==(const Triplet &S, const Triplet &T);
+  [...]
 };
+// Surchage des opérations de comparaison
+bool operator<(const Triplet &S, const Triplet &T);
+bool operator>(const Triplet &S, const Triplet &T);
+bool operator==(const Triplet &S, const Triplet &T);
 ```
 
-Les opérateurs de comparaison vont permettre de trier deux `Triplet` entre eux et ainsi trier facilement le vecteur de `Triplet` à l'aide de la méthode `sort` de `std::vector`. Nous définissons ainsi la comparaison entre deux `Triplet` :
-
+L
 {{% thm definition %}}
 Soient deux triplets S et T. Nous avons alors :
 

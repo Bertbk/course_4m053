@@ -138,7 +138,9 @@ int main(){
 Notez qu'à la ligne 3 du code précédent, nous avons rajouté `using namespace std`, qui permet de rendre le *namespace* `std` implicite dans tout le document et l'on peut appeler directement `cout` ou `cin` sans le préfixe `std::`.
 
 {{% alert warning %}}
-Ne placez **jamais** `using namespace` dans un fichier header (un fichier `.h` ou `.hpp`) ! [Pour en savoir plus](https://stackoverflow.com/questions/5849457/using-namespace-in-c-headers).
+Ne placez **jamais** `using namespace` dans un fichier header (un fichier `.h` ou `.hpp`) ! [Pour en savoir plus](https://stackoverflow.com/questions/5849457/using-namespace-in-c-headers). 
+
+De plus et bien que courant, utiliser `using namespace std` est [une mauvaise habitude]([voir ici](https://stackoverflow.com/a/1453605/14065)).
 {{% /alert %}}
 
 {{% alert tips %}}
