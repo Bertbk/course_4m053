@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="223.05397mm"
-   height="130.21092mm"
-   viewBox="0 0 223.05397 130.21092"
+   width="223.12941mm"
+   height="142.00336mm"
+   viewBox="0 0 223.12941 142.00335"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
@@ -103,9 +103,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="195.18761"
-     inkscape:cy="109.07177"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="609.17669"
+     inkscape:cy="354.44204"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -122,8 +122,8 @@
     <inkscape:grid
        type="xygrid"
        id="grid4518"
-       originx="-13.333338"
-       originy="-102.51824" />
+       originx="-13.257904"
+       originy="-96.622059" />
   </sodipodi:namedview>
   <metadata
      id="metadata5">
@@ -141,7 +141,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-13.333338,-64.270839)">
+     transform="translate(-13.257904,-58.37457)">
     <rect
        style="fill:#f5f5f5;fill-opacity:1;stroke:#000000;stroke-width:0.75795901;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4520"
@@ -154,29 +154,29 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        x="67.204163"
-       y="132.95833"
+       y="127.66666"
        id="text4524"><tspan
          sodipodi:role="line"
          id="tspan4522"
          x="67.204163"
-         y="132.95833"
+         y="127.66666"
          style="font-size:8.46666622px;stroke-width:0.26458332">MatriceCOO</tspan></text>
     <rect
-       ry="2.7383394"
-       y="64.695839"
+       ry="3.796674"
+       y="58.875004"
        x="71.966675"
-       height="15.060859"
+       height="20.881695"
        width="35.983326"
        id="rect4541"
-       style="fill:#f5f5f5;fill-opacity:1;stroke:#000000;stroke-width:0.85000002;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+       style="fill:#f5f5f5;fill-opacity:1;stroke:#000000;stroke-width:1.00086832;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
     <text
        id="text4545"
-       y="74.750008"
+       y="66.812508"
        x="76.729149"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        xml:space="preserve"><tspan
          style="font-size:8.46666622px;stroke-width:0.26458332"
-         y="74.750008"
+         y="66.812508"
          x="76.729149"
          id="tspan4543"
          sodipodi:role="line">Triplet</tspan></text>
@@ -232,44 +232,6 @@
          x="41.199409"
          id="tspan4873"
          sodipodi:role="line">.add(...)</tspan></text>
-    <rect
-       style="fill:#f5f5f5;fill-opacity:1;stroke:#000000;stroke-width:0.85000002;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect5739"
-       width="35.983326"
-       height="15.060859"
-       x="71.966675"
-       y="178.9959"
-       ry="2.7383394" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="76.729149"
-       y="189.05006"
-       id="text5743"><tspan
-         sodipodi:role="line"
-         id="tspan5741"
-         x="76.729149"
-         y="189.05006"
-         style="font-size:8.46666622px;stroke-width:0.26458332">Triplet</tspan></text>
-    <rect
-       ry="2.7383394"
-       y="168.41255"
-       x="13.758338"
-       height="15.060859"
-       width="35.983326"
-       id="rect5745"
-       style="fill:#f5f5f5;fill-opacity:1;stroke:#000000;stroke-width:0.85000002;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-    <text
-       id="text5749"
-       y="178.46672"
-       x="18.520815"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       xml:space="preserve"><tspan
-         style="font-size:8.46666622px;stroke-width:0.26458332"
-         y="178.46672"
-         x="18.520815"
-         id="tspan5747"
-         sodipodi:role="line">Triplet</tspan></text>
     <path
        inkscape:connector-curvature="0"
        id="path5751"
@@ -319,13 +281,13 @@
        style="fill:#f5f5f5;fill-opacity:1;stroke:#000000;stroke-width:0.75795901;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
     <text
        id="text6399"
-       y="132.95833"
-       x="178.32919"
+       y="127.66666"
+       x="181.50415"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        xml:space="preserve"><tspan
          style="font-size:8.46666622px;stroke-width:0.26458332"
-         y="132.95833"
-         x="178.32919"
+         y="127.66666"
+         x="181.50415"
          id="tspan6397"
          sodipodi:role="line">MatriceCSR</tspan></text>
     <text
@@ -339,5 +301,128 @@
          x="133.80357"
          id="tspan6401"
          sodipodi:role="line">.to_csr()</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="65.087502"
+       y="143.54167"
+       id="text6486"><tspan
+         sodipodi:role="line"
+         id="tspan6484"
+         x="65.087502"
+         y="143.54167"
+         style="font-size:5.64444447px;stroke-width:0.26458332">std::vector&lt;Triplet&gt;</tspan></text>
+    <text
+       id="text6490"
+       y="75.279175"
+       x="80.962494"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="font-size:5.64444447px;stroke-width:0.26458332"
+         y="75.279175"
+         x="80.962494"
+         id="tspan6488"
+         sodipodi:role="line">i, j, val</tspan></text>
+    <rect
+       style="fill:#f5f5f5;fill-opacity:1;stroke:#000000;stroke-width:1.00086832;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect6492"
+       width="35.983326"
+       height="20.881695"
+       x="13.758338"
+       y="80.041664"
+       ry="3.796674" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="18.520815"
+       y="87.979164"
+       id="text6496"><tspan
+         sodipodi:role="line"
+         id="tspan6494"
+         x="18.520815"
+         y="87.979164"
+         style="font-size:8.46666622px;stroke-width:0.26458332">Triplet</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="22.754162"
+       y="96.445831"
+       id="text6500"><tspan
+         sodipodi:role="line"
+         id="tspan6498"
+         x="22.754162"
+         y="96.445831"
+         style="font-size:5.64444447px;stroke-width:0.26458332">i, j, val</tspan></text>
+    <rect
+       ry="3.796674"
+       y="168.41246"
+       x="13.758338"
+       height="20.881695"
+       width="35.983326"
+       id="rect6502"
+       style="fill:#f5f5f5;fill-opacity:1;stroke:#000000;stroke-width:1.00086832;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       id="text6506"
+       y="176.34998"
+       x="18.520815"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="font-size:8.46666622px;stroke-width:0.26458332"
+         y="176.34998"
+         x="18.520815"
+         id="tspan6504"
+         sodipodi:role="line">Triplet</tspan></text>
+    <text
+       id="text6510"
+       y="184.81667"
+       x="22.754162"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="font-size:5.64444447px;stroke-width:0.26458332"
+         y="184.81667"
+         x="22.754162"
+         id="tspan6508"
+         sodipodi:role="line">i, j, val</tspan></text>
+    <rect
+       style="fill:#f5f5f5;fill-opacity:1;stroke:#000000;stroke-width:1.00086832;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect6512"
+       width="35.983326"
+       height="20.881695"
+       x="71.966675"
+       y="178.9958"
+       ry="3.796674" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="76.729149"
+       y="186.93332"
+       id="text6516"><tspan
+         sodipodi:role="line"
+         id="tspan6514"
+         x="76.729149"
+         y="186.93332"
+         style="font-size:8.46666622px;stroke-width:0.26458332">Triplet</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="80.962494"
+       y="195.40001"
+       id="text6520"><tspan
+         sodipodi:role="line"
+         id="tspan6518"
+         x="80.962494"
+         y="195.40001"
+         style="font-size:5.64444447px;stroke-width:0.26458332">i, j, val</tspan></text>
+    <text
+       id="text6524"
+       y="143.54167"
+       x="188.91258"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="font-size:5.64444447px;stroke-width:0.26458332"
+         y="143.54167"
+         x="188.91258"
+         id="tspan6522"
+         sodipodi:role="line">raw, col, val</tspan></text>
   </g>
 </svg>
