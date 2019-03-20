@@ -64,8 +64,8 @@ Les méthodes itératives que nous détaillons ici ne diffèrent que par le choi
 La matrice $A$ se décompose comme $A = D - E - F$, où $D$, $E$ et $F$ sont des matrices de la même taille que $A$ et telles que (attention au signe des coefficents de $E$ et $F$) :
 
 - $D = {\rm diag}(A)$ : Matrice ne contenant que **les termes diagonaux** de $A$
-- $E$ : Matrice ne contenant que la partie **triangulaire inférieure** de $-A$
-- $F$ : Matrice ne contenant que la partie **triangulaire supérieure** de $-A$
+- $E$ : Matrice ne contenant que la partie **triangulaire inférieure stricte** de $-A$
+- $F$ : Matrice ne contenant que la partie **triangulaire supérieure stricte** de $-A$
 
 
 
