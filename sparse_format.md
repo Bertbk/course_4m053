@@ -216,7 +216,7 @@ Le format CSR est rigide : il est très coûteux d'ajouter des éléments dans l
 
 ### Principe
 
-La souplesse du format COO permet de construire la matrice en ajoutant les triplets des coefficients (i,j,val) au fur et à mesure. Ensuite, une fois tous les triplets sauvegardés, ils sont triés (ou *assemblés*) et les doublons fusionnés. Il ne reste alors plus qu'à extraire les tableaux `raw`, `col` et `val` du tableau de triplets et à compresser le vecteur `raw` pour obtenir une matrice CSR.
+La souplesse du format COO permet de construire la matrice en ajoutant les triplets des coefficients (i,j,val) au fur et à mesure. Ensuite, une fois tous les triplets sauvegardés, ils sont triés (ou *assemblés*) et les doublons fusionnés. Il ne reste alors plus qu'à extraire les tableaux `row`, `col` et `val` du tableau de triplets et à compresser le vecteur `row` pour obtenir une matrice CSR.
 
 
 {{< figure src="../coo_to_csr.svg" title="Construction de matrices COO à l'aide de Triplet et convertisseur en CSR" numbered="true" >}}

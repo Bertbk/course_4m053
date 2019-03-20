@@ -100,18 +100,21 @@ Pensez également à ajouter une méthode ou une fonction permettant de construi
 {{% alert note %}}
 Pour afficher une matrice creuse (COO ou CSR), vous pouvez :
 
-- Afficher les Triplet (ou les tableau `raw`, `col` et `val`)
+- Afficher les Triplet (ou les tableau `row`, `col` et `val`)
 - Transformer la matrice au format dense et afficher cette dernière. Cette méthode est clairement peu efficace mais afficher une matrice n'a pas vocation à être performant : c'est utilisé surtout pour débugguer !
+{{% /alert %}}
 
+{{% alert note %}}
+N'oubliez pas, dans les paramètres de vos matrices creuses, la taille de celle-ci et pourquoi pas le nombre de non-zéros `nnz`.
 {{% /alert %}}
 
 ## Classe `MatriceCSR`
 
-Principalement, une matrice CSR comporte trois tableaux : `raw`, `col` et `val`. 
+Principalement, une matrice CSR comporte trois tableaux : `row`, `col` et `val`. 
 
 Implémentez une classe `MatriceCSR` avec notamment et surtout une **surcharge de `operator*` pour le produit Matrice-Vecteur**. Le produit Matrice-Matrice est plus compliqué car on ne connait pas la forme a priori de la Matrice CSR ainsi obtenue.
 
-Vous aurez aussi certainement besoin d'un constructeur prenant trois tableaux `raw`, `col` et `val` et les recopiant dans une nouvelle `MatriceCSR`.
+Vous aurez aussi certainement besoin d'un constructeur prenant trois tableaux `row`, `col` et `val` et les recopiant dans une nouvelle `MatriceCSR`.
 
 Validez naturellement votre code avant de passer à la suite ! Pour vous aider dans cette étape, vous pouvez reprendre la [matrice précédente]({{|relref "sparse_format.md#principe-1"}}) et l'exemple de résultat suivant :
 $$
@@ -132,4 +135,19 @@ $$
 
 ## De COO à CSR : `to_csr()`
 
-Nous disposons maintenant de tous les outils pour implémenter la méthode permettant de construire une matrice CSR à partir d'une matrice COO. Pour gagner en rapidité, nous utiliserons la méthode `sort(...)` de la classe `std::vector` de la bibliothèque standard.
+Nous disposons maintenant de tous les outils pour implémenter la méthode permettant de construire une matrice CSR à partir d'une matrice COO. Nous supposons que la `MatriceCOO` est construite et dispose d'un tableau de `Triplet`. Les deux étapes pour générer une matrice CSR sont :
+
+1. Trier le tableau de `Triplet` par indices de ligne croissants puis indices de colone croissants
+2. Extraire les trois tableaux `row`, `col` et `val` du tableau de `Triplet`
+3. Compresser le tableau `row`
+
+Pour gagner en rapidité, l'étape de tri peut se faire à l'aide de la fonction `std::sort()` de la bibliothèque `algorithm`. Nous avons implémenter les opérateurs d'ordre `>`, `<` et `==` ce qui permet, en une ligne :
+
+```cpp
+std::vector<Triplet> triplets_;
+[...]
+std::sort(triplets_.begin(), triplets_.end());
+```
+
+Les étapes 2 et 3 peuvent être réalisés en même temps durant le parcours du tableau de `Triplet`.
+
