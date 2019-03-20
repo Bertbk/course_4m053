@@ -207,7 +207,7 @@ void JSON::add(std::string key, int val){
     }
 }
 ```
-{{% alert warning %}}
+{{% alert tips %}}
 Un des soucis est la virgule en fin de ligne : doit-on la placer ou non ? Ce problème est ici contourné par l'ajout de deux paramètres de type `bool` permettant de détecter si `JSON::start()` a déjà été appelé ou non, de même pour `add()` au sein d'un jeu de données.
 {{% /alert %}}
 

@@ -57,15 +57,9 @@ Implémentez la méthode du Gradient Conjugué. Validez ensuite votre code la su
 
 ### Comparaison  des performances
 
-{{% alert exercise %}}
-TODO: parametres. 
-Comparez le nombre d'itérations et le temps CPU avec les autres méthodes itératives.
-
-
-{{% /alert %}}
 
 {{% alert exercise %}}
-Pour une tolérance de 0.01 et une taille N = 1000, affichez les historiques de convergence du gradient conjugué et des autres méthodes itératives sur une même
+Pour une tolérance de 0.01 et une taille N = 1000, affichez les historiques de convergence du gradient conjugué et des autres méthodes itératives sur une même figure. Comparez également le temps CPU entre les différentes méthodes.
 {{% /alert %}}
 
 ## Préconditionnement
