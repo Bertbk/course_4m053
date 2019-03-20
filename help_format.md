@@ -142,13 +142,13 @@ class JSON{
 private:
   std::ofstream file_;
   bool comma_add_;   // Should we place a comma between two JSON::add ?
-  bool comma_start_; // same for JSON::start ?
+  bool comma_start_; // same for JSON::start
 public:
-  JSON(std::string filename);
-  void start(std::string key);
-  void end();
-  void add(std::string key, int val);
-  void close();
+  JSON(std::string filename); // Constructeur  
+  void start(std::string key); // Début d'un jeu de données
+  void end(); // Clôture d'un jeu de données
+  void add(std::string key, int val); // Ajout d'une donnée de type int
+  void close();  // Fermeture du fichier
 };
 ```
 
@@ -158,11 +158,14 @@ public:
 #include "json.hpp"
 #include <string>
 //Constructeur
-JSON::JSON(std::string filename):comma_start_(false),comma_add(false)
+JSON::JSON(std::string filename)
 {
   file_.open(filename, std::ofstream::out);
   file_ << "{";
+  comma_add_ = false;
+  comma_start_ = false;
 }
+
 // Fermeture du fichier
 void JSON::close(){
   if(file_.is_open())
@@ -171,32 +174,35 @@ void JSON::close(){
       file_.close();
     }
 }
+
 // Début d'un jeu de données
 void JSON::start(std::string key){
   if(file_.is_open())
     {
       if(comma_start_)
-      	file_ << ",";
+	file_ << ",";
       file_ << "\n  \"" << key << "\" : {";
-      comma_start_ = true; //Le prochain appel à JSON::start écrira une virgule
-      comma_add_ = false; // Mais pas le prochain appel à JSON::add()
+      comma_start_ = true; // Le prochain appel à JSON::start écrira une virgule
+      comma_add_ = false;  // Mais pas le prochain appel à JSON::add()
     }
 }
+
 // Clôture d'un jeu de données
 void JSON::end(){
   if(file_.is_open())
     {
-    file_ << "\n  }" << suffix;
-    comma_add_ = false; //Le prochain appel à JSON::add n'écrira pas de virgule
+    file_ << "\n  }";
+    comma_add_ = false; // Le prochain appel à JSON::add n'écrira pas de virgule
     }
 }
+
 // Ajout d'une donnée de type int
 void JSON::add(std::string key, int val){
   if(file_.is_open())
     {
       if(comma_add_)
 	file_ << ",";
-      file_ << "\n    \"" << key << "\" : " << std::to_string(a) << suffix;
+      file_ << "\n    \"" << key << "\" : " << std::to_string(val);
       comma_add_ = true; // Pas de virgule pour les prochains appels
     }
 }
