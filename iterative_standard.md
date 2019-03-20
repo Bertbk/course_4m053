@@ -72,7 +72,7 @@ La matrice $A$ se décompose comme $A = D - E - F$, où $D$, $E$ et $F$ sont des
 | Méthode | Matrice $M$ | Remarques|
 | ---------|----|----------|
 | Jacobi   | $D$ | $M^{-1} = D^{-1}$ est explicite        |
-| Gauss-Seidel   | $D - E$ |  $M$ est triangulaire supérieure       |
+| Gauss-Seidel   | $D - E$ |  $M$ est triangulaire inférieure       |
 | Relaxation   | $\frac{1}{\omega}D - E$ | $0 < \omega < 2$ paramètre à contrôler        |
 
 
