@@ -35,6 +35,8 @@ math = true
 
 ### Pseudo-code
 
+Remarque : `(z,r)` représente le produit scalaire en `z` et `r`.
+
 ```
 x_0 = 0
 r_0 = b - A*x_0
@@ -42,7 +44,7 @@ p_0 = r_0
 k = 0
 while (|r| / |b| > tolerance && k < nmax)
   k++
-  alpha_k = |r_k|²/|p_k|²
+  alpha_k = |r_k|²/(p_k, A*p_k)
   x_{k+1} = x_k + alpha_k * p_k
   r_{k+1} = r_k - alpha_k*(A*p_k)
   beta_k  = |r_{k+1}|²/|r_k|²
