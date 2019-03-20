@@ -64,8 +64,8 @@ Les méthodes itératives que nous détaillons ici ne diffèrent que par le choi
 La matrice $A$ se décompose comme $A = D - E - F$, où $D$, $E$ et $F$ sont des matrices de la même taille que $A$ et telles que (attention au signe des coefficents de $E$ et $F$) :
 
 - $D = {\rm diag}(A)$ : Matrice ne contenant que **les termes diagonaux** de $A$
-- $E$ : Matrice ne contenant que la partie **triangulaire supérieure** de $-A$
-- $F$ : Matrice ne contenant que la partie **triangulaire inférieure** de $-A$
+- $E$ : Matrice ne contenant que la partie **triangulaire inférieure** de $-A$
+- $F$ : Matrice ne contenant que la partie **triangulaire supérieure** de $-A$
 
 
 
@@ -77,7 +77,7 @@ La matrice $A$ se décompose comme $A = D - E - F$, où $D$, $E$ et $F$ sont des
 
 
 {{% alert warning %}}
-Cette décomposition $A = D - E -F$ n'a **aucun rapport** avec la factorisation $LU$ !
+Cette décomposition $A = D - E - F$ n'a **aucun rapport** avec la factorisation $LU$ !
 {{% /alert  %}}
 
 ## Une Classe en Détail : Jacobi
@@ -189,5 +189,5 @@ Construisez deux autres classes supplémentaires : une pour la méthode de Gauss
 {{% /alert %}}
 
 {{% alert note %}}
-Contrairement à la méthode de Jacobi, les méthodes de Gauss-Seidel et de Relaxation requièrent la résolution d'un système linéaire triangulaire supérieur. Pour cela, nous pourrons utiliser la fonction résolvant un système linéaire triangulaire supérieur que vous avez déjà implémentée.
+Contrairement à la méthode de Jacobi, les méthodes de Gauss-Seidel et de Relaxation requièrent la résolution d'un système linéaire triangulaire inférieur. Pour cela, nous pourrons utiliser la fonction résolvant un système linéaire triangulaire infétieur que vous avez déjà implémentée.
 {{% /alert  %}}
