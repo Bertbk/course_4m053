@@ -24,7 +24,17 @@ math = true
 
 +++
 
+{{% alert warning %}}
+En cours de construction !
+{{% /alert %}}
+
 ## Objectifs
 
-- Modifier les méthodes itératives pour prendre en charge une matrice creuse
-  
+- Implémenter le Gradient Conjugué prenant en charge une matrice CSR
+- Comparer les temps CPU entre le Gradient Conjugué "Dense" et "CSR"
+
+{{% alert note %}}
+Si le produit matrice-vecteur est surchargé pour les `MatriceCSR` alors vous n'avez qu'à changer le type de la matrice dans votre programme du Gradient Conjugué.
+
+[Le templating](openclassrooms.com/courses/c-les-templates) de votre classe du Gradient Conjugué est possible mais alors il faut fusionner le fichier `.cpp` dans le `.hpp`.
+{{% /alert %}}
