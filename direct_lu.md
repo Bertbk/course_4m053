@@ -190,6 +190,10 @@ Il peut être intéressant de rajouter un paramètre à la classe `Matrice` de t
 
 ## Validation
 
+{{% alert tips %}}
+Une première étape pour valider votre factorisation LU : calculer le produit $LU$, vous devez retrouver $A$ !
+{{% /alert %}}
+
 {{% alert exercise %}}
 Validez votre factorisation $LU$ sur la matrice suivante :
 $$

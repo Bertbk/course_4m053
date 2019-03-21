@@ -26,54 +26,89 @@ math = true
 
 ## Objectifs
 
-1. Calculer la factorisation de Cholesky d'une matrice
+1. Calculer la factorisation de Cholesky d'une matrice symétrique définie positive
 2. Résoudre le système linéaire une fois la factorisation effectuée
 
 ## Factorisation de Cholesky
 
 Si $A$ est symétrique définie positive, une alternative à la décomposition $LU$, qui utilise à son avantage les propriétés de $A$ est la décomposition de Cholesky :
 $$
-A=LL^T
+A=LL^T,
 $$
-où $L$ est une matrice triangulaire inférieure.
+où $L$ est une matrice triangulaire inférieure. Contrairement à la $LU$, la diagonale de la matrice $L$ n'est pas *a priori* composée uniquement de 1 et, de plus, nous avons $\text{diag}(L)=\text{diag}(U)$.
 
-## Algorithme
+## Pseudo-code
+
+Une version naïve est la suivante. Elle peut être améliorée car certains calculs sont doublées et rendu inutiles du fait que le complément de Schur est lui aussi symétrique.
+
+```
+L = 0;
+U = 0;
+S = A;
+for k =0:N-1
+  // Pivot
+  pivot = sqrt(S(k,k))
+  // Colonne de L
+  L(k,k) = pivot;
+  for i = k+1:N-1
+    L(i,k) = S(i,k) / pivot;
+  // Ligne de U
+  U(k,k) = L(k,k);
+  for j = k+1:N-1
+    U(k,j) = L(j,k);
+  // Complément de Schur
+  for i = k+1:N-1
+    for j = k+1:N-1
+      S(i,j) = S(i,j) - L(i,k)*U(k,j);
+```
+
 
 {{% alert exercise %}}
-Comme pour la factorisation LU, suivez les instructions :
+**Simplifiez** le pseudo-code en **supprimant les opérations inutiles** et en réduisant éventuellement la longueur de **certaines boucles**. Comme pour la factorisation LU, modifiez ensuite le pseudo code pour que la factorisation se fasse *sur place*, **directement dans A**, sans avoir à introduire de matrices L, U et S.
+{{% /alert %}}
 
-1. Pour une factorisation partielle de $A$ avec $A\_{0,0}=A\_{0,0}$ et $L\_{0,0}=\ell\_{0,0}=\sqrt{a\_{0,0}}$, donnez l'expression analytique de tous les coefficients.
-2. Écrire sur papier un algorithme en pseudo-code pour construire cette factorisation partielle.
-3. En admettant que le complément de Schur est aussi symétrique définie positif, modifiez l'algorithme pour obtenir la factorisation complète de la matrice $A$. Pensez à utiliser la symétrie de la matrice $A$.
-4. De la même manière que pour la factorisation $LU$, modifiez votre algorithme pour stocker la matrice $L$ directement dans $A$. Autrement dit, $A$ est modifiée à la suite de votre algorithme.
+
+{{% alert note %}}
+La factorisation peut être améliorée en **ne stockant que $L$**. L'opération $(L^T)^{-1}y$ intervenant lors de la résolution peut être effectuée avec une fonction résolvant un système linéaire triangulaire supérieure adaptée, c'est-à-dire prenant en argument $L^T$ mais **ne transposant jamais explicitement la matrice**, car trop coûteux !
 {{% /alert %}}
 
 ## Implémentation
 
-{{% alert exercise %}}
-C'est parti :
-
-- Définissez la fonction suivante qui modifie la matrice $A$ en y stockant la matrice $L$ :        
+Définissez la fonction suivante qui modifie la matrice $A$ en y stockant les matrices $L$ et $L^T$ (la diagonale étant la même pour les deux) :
 
 ```cpp
 void Matrice::decomp_Cholesky();
 ```
-- Résolvez le problème suivant avec la décomposition de Cholesky :
+
+
+## Validation
+
+Pour la matrice $A$ suivante :
 $$
-\begin{pmatrix}
+A =\begin{pmatrix}
   2 & -1 & 0 & 0 &0\\\\\\
   -1 & 2 & -1 & 0 &0\\\\\\
   0 & -1 & 2 & -1 &0\\\\\\
   0 & 0 & -1 & 2 & -1 \\\\\\
   0 & 0 & 0&-1 & 2 \\\\\\
-\end{pmatrix}    X=
-\begin{pmatrix}
-  1 \\\\\\
-  1 \\\\\\
-  1 \\\\\\
-  1 \\\\\\
-  1 \\\\\\
-\end{pmatrix}.
+\end{pmatrix}
 $$
-Vous devriez obtenir $X = [2.5, 4,4.5, 4,2.5]^T$. Notez que cette matrice fait partie [des matrices de test régulière]({{<relref "dense_matrices_test.md">}}). 
+La matrice $L$ de la décomposition de Cholesky est donnée par :
+$$
+L = \begin{pmatrix}
+1.4142 &  0  & 0.& 0. & 0\\\\\\
+-0.7071&   1.2247 &  0&  0 &  0\\\\\\
+0 & -0.8165 &  1.1547 &  0 &  0\\\\\\
+0 &  0 & -0.8660 &  1.1180 &  0\\\\\\
+0 &  0 &  0 & -0.8944 &  1.0954
+\end{pmatrix}
+$$
+
+{{% alert exercise %}}
+Validez votre décomposition sur la matrice $A$ puis résolvez le problème suivant
+$$
+A X = b,
+$$
+avec $b=[1,1,1,1,1]^T$. Vous devriez obtenir le vecteur solution $X = [2.5, 4,4.5, 4,2.5]^T$. Notez que cette matrice fait partie [des matrices de test régulière]({{<relref "dense_matrices_test.md">}}). 
 {{% /alert %}}
+
