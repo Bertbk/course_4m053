@@ -46,18 +46,22 @@ $$
 {{% /alert %}}
 
 L'algorithme de résolution décrit par l'équation \eqref{eq:split} s'écrit alors, pour une tolérance $\varepsilon$ et un nombre maximal d'itérations $n_{max}$ donnés :
-```text
-// initialisation de : tolerance, b, n_max
-n = 0
-x = 0 // vecteur solution
-r = b // vecteur résidu
-WHILE( (|r|/|b| > tolerance) && (n < n_max))
-    y = M^{-1}*r // Calcul de la direction (résolution système)
-    x = x + y    // Mise à jour de la solution courante
-    r = b - Ax   // Mise à jour du résidu (vecteur)
-    n = n + 1    // Mise à jour du numéro de l'itération
+
+```
+niter = 0           // nombre d'itérations
+x = 0               // vecteur solution
+r = b               // vecteur résidu
+resvec[0] = |r|/|b| // Résidu relatif de l'itération 0
+while( (|r|/|b| > tolerance) && (niter < n_max))
+  y = M^{-1}*r            // Calcul de la direction (résolution système)
+  x = x + y               // Mise à jour de la solution courante
+  r = b - Ax              // Mise à jour du résidu (vecteur)
+  niter = niter + 1       // Mise à jour du numéro de l'itération
+  resvec[niter] = |r|/|b| // Stockage du résidu relatif (à des fins d'analyse)
+end
 ```
 Les méthodes itératives que nous détaillons ici ne diffèrent que par le choix de la matrice $M$. Pour chacune d'entres elles, nous construirons une classe dédiée, bien qu'elles partagent toutes des codes similaires (nous pourrions utiliser l'héritage, mais cela compliquera la "templatisation").
+
 
 ## Méthodes standards
 
@@ -69,11 +73,11 @@ La matrice $A$ se décompose comme $A = D - E - F$, où $D$, $E$ et $F$ sont des
 
 
 
-| Méthode | Matrice $M$ | Remarques|
-| ---------|----|----------|
-| Jacobi   | $D$ | $M^{-1} = D^{-1}$ est explicite        |
-| Gauss-Seidel   | $D - E$ |  $M$ est triangulaire inférieure       |
-| Relaxation   | $\frac{1}{\omega}D - E$ | $0 < \omega < 2$ paramètre à contrôler        |
+| Méthode      | Matrice $M$             | Remarques                              |
+| ------------ | ----------------------- | -------------------------------------- |
+| Jacobi       | $D$                     | $M^{-1} = D^{-1}$ est explicite        |
+| Gauss-Seidel | $D - E$                 | $M$ est triangulaire inférieure        |
+| Relaxation   | $\frac{1}{\omega}D - E$ | $0 < \omega < 2$ paramètre à contrôler |
 
 
 {{% alert warning %}}
@@ -86,37 +90,22 @@ Pour chaque méthode, nous proposons d'implémenter une classe distincte et donc
 
 ### Données Membres (ou paramètres)
 
-Celles-ci seront séparées en deux, les données "entrantes", fournies par l'utilisateur, et les données "sortantes", calculées lors de la résolution du problème linéaire. En pratique, rien ne différencie ces deux types de données qui sont de type `private`, seule leur utilisation permet de les distinguer. Les données sortantes pourront ensuite être, par exemple, affichées sur l'écran ou imprimées dans un fichier pour un traitement ultérieur.
+Celles-ci seront séparées en deux, les données "entrantes", fournies par l'utilisateur, et les données "sortantes", calculées lors de la résolution du problème linéaire. En pratique, **rien ne différencie ces deux types de données** qui sont de type `private`, seule **leur utilisation** permet de les distinguer : 
 
-- En entrée :
+1. Les données *entrantes* sont fournies par l'utilisateur et ne sont pas modifiées par la classe 
+2. Les données *sortantes* sont modifiées par la classe (vecteur solution, nombre d'itération, ...) et seront récupérées par l'utilisateur à des fins d'analyses
 
-| Type | Nom (suggestion) | Fonction |
-| ---- |---| ---- |
-|`Matrice` | `A_` | Matrice (dense) du système.|
-| `Vecteur` | `b_` | Vecteur (membre de droite)|
-| `double` | `tol_` | Tolérance|
-| `int` | `n_max_` | Nombre maximum d'itérations|
+Nous proposons les paramètres suivants, mais vous pouvez bien entendu en ajouter !
 
-- En sortie :
-
-| Type | Nom (suggestion) | Fonction |
-| ---- |---| ---- |
-| `Vecteur` | `x_` | Vecteur solution |
-| `int` | `niter_` | Nombre d'itérations |
-| `std::vector<double>` | `resvec_` | Tableau des normes des résidus relatifs (*RESidual VECtor*)|
-
-
-{{% alert tips %}}
-Pour gagner en efficacité et limiter le coût mémoire, il est plus intéressant de ne pas stocker les Matrice et Vecteur, mais plutôt leur adresse (référence ou pointeur). Attention alors, si le paramètre est de type `const Matrice & A_`, l'affectation de cette valeur doit s'effectuer *avant* l'entrée dans le constructeur à l'aide [d'une liste d'initialisation](https://openclassrooms.com/fr/courses/1894236-programmez-avec-le-langage-c/1897606-creez-les-classes-partie-2-2#/id/r-1907275) :
-```cpp
-Jacobi(const Matrice & A, ...):A_(A), ... // Initisalition avant le "{"
-{
-    blabla
-}
-```
-Il en va de même, bien évidemment, pour `const Vecteur &B_`.
-{{% /alert  %}}
-
+| I/O   | Type                  | Nom (suggestion) | Fonction                                                    |
+| ------ | --------------------- | ---------------- | ----------------------------------------------------------- |
+| Entrée | `const Matrice &`     | `A_`             | Matrice (dense) du système.                                 |
+| Entrée | `const Vecteur &`     | `b_`             | Vecteur (membre de droite)                                  |
+| Entrée | `double`              | `tol_`           | Tolérance                                                   |
+| Entrée | `int`                 | `n_max_`         | Nombre maximum d'itérations                                 |
+| Sortie | `Vecteur`             | `x_`             | Vecteur solution                                            |
+| Sortie | `int`                 | `niter_`         | Nombre d'itérations                                         |
+| Sortie | `std::vector<double>` | `resvec_`        | Tableau des normes des résidus relatifs (*RESidual VECtor*) |
 
 {{% alert note %}}
 Libre à vous d'ajouter d'autres paramètres, de ne pas utiliser ceux que l'on propose ou d'en changer le nom.
@@ -129,9 +118,20 @@ Libre à vous d'ajouter d'autres paramètres, de ne pas utiliser ceux que l'on p
 ```cpp
 Jacobi(const Matrice &A, const Vecteur &b, double tol, int maxit);
 ```
+{{% alert tips %}}
+Pour gagner en efficacité et limiter le coût mémoire, il est plus intéressant de ne pas stocker les Matrice et Vecteur, mais plutôt leur adresse (référence ou pointeur) d'où un paramètre de type `const Matrice &` et `const Vecteur &`. Cependant, attention, l'affectation de cette valeur doit s'effectuer *avant* l'entrée dans le constructeur à l'aide [d'une liste d'initialisation](https://openclassrooms.com/fr/courses/1894236-programmez-avec-le-langage-c/1897606-creez-les-classes-partie-2-2#/id/r-1907275) :
+```cpp
+Jacobi(const Matrice & A, const Vecteur & b,...)
+  :A_(A), b_(b)... // Liste d'initialisation
+{
+    blabla
+}
+```
+Notez que l'utilisation de listes d'initialisation est une très bonne pratique, y compris pour les autres paramètres.
+{{% /alert  %}}
 
 
-### Méthodes
+### Méthode `Solve()`
 
 Outre les accesseurs (*getter*) et les mutateurs (*setter*) habituels pour respectivement accéder et modifier les paramètres, nous avons au moins besoin d'une fonction membre qui résout le système linéaire en appliquant [l'algorithme de résolution]({{< relref "iterative_standard.md#algorithme-g%C3%A9n%C3%A9rique" >}}). Celle-ci aura (probablement) le prototype suivant :
 
@@ -150,7 +150,11 @@ D'autre part, voici quelques propositions pour définir la méthode :
 Vous aurez certainement besoin de modifier la classe `Vecteur` pour ajouter des fonctionnalités comme par exemple, le calcul de sa norme.
 {{% /alert  %}}
 
+{{% alert warning %}}
+Vous **ne devez surtout pas extraire la diagonale** de la matrice dans une nouvelle `Matrice` : si $A$ est une matrice prenant 4Go de mémoire, la duppliquer n'apparait pas comme une solution très rusée.
 
+Pour un vecteur $x$, calculer $(\text{diag}(A))^{-1}x$ est très simple : il suffit de parcourir les éléments diagonales de $A$. Vous pouvez créez **une nouvelle fonction résolvant un système diagonal**, dans la même lignée des fonctions utilisées pour un système triangulaire.
+{{% /alert %}}
 
 ### Implémentation et Test
 
@@ -182,12 +186,32 @@ Construisez une telle classe `Jacobi`. N'oubliez surtout pas de :
 4. Tant que les trois points ci-dessus ne sont pas validés, ne passez pas à la suite !
 {{% /alert %}}
 
-## Classes Gauss-Seidel et Relaxation
+## Classe Gauss-Seidel
 
 {{% alert exercise %}}
-Construisez deux autres classes supplémentaires : une pour la méthode de Gauss-Seidel et une pour la méthode de Relaxation. Validez toujours vos codes avant de poursuire.
+Construisez une autre classe  pour la méthode de Gauss-Seidel. **Validez** toujours vos codes avant de poursuire.
 {{% /alert %}}
 
 {{% alert note %}}
-Contrairement à la méthode de Jacobi, les méthodes de Gauss-Seidel et de Relaxation requièrent la résolution d'un système linéaire triangulaire inférieur. Pour cela, nous pourrons utiliser la fonction résolvant un système linéaire triangulaire infétieur que vous avez déjà implémentée.
+Contrairement à la méthode de Jacobi, la méthode de Gauss-Seidel requière la résolution d'un système linéaire triangulaire inférieur :
+
+- Surtout **n'extrayez pas** la partie triangulaire inférieure dans une nouvelle `Matrice` ! Pire encore, **ne l'inversez en aucun cas** !
+- Soyons astucieux et utilisons la fonction **résolvant un système linéaire triangulaire inférieur déjà implémentée** !
 {{% /alert  %}}
+
+## Classe Relaxation
+
+
+{{% alert exercise %}}
+Construisez une dernière classe pour la méthode de Relaxation. **Validez** toujours vos codes avant de poursuire.
+{{% /alert %}}
+
+{{% alert tips %}}
+
+Deux remarques d'importance :
+
+1. La méthode nécessite un paramètre $\omega$ : vous pouvez bien entendu ajouter ce paramètre à votre classe `Relaxation`
+2. Cette méthode nécessite la résolution d'un système linéaire triangulaire inférieure. La même remarque que pour Gauss-Seidel s'applique ici : surtout pas d'extraction de matrice ! Vous pouvez créer une nouvelle fonction qui **résout un système linéaire triangulaire inférieur** et dont la diagonale est **multipliée par un paramètre** (ici : $1/\omega$) !
+{{% /alert  %}}
+
+
