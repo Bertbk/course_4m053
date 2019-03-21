@@ -240,8 +240,8 @@ json.add("N", 2);
 json.add("n_iter", static_cast<int>(resvecG.size());
 json.add("resvec", resvecG);
 json.add("cpu_time", 1.397);
-json.end()
-json.close3.2323
+json.end();
+json.close();
 ```
 
 Le résultat serait le suivant :
