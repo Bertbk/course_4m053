@@ -65,23 +65,26 @@ Les méthodes itératives que nous détaillons ici ne diffèrent que par le choi
 
 ## Méthodes standards
 
-La matrice $A$ se décompose comme $A = D - E - F$, où $D$, $E$ et $F$ sont des matrices de la même taille que $A$ et telles que (attention au signe des coefficents de $E$ et $F$) :
+
+La matrice $M$ est choisie selon le *splitting* (découpe) d'une matrice $A$ comme $A = D - E - F$, où $D$, $E$ et $F$ sont des matrices de la même taille que $A$ et telles que (attention au signe des coefficents de $E$ et $F$) :
 
 - $D = {\rm diag}(A)$ : Matrice ne contenant que **les termes diagonaux** de $A$
 - $E$ : Matrice ne contenant que la partie **triangulaire inférieure stricte** de $-A$
 - $F$ : Matrice ne contenant que la partie **triangulaire supérieure stricte** de $-A$
 
+{{< figure src="../DEF.svg" title="Splitting d'une matrice" numbered="true" >}}
 
+Ensuite, selon les choix pour la matrice $M$, la méthode obtenue sera différente :
 
 | Méthode      | Matrice $M$             | Remarques                              |
 | ------------ | ----------------------- | -------------------------------------- |
 | Jacobi       | $D$                     | $M^{-1} = D^{-1}$ est explicite        |
 | Gauss-Seidel | $D - E$                 | $M$ est triangulaire inférieure        |
-| Relaxation   | $\frac{1}{\omega}D - E$ | $0 < \omega < 2$ paramètre à contrôler |
+| Relaxation   | $\frac{1}{\omega}D - E$ | $M$ est triangulaire inférieure <br> $0 < \omega < 2$ paramètre à contrôler |
 
 
 {{% alert warning %}}
-Cette décomposition $A = D - E - F$ n'a **aucun rapport** avec la factorisation $LU$ !
+Cette décomposition $A = D - E - F$ **n'a aucun rapport** avec la factorisation $LU$ !
 {{% /alert  %}}
 
 ## Une Classe en Détail : Jacobi
