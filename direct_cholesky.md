@@ -39,11 +39,11 @@ où $L$ est une matrice triangulaire inférieure. Contrairement à la $LU$, la d
 
 ## Pseudo-code
 
-Une version naïve est la suivante. Elle peut être améliorée car certains calculs sont doublées et rendu inutiles du fait que le complément de Schur est lui aussi symétrique.
+Une version naïve est la suivante. Elle peut être améliorée car certains calculs sont doublées et rendu inutiles du fait que le complément de Schur est lui aussi symétrique et défini positif.
 
 ```
 L = 0;
-U = 0;
+Lt = 0;
 S = A;
 for k =0:N-1
   // Pivot
@@ -52,19 +52,21 @@ for k =0:N-1
   L(k,k) = pivot;
   for i = k+1:N-1
     L(i,k) = S(i,k) / pivot;
-  // Ligne de U
-  U(k,k) = L(k,k);
+  // Ligne de Lt
+  Lt(k,k) = L(k,k);
   for j = k+1:N-1
-    U(k,j) = L(j,k);
+    Lt(k,j) = L(j,k);
   // Complément de Schur
   for i = k+1:N-1
     for j = k+1:N-1
-      S(i,j) = S(i,j) - L(i,k)*U(k,j);
+      S(i,j) = S(i,j) - L(i,k)*Lt(k,j);
 ```
 
 
 {{% alert exercise %}}
-**Simplifiez** le pseudo-code en **supprimant les opérations inutiles** et en réduisant éventuellement la longueur de **certaines boucles**. Comme pour la factorisation LU, modifiez ensuite le pseudo code pour que la factorisation se fasse *sur place*, **directement dans A**, sans avoir à introduire de matrices L, U et S.
+Comme pour la factorisation LU, modifiez le pseudo code pour que la factorisation soit effectuée **directement dans la matrice A**, sans avoir à introduire de matrices `L`, `Lt` et `S`.
+
+**Simplifiez** ensuite le pseudo-code en **supprimant les opérations inutiles** et en réduisant éventuellement la longueur de **certaines boucles**. 
 {{% /alert %}}
 
 

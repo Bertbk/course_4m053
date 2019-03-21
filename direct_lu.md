@@ -163,11 +163,30 @@ Plutôt que de stocker 3 matrices `L`, `U` et `S`, on remarque que l'on peut se 
 - ... la matrice `L` en la stockant dans `U` et en supprimant son terme diagonal (qui vaut 1 et peut donc devenir "implicite")
 - ... la matrice `U` et travailler directement dans `A` 
 
+Cela donne le pseudo-code suivant :
+
+```
+for k =0:N-1
+  // Pivot
+  pivot = A(k,k)
+  // Colonne de L
+  for i = k+1:N-1
+    A(i,k) = A(i,k) / pivot;
+  // Ligne de U
+  A(k,k) = A(k,k);
+  for j = k+1:N-1
+    A(k,j) = A(k,j);
+  // Complément de Schur
+  for i = k+1:N-1
+    for j = k+1:N-1
+      A(i,j) -= A(i,k)*A(k,j);
+```
+
 
 ## Implémentation en C++
 
 {{% alert exercise %}}
-Avant de coder quoi que ce soit, modifiez le **pseudo code** pour que factorisation `LU` de `A` soit effectuée **directement dans la matrice** `A`. En particulier, le pseudo-code peut alors être nettoyer de certaines opérations rendues inutiles.
+Avant de coder quoi que ce soit, modifiez le **pseudo code** de la factorisation `LU` de `A` effectuée **directement dans la matrice** `A` : nettoyez le de certaines opérations rendues inutiles !
 {{% /alert %}}
 
 {{% alert exercise %}}
