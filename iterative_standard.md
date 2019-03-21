@@ -111,6 +111,9 @@ Nous proposons les paramètres suivants, mais vous pouvez bien entendu en ajoute
 Libre à vous d'ajouter d'autres paramètres, de ne pas utiliser ceux que l'on propose ou d'en changer le nom.
 {{% /alert  %}}
 
+La figure suivante illustre ces paramètres et la classe `Jacobi` :
+
+{{< figure src="../jacobi.svg" title="Illustration de la classe `Jacobi`" numbered="true" >}}
 
 ### Constructeurs
 

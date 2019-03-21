@@ -191,22 +191,40 @@ Il peut être intéressant de rajouter un paramètre à la classe `Matrice` de t
 ## Validation
 
 {{% alert exercise %}}
-Résolvez numériquement le problème suivant à l'aide de la factorisation $LU$ de la matrice :
+Validez votre factorisation $LU$ sur la matrice suivante :
 $$
-\begin{pmatrix}
+A = \begin{pmatrix}
   2 & -1 & 0 & 0 &0\\\\\\
   -1 & 2 & -1 & 0 &0\\\\\\
   0 & -1 & 2 & -1 &0\\\\\\
   0 & 0& -1 & 2 & -1 \\\\\\
   0 & 0& 0 &-1 & 2 \\\\\\
-\end{pmatrix} X=
-\begin{pmatrix}
-  1 \\\\\\
-  1 \\\\\\
-  1 \\\\\\
-  1 \\\\\\
-  1 \\\\\\
-\end{pmatrix}.
+\end{pmatrix},
 $$
-Vous devriez obtenir $X = [2.5, 4,4.5, 4,2.5]^T$. Notez que cette matrice fait partie [des matrices de test régulières]({{<relref "dense_matrices_test.md">}}). 
+dont les matrices $L$ et $U$ sont données par :
+$$
+\underbrace{\begin{pmatrix}
+  1 & 0 & 0 & 0 &0\\\\\\
+  -0.5 & 1 & 0 & 0 &0\\\\\\
+  0 & -\frac{2}{3} & 1 & 0 &0\\\\\\
+  0 & 0 & -0.75 & 1 & 0 \\\\\\
+  0 & 0 & 0 &-0.8 & 1 
+\end{pmatrix}}\_{L}
+\underbrace{\begin{pmatrix}
+  2 & -1 & 0 & 0 &0\\\\\\
+  0 & 1.5 & -1 & 0 &0\\\\\\
+  0 & 0 & \frac{4}{3} & -1 &0\\\\\\
+  0 & 0& 0 & 1.25 & -1 \\\\\\
+  0 & 0& 0 &0 & 1.2 \\\\\\
+\end{pmatrix}}\_{U}
+$$
+Notez que cette matrice fait partie [des matrices de test régulières]({{<relref "dense_matrices_test.md">}}).
+{{% /alert %}}
+
+{{% alert exercise %}}
+Résolvez numériquement le problème suivant à l'aide de la factorisation LU :
+$$
+A X= b,
+$$
+où $A$ est la matrice de l'exercice précédent et $b = [1,1,1,1,1]^T$. La solution du problème est $X = [2.5, 4,4.5, 4,2.5]^T$.
 {{% /alert %}}

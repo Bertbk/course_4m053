@@ -156,7 +156,7 @@ Pour la méthode de relaxation, comme $A\_N$ est triagonale alors le paramètre 
 $$
 \omega^\* = \frac{2}{1 + \sqrt{1 - \rho(J)^2}},
 $$
-et le rayon spectral de la matrice d'itération est alors donné par $\rho(G\_{\omega^\*}) = \omega^\* - 1$. 
+et le rayon spectral de la matrice d'itération est alors donné par $\rho(G\_{\omega^\*}) = \omega^\* - 1$.  Ci-dessous une courbe du rayon spectrale en fonction de $\omega$ pour $N=10$ :
 
 <div id="relaxation"></div>
 
