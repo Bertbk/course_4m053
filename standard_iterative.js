@@ -1,7 +1,27 @@
-function makeplot() {
-  Plotly.d3.csv("../data_standard_iterative.csv", function(data){ processData(data) } );
-};
+//Credit :
+//https://codepen.io/KryptoniteDove/post/load-json-file-locally-using-pure-javascript
+function loadJSON(callback) {   
 
+  var xobj = new XMLHttpRequest();
+      xobj.overrideMimeType("application/json");
+  xobj.open('GET', '../data_standard_iterative.json', true); 
+  xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+          callback(xobj.responseText);
+        }
+  };
+  xobj.send(null);  
+}
+
+
+function makeplot() {
+  loadJSON(function(response) {
+    // Parse JSON string into object
+      var data = JSON.parse(response);
+      makePlotly(data);
+      console.log("coucou");
+    });
+};
 
 var layout = {
   title: {text:'Historique de convergence'},
@@ -14,40 +34,16 @@ var layout = {
     title: {
       text: 'Résidu relatif (log)',
     },
+    type: 'log'
   }
 };
 
-
-function processData(allRows) {
-  var x = [], jacobi = [], gauss=[], relaxation=[];
-  for (var i=0; i<allRows.length; i++) {
-    row = allRows[i];
-    x.push( row['Niter'] );
-    jacobi.push( row['Jacobi'] );
-    gauss.push( row['Gauss-Seidel'] );
-    relaxation.push( row['Relaxation'] );
+function makePlotly(data){
+  let traces = [];
+  for (var key in data) {
+    traces.push({"name": data[key].method, "x" : data[key].niter, "y":data[key].resvec});
   }
-  makePlotly( x, jacobi, gauss, relaxation );
-}
-
-function makePlotly( x, jacobi, gauss, relaxation){
-  var plotDiv = document.getElementById("plot");
-  var traces = [{
-    x: x,
-    y: jacobi,
-    name:'Jacobi'
-  },{
-    x: x,
-    y: gauss,
-    name:'Gauss-Seidel'
-  },
-  {
-    x: x,
-    y: relaxation,
-    name:'Relaxation'
-  }
-];
-
   Plotly.newPlot('convergence_history', traces,layout, {responsive: true});
 };
+
 makeplot();

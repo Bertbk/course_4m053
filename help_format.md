@@ -272,12 +272,17 @@ Nous pouvons utiliser [Pandas](https://pandas.pydata.org/) pour lire le fichier 
 import json
 import matplotlib.pyplot as plt
 
+# Importation des données depuis le fichier JSON
 data_file = open('data.json', 'r')
 data = json.load(data_file)
-print(data['jacobi']['resvec'])
 data_file.close()
 
+# Test : affichage du tableau resvec
+print(data['jacobi']['resvec'])
+
+# Matplotlib : affichage des deux courbes
 fig, ax = plt.subplots()
 ax.plot(data['jacobi']['resvec'])
+ax.plot(data['gauss']['resvec'])
 plt.show()
 ```
