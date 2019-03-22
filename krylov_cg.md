@@ -65,7 +65,7 @@ Implémentez la méthode du Gradient Conjugué. Validez ensuite votre code la su
 Pour une tolérance de # affichez les historiques de convergence du gradient conjugué et des autres méthodes itérat#omparez également le temps CPU entre les différentes méthodes.
 {{% /alert %}}
 
-Vous devriez obtenir d#eux-ci (sauf pour le temps CPU !) :
+Vous devriez obtenir des résultats similaires à ceux ci-dessous (sauf pour le temps CPU !) :
 
 <div id="convergence_history"></div>
 
