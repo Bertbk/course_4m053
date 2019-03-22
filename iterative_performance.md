@@ -71,6 +71,14 @@ Vous devriez obtenir une courbe ressemblant à celle ci-dessous :
 
 <div id="convergence_history"></div>
 
+Avec les résultats suivants (**le temps CPU dépend bien évidemment de l'ordinateur** et de l'implémentation !) :
+
+{{% setid "table_iterative_standard"%}}
+| Méthode             | Jacobi | Gauss-Seidel | Relaxation (optimal) |
+| ------------------- | ------ | ------------ | -------------------- |
+| Nombre d'itérations |   |          |                   |
+| Temps CPU (s) |   |          |                   |
+{{% /setid %}}
 
 ## Temps CPU
 
