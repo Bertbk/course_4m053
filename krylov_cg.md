@@ -83,15 +83,15 @@ Vous devriez obtenir d#eux-ci (sauf pour le temps CPU !) :
 
 
 {{% alert exercise %}}
-Pour une tolérance de 0.1 et une taille N = 100, 200, ..., 1000, affichez le nombre d'itérations requises par le gradient conjugué.
+Pour une tolérance de 0.001 et une taille N = 100, 200, ..., 1000, affichez le nombre d'itérations requises par le gradient conjugué ainsi que le temps CPU.
 {{% /alert %}}
 
-Vous devriez obtenir :
+Vous devriez obtenir des résultats proches de ceux-ci (sauf pour le temps CPU) :
 
-| N                   | 100  | 200   | 300   | 400   | 500   | 600   | 700   | 800    | 900    | 1000   |
-| ------------------- | ---- | ----- | ----- | ----- | ----- | ----- | ----- | ------ | ------ | ------ |
-| Nombre d'itérations | 50   | 100   | 150   | 200   | 249   | 299   | 349   | 399    | 449    | 499    |
-| Temps CPU (s)       | 0.04 | 0.188 | 0.685 | 1.736 | 3.513 | 5.886 | 10.31 | 14.956 | 24.032 | 33.314 |
+| N                   | 100    | 200   | 300   | 400   | 500   | 600   | 700    | 800    | 900    | 1000   |
+| ------------------- | ------ | ----- | ----- | ----- | ----- | ----- | ------ | ------ | ------ | ------ |
+| Nombre d'itérations | 50     | 100   | 150   | 200   | 250   | 300   | 350    | 400    | 450    | 500    |
+| Temps CPU (s)       | 0.0534 | 0.178 | 0.613 | 1.429 | 3.303 | 7.485 | 11.771 | 15.939 | 24.415 | 34.409 |
 
 
 <script type="text/javascript" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
