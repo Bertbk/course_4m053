@@ -61,8 +61,8 @@ Implémentez la méthode du Gradient Conjugué. Validez ensuite votre code la su
 
 ### Entre solveur 
 
-{{% alert exercise %}}#
-Pour une tolérance de # affichez les historiques de convergence du gradient conjugué et des autres méthodes itérat#omparez également le temps CPU entre les différentes méthodes.
+{{% alert exercise %}}
+Pour une tolérance de 0.1, une taille de matrice N = 1000 et un nombre maximal d'itération égal à N, affichez les historiques de convergence du gradient conjugué et des autres méthodes itératives. Comparez également le temps CPU entre les différentes méthodes.
 {{% /alert %}}
 
 Vous devriez obtenir des résultats similaires à ceux ci-dessous (sauf pour le temps CPU !) :
