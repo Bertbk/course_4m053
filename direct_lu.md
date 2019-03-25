@@ -165,11 +165,86 @@ Plutôt que de stocker 3 matrices `L`, `U` et `S`, on remarque que l'on peut se 
 
 Cela donne le pseudo-code suivant :
 
+{{< div "carousel">}}
+{{< div "carousel-cell">}}
 ```
+S = A;
+L = 0;
+U = 0;
+for k =0:N-1
+  // Pivot
+  pivot = S(k,k)
+  // Colonne de L
+  L(k,k) = 1;
+  for i = k+1:N-1
+    L(i,k) = S(i,k) / pivot;
+  // Ligne de U
+  U(k,k) = S(k,k);
+  for j = k+1:N-1
+    U(k,j) = S(k,j);
+  // Complément de Schur
+  for i = k+1:N-1
+    for j = k+1:N-1
+      S(i,j) = S(i,j) - L(i,k)*U(k,j);
+```
+Origine
+{{< divend>}}
+{{< div "carousel-cell">}}
+```
+
+L = 0;
+U = A;
+for k =0:N-1
+  // Pivot
+  pivot = U(k,k)
+  // Colonne de L
+  L(k,k) = 1;
+  for i = k+1:N-1
+    L(i,k) = U(i,k) / pivot;
+  // Ligne de U
+  U(k,k) = U(k,k);
+  for j = k+1:N-1
+    U(k,j) = U(k,j);
+  // Complément de Schur
+  for i = k+1:N-1
+    for j = k+1:N-1
+      U(i,j) = U(i,j) - L(i,k)*U(k,j);
+```
+Suppression de S (stockée dans U)
+{{< divend>}}
+{{< div "carousel-cell">}}
+```
+
+
+U = A;
+for k =0:N-1
+  // Pivot
+  pivot = U(k,k)
+  // Colonne de L
+  // U(k,k) = 1;
+  for i = k+1:N-1
+    U(i,k) = U(i,k) / pivot;
+  // Ligne de U
+  U(k,k) = U(k,k);
+  for j = k+1:N-1
+    U(k,j) = U(k,j);
+  // Complément de Schur
+  for i = k+1:N-1
+    for j = k+1:N-1
+      U(i,j) = U(i,j) - U(i,k)*U(k,j);
+```
+Suppression de L (stockée dans U)
+{{< divend>}}
+{{< div "carousel-cell">}}
+```
+
+
+
 for k =0:N-1
   // Pivot
   pivot = A(k,k)
   // Colonne de L
+  // A(k,k) = 1;
   for i = k+1:N-1
     A(i,k) = A(i,k) / pivot;
   // Ligne de U
@@ -181,6 +256,9 @@ for k =0:N-1
     for j = k+1:N-1
       A(i,j) -= A(i,k)*A(k,j);
 ```
+Suppression de U
+{{< divend>}}
+{{< divend>}}
 
 
 ## Implémentation en C++
@@ -251,3 +329,7 @@ A X= b,
 $$
 où $A$ est la matrice de l'exercice précédent et $b = [1,1,1,1,1]^T$. La solution du problème est $X = [2.5, 4,4.5, 4,2.5]^T$.
 {{% /alert %}}
+
+
+<script type="text/javascript" src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js"></script>
+<script type="text/javascript" src="../myflickity.js"></script>
