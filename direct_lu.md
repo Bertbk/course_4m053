@@ -131,34 +131,22 @@ où les matrices $L^{(k)}$ et $U^{(k)}$ sont obtenues à la $k^{\text{eme}}$ it�
 
 {{% div class="course_lu carousel_lu" %}}
 {{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
-<img style="width:100%;"
-     src="../lu_0.svg"
-     alt="Matrices L et U : initialisation" />
+{{% svg file="course/4m053/lu_algo_0.svg" %}}
 {{% /div %}}
 {{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
-<img style="width:100%;"
-     src="../lu_1.svg"
-     alt="Matrices L et U : itération 1" />
+{{% svg file="course/4m053/lu_algo_1.svg" %}}
 {{% /div %}}
 {{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
-<img style="width:100%;"
-     src="../lu_2.svg"
-     alt="Matrices L et U : itération 2" />
+{{% svg file="course/4m053/lu_algo_2.svg" %}}
 {{% /div %}}
 {{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
-<img style="width:100%;"
-     src="../lu_3.svg"
-     alt="Matrices L et U : itération 3" />
+{{% svg file="course/4m053/lu_algo_3.svg" %}}
 {{% /div %}}
 {{% div class="course_lu carousel-cell_lu" style="width:100%;" %}}
-<img style="width:100%;"
-     src="../lu_4.svg"
-     alt="Matrices L et U : itération 4" />
+{{% svg file="course/4m053/lu_algo_4.svg" %}}
 {{% /div %}}
 {{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
-<img style="width:100%;"
-     src="../lu_5.svg"
-     alt="Matrices L et U" />
+{{% svg file="course/4m053/lu_algo_5.svg" %}}
 {{% /div %}}
 {{% /div %}}
 

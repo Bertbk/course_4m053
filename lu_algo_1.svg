@@ -3,11 +3,18 @@
   <g>
     <g>
       <text font-family="Verdana" font-size="4" text-anchor="middle" x="35" y="15">0</text>
-      <text font-family="Verdana" font-size="4" text-anchor="middle" x="15" y="36">0</text>
+      <g>
+        <rect x="0" y="10" width="10" height="40" style="fill: GhostWhite;"/>
+        <text font-family="Verdana" font-size="4" text-anchor="middle" x="5" y="30">L<tspan dy="3" font-size="0.7em" baseline-shift = "sub">1,0</tspan></text>
+      <text font-family="Verdana" font-size="4" text-anchor="middle" x="20" y="40">0</text>
+      </g>
+    </g>
+    <g>
+      <line x1="10" y1="20" x2="10" y2="50" stroke="black" stroke-width="0.25" stroke-dasharray="1,1"  />
     </g>
     <g>
       <g>
-        <rect x="0" y="0" width="10" height="10" style="fill: #F6831D;" stroke="black" stroke-width="0.25" />
+        <rect x="0" y="0" width="10" height="10" style="fill: GhostWhite;" stroke="black" stroke-width="0.25" />
         <text font-family="Verdana" font-size="4" text-anchor="middle" x="5" y="6">1</text>
       </g>
       <g>
@@ -29,15 +36,31 @@
     </g>
     <g>
       <rect x="0" y="0" width="50" height="50" style="fill: none;" stroke="black" stroke-width="0.5" />
-      <text font-family="Verdana" font-size="5" text-anchor="middle" x="25" y="57">L<tspan dy="-3" font-size=".7em">(0)</tspan><tspan dy="3" font-size="1em">= I</tspan></text>
+      <text font-family="Verdana" font-size="5" text-anchor="middle" x="25" y="57">L<tspan dy="-3" font-size=".7em">(1)</tspan></text>
     </g>
   </g>
   <!-- U -->
   <g>
     <g>
-      <rect x="60" y="0" width="50" height="50" style="fill: GhostWhite;" stroke="black" stroke-width="0.5" />
-      <text font-family="Verdana" font-size="4" text-anchor="middle" x="85" y="25">S</tspan><tspan dy="3" font-size=".7em">0,0</tspan><tspan dy="-3" font-size="1em">= A</tspan></text>
-      <text font-family="Verdana" font-size="5" text-anchor="middle" x="85" y="57">U<tspan dy="-3" font-size=".7em">(0)</tspan><tspan dy="3" font-size="1em">= S</tspan><tspan dy="3" font-size=".7em">0,0</tspan><tspan dy="-3" font-size="1em">= A</tspan></text>
+      <text font-family="Verdana" font-size="4" text-anchor="middle" x="65" y="35">0</text>
+      <g>
+        <rect x="70" y="0" width="40" height="10" style="fill: GhostWhite;"/>
+        <text font-family="Verdana" font-size="4" text-anchor="middle" x="90" y="6">U<tspan dy="3" font-size="0.7em" baseline-shift = "sub">0,1</tspan></text>
+      </g>
+    </g>
+    <g>
+      <g>
+        <rect x="60" y="0" width="10" height="10" style="fill: GhostWhite;" stroke="black" stroke-width="0.25" />
+        <text font-family="Verdana" font-size="4" text-anchor="middle" x="65" y="6">u<tspan dy="3" font-size="0.7em" baseline-shift = "sub">0,0</tspan></text>
+      </g>
+      <g>
+        <rect x="70" y="10" width="40" height="40" style="fill: #F6831D;" stroke="black" stroke-width="0.25"  />
+        <text font-family="Verdana" font-size="4" text-anchor="middle" x="85" y="26">S<tspan dy="3" font-size="0.7em" baseline-shift = "sub">1,1</tspan></text>
+      </g>
+    </g>
+    <g>
+      <rect x="60" y="0" width="50" height="50" style="fill: none;" stroke="black" stroke-width="0.5" />
+      <text font-family="Verdana" font-size="5" text-anchor="middle" x="85" y="57">U<tspan dy="-3" font-size=".7em">(1)</tspan></text>
     </g>
   </g>
  <g>
