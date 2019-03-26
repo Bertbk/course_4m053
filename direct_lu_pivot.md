@@ -51,9 +51,6 @@ Nous faisons ici le choix de chercher le remplaçant du pivot parmi tous les coe
 
 ## Exemple
 
-{{% svg file="course/4m053/lu_pivot_0.svg" %}}
-
-
 Prenons le système linéaire suivant :
 
 $$
