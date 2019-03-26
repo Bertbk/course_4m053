@@ -127,10 +127,41 @@ Pour obtenir la factorisation complète, un algorithme itératif possible consis
 $$
 A = L^{(0)} U^{(0)}= \ldots = L^{(k)} U^{(k)} = \ldots = L^{(N-1)} U^{(N-1)}.
 $$
-où les matrices $L^{(k)}$ et $U^{(k)}$ sont obtenues à la $k^{\text{eme}}$ itération et ont la forme suivante
+où les matrices $L^{(k)}$ et $U^{(k)}$ sont obtenues à la $k^{\text{eme}}$ itération. La petite animation suivante montre la forme de ces matrices dans le cas d'une taille N=5 :
 
-(warning, figure à faire TODO:)
-{{< figure src="../u_l_lu2.png" >}}
+{{< div "carousel_lu">}}
+{{< div "carousel-cell_lu">}}
+<img style="width:100%;"
+     src="../lu_0.svg"
+     alt="Matrices L et U : initialisation" />
+{{< divend>}}
+{{< div "carousel-cell_lu">}}
+<img style="width:100%;"
+     src="../lu_1.svg"
+     alt="Matrices L et U : itération 1" />
+{{< divend>}}
+{{< div "carousel-cell_lu">}}
+<img style="width:100%;"
+     src="../lu_2.svg"
+     alt="Matrices L et U : itération 2" />
+{{< divend>}}
+{{< div "carousel-cell_lu">}}
+<img style="width:100%;"
+     src="../lu_3.svg"
+     alt="Matrices L et U : itération 3" />
+{{< divend>}}
+{{< div "carousel-cell_lu">}}
+<img style="width:100%;"
+     src="../lu_4.svg"
+     alt="Matrices L et U : itération 4" />
+{{< divend>}}
+{{< div "carousel-cell_lu">}}
+<img style="width:100%;"
+     src="../lu_5.svg"
+     alt="Matrices L et U" />
+{{< divend>}}
+{{< divend >}}
+
 
 ### Pseudo code
 
@@ -332,4 +363,4 @@ où $A$ est la matrice de l'exercice précédent et $b = [1,1,1,1,1]^T$. La solu
 
 
 <script type="text/javascript" src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js"></script>
-<script type="text/javascript" src="../myflickity.js"></script>
+<script type="text/javascript" src="../lu_fact.js"></script>
