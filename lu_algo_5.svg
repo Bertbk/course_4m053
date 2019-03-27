@@ -99,7 +99,8 @@
         <rect x="100" y="40" width="10" height="10" style="fill: GhostWhite;" stroke="black" stroke-width="0.25"  />
         <text font-family="Verdana" font-size="4" text-anchor="middle" x="105" y="46">u<tspan dy="3" font-size="0.7em" baseline-shift = "sub">4,4</tspan></text>
       </g>
-    </g>    <g>
+    </g>
+    <g>
       <rect x="60" y="0" width="50" height="50" style="fill: none;" stroke="black" stroke-width="0.5" />
       <text font-family="Verdana" font-size="5" text-anchor="middle" x="85" y="57">U</text>
     </g>

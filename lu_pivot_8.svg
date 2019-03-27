@@ -1,0 +1,125 @@
+<svg  xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-25 -1 100 62" style="width:100%;"><>
+  <g>
+    <g>
+      <g>
+        <rect x="0" y="0" width="10" height="10" style="fill: GhostWhite;" />
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="5" y="6">2</text>
+      </g>
+      <g>
+        <rect x="10" y="0" width="10" height="10" style="fill:GhostWhite;"/>
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="15" y="6">4</text>
+      </g>
+      <g>
+        <rect x="20" y="0" width="10" height="10" style="fill:GhostWhite;"/>
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="25" y="6">1</text>
+      </g>
+      <g>
+        <rect x="30" y="0" width="10" height="10" style="fill:GhostWhite;"/>
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="35" y="6">-3</text>
+      </g>
+    <g>
+    <g>
+      <g>
+        <rect x="0" y="10" width="10" height="10" style="fill: GhostWhite;" />
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="5" y="16">2.5</text>
+      </g>
+      <g>
+        <rect x="10" y="10" width="10" height="10" style="fill:GhostWhite;"/>
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="15" y="16">-14</text>
+      </g>
+      <g>
+        <rect x="20" y="10" width="10" height="10" style="fill:GhostWhite;"/>
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="25" y="16">-5.5</text>
+      </g>
+      <g>
+        <rect x="30" y="10" width="10" height="10" style="fill:GhostWhite;"/>
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="35" y="16">8.5</text>
+      </g>
+    <g>
+    <g>
+      <g>
+        <rect x="0" y="20" width="10" height="10" style="fill: GhostWhite;" />
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="5" y="26">2</text>
+      </g>
+      <g>
+        <rect x="10" y="20" width="10" height="10" style="fill:GhostWhite;"/>
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="15" y="26">0.43</text>
+      </g>
+      <g>
+        <rect x="20" y="20" width="10" height="10" style="fill:#F6831D;"/>
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="25" y="26">-2.64</text>
+      </g>
+      <g>
+        <rect x="30" y="20" width="10" height="10" style="fill:none;"/>
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="35" y="26">7.36</text>
+      </g>
+    <g>
+    <g>
+      <g>
+        <rect x="0" y="30" width="10" height="10" style="fill: GhostWhite;" />
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="5" y="36">-0.5</text>
+      </g>
+      <g>
+        <rect x="10" y="30" width="10" height="10" style="fill:GhostWhite;"/>
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="15" y="36">0</text>
+      </g>
+      <g>
+        <rect x="20" y="30" width="10" height="10" style="fill:none;"/>
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="25" y="36">2.5</text>
+      </g>
+      <g>
+        <rect x="30" y="30" width="10" height="10" style="fill:none;"/>
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="35" y="36">2.5</text>
+      </g>
+    <g>
+    <g>
+      <rect x="0" y="0" width="40" height="40" style="fill: none;" stroke="black" stroke-width="0.5" />
+      <line x1="0" y1="10" x2="40" y2="10" style="fill: none;" stroke="black" stroke-width="0.25" />
+      <line x1="0" y1="20" x2="40" y2="20" style="fill: none;" stroke="black" stroke-width="0.25" />
+      <line x1="0" y1="30" x2="40" y2="30" style="fill: none;" stroke="black" stroke-width="0.25" />
+      <line x1="10" y1="0" x2="10" y2="40" style="fill: none;" stroke="black" stroke-width="0.25" />
+      <line x1="20" y1="0" x2="20" y2="40" style="fill: none;" stroke="black" stroke-width="0.25" />
+      <line x1="30" y1="0" x2="30" y2="40" style="fill: none;" stroke="black" stroke-width="0.25" />
+    </g>
+    <g>
+      <text font-family="Verdana" font-size="4.5" text-anchor="middle" x="20" y="47">A</text>
+    </g>
+  </g>
+  <g>
+    <g>
+      <g>
+        <rect x="50" y="0" width="10" height="10" style="fill: GhostWhite;" />
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="55" y="6">1</text>
+      </g>
+      <g>
+        <rect x="50" y="10" width="10" height="10" style="fill:GhostWhite;"/>
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="55" y="16">4</text>
+      </g>
+      <g>
+        <rect x="50" y="20" width="10" height="10" style="fill:none;"/>
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="55" y="26">3</text>
+      </g>
+      <g>
+        <rect x="50" y="30" width="10" height="10" style="fill:none;"/>
+        <text font-family="Verdana" font-size="3" text-anchor="middle" x="55" y="36">2</text>
+      </g>
+    <g>
+    <g>
+      <rect x="50" y="0" width="10" height="40" style="fill: none;" stroke="black" stroke-width="0.5" />
+      <line x1="50" y1="10" x2="60" y2="10" style="fill: none;" stroke="black" stroke-width="0.25" />
+      <line x1="50" y1="20" x2="60" y2="20" style="fill: none;" stroke="black" stroke-width="0.25" />
+      <line x1="50" y1="30" x2="60" y2="30" style="fill: none;" stroke="black" stroke-width="0.25" />
+    </g>
+    <g>
+      <text font-family="Verdana" font-size="4.5" text-anchor="middle" x="55" y="47">b</text>
+    </g>
+  </g>
+  <g>
+    <rect x="0" y="50" width="60" height="5" style="fill:black;" rx="2" ry="2"/>
+    <text font-size="3.5" fill="white" text-anchor="middle" x="30" y="53.75">Pivot non Nul : -2.64 ≠ 0</text>
+  </g>
+  <g>
+    <rect x="-20" y="50" width="10" height="5" style="fill:blue;" rx="2" ry="2"/>
+    <text font-size="3.5" fill="white" text-anchor="middle" x="-15" y="53.75">k=2</text>
+  </g>
+</svg>

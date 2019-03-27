@@ -51,11 +51,12 @@ Nous faisons ici le choix de chercher le remplaçant du pivot parmi tous les coe
 
 ## Exemple
 
+
 Prenons le système linéaire suivant :
 
 $$
 \underbrace{\begin{pmatrix}
-2&4&1&-3\\\\\\
+  2&4&1&-3\\\\\\
  -1& -2&  2 & 4\\\\\\
   4&  2& -3&  5\\\\\\
   5& -4& -3& 1
@@ -68,73 +69,45 @@ $$
 
 Effectuons maintenant la factorisation LU de $A$  *sur place* :
 
-- Étape $k=0$ :
-  - Pivot $A(k,k) = A(0,0) \neq 0$
-  - Factorisation partielle : 
-$$
-A= \begin{pmatrix}
-  2   & 4&    1 &  -3  \\\\\\
- -0.5  & 0&    2.5& 2.5\\\\\\
-  2  & -6&   -5 &  11 \\\\\\
-  2.5& -14&   -5.5& 8.5
-  \end{pmatrix}
-  ,\qquad
-  b=\begin{pmatrix}
- 1\\\\\\ 2\\\\\\ 3\\\\\\ 4
- \end{pmatrix}
-  $$
+{{% div class="course_lu carousel_lu" %}}
+{{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
+{{% svg file="course/4m053/lu_pivot_0.svg" %}}
+{{% /div %}}
+{{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
+{{% svg file="course/4m053/lu_pivot_1.svg" %}}
+{{% /div %}}
+{{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
+{{% svg file="course/4m053/lu_pivot_2.svg" %}}
+{{% /div %}}
+{{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
+{{% svg file="course/4m053/lu_pivot_3.svg" %}}
+{{% /div %}}
+{{% div class="course_lu carousel-cell_lu" style="width:100%;" %}}
+{{% svg file="course/4m053/lu_pivot_4.svg" %}}
+{{% /div %}}
+{{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
+{{% svg file="course/4m053/lu_pivot_5.svg" %}}
+{{% /div %}}
+{{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
+{{% svg file="course/4m053/lu_pivot_6.svg" %}}
+{{% /div %}}
+{{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
+{{% svg file="course/4m053/lu_pivot_7.svg" %}}
+{{% /div %}}
+{{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
+{{% svg file="course/4m053/lu_pivot_8.svg" %}}
+{{% /div %}}
+{{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
+{{% svg file="course/4m053/lu_pivot_9.svg" %}}
+{{% /div %}}
+{{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
+{{% svg file="course/4m053/lu_pivot_10.svg" %}}
+{{% /div %}}
+{{% /div %}}
 
-- Étape $k=1$ : 
-  - Le pivot est nul (coefficient $A(k,k) = A(1,1)$) !
-      - Recherche du pivot :
-$$
-\max\_{i>k} |A(i,k)| = |A(3,k)| - (= |-14|)
-$$
-      - Le pivot est situé en ligne 3 et vaut -14
-      - Permutation des lignes 1 et 3 :
-$$
-A= \begin{pmatrix}
-  2   & 4&    1 &  -3  \\\\\\
-  2.5& -14&   -5.5& 8.5\\\\\\
-  2  & -6&   -5 &  11 \\\\\\
- -0.5  & 0&    2.5& 2.5\\\\\\
-  \end{pmatrix}
-  ,\qquad
-  b=\begin{pmatrix}
- 1\\\\\\ 4\\\\\\ 3\\\\\\ 2
- \end{pmatrix}
-$$
-  - Factorisation partielle (arrondi à 2 chiffres après la virgule)
-$$
-A= \begin{pmatrix}
-  2   & 4&    1 &  -3  \\\\\\
- 2.5& -14&   -5.5 &  8.5\\\\\\
-  2  & 0.43  &-2.64   &7.36 \\\\\\
-  -0.5& 0&   2.5& 2.5
-  \end{pmatrix}
-  ,\qquad
-  b=\begin{pmatrix}
- 1\\\\\\ 4\\\\\\ 3\\\\\\ 2
- \end{pmatrix}
-$$
-- Étape $k=2$ :
-  - Pivot non nul
-  - Factorisation partielle (en fait, finale)
-$$
-A = \begin{pmatrix}
-   2  &         4        &   1         & -3       \\\\\\
-   2.5 &       -14        &  -5.5        &  8.5       \\\\\\
-   2  &         0.43&  -2.64 &  7.36\\\\\\
-  -0.5 &        0        &  -0.95 &  9.46\\\\\\
-\end{pmatrix}
-  ,\qquad
-  b=\begin{pmatrix}
- 1\\\\\\ 4\\\\\\ 3\\\\\\ 2
- \end{pmatrix}
-$$
 
 {{% alert note %}}
-Il est possible aussi de ne pas pivoter directement les lignes de la matrice mais de conserver dans une matrice $P$ les différents pivotages nécessaires. Cela permet d'éviter des opérations coûteuses sur la matrice, cependant la méthode proposée a le mérite de fonctionner et d'être relativement simple. 
+Il est possible aussi de ne pas pivoter directement les lignes de la matrice mais de conserver dans une matrice $P$ les différentes permutations utilisées. Cela permet d'éviter des opérations coûteuses sur la matrice, cependant la méthode proposée a le mérite de fonctionner et d'être relativement simple. 
 {{% /alert %}}
 
 ## Implémentation
@@ -184,3 +157,7 @@ if( abs(pivot) < 1e-14)   //Pivot considéré comme nulle
 
 Notons qu'un pivot très petit peut entrainer des instabilités numériques (car on divise par celui-ci). Il peut dès lors être utile de choisir une tolérance plus grande que 1e-14 ou de rechercher systématiquement le plus grand pivot, mais cela augmente le nombre d'opérations effectuées.
 {{% /alert %}}
+
+
+<script type="text/javascript" src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js"></script>
+<script type="text/javascript" src="../lu_pivot_fact.js"></script>
