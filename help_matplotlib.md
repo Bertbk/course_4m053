@@ -164,9 +164,9 @@ plt.ylabel('$\log_{10}(\|r\|/\|b\|)$')
 plt.title(data['relaxation']['method'])
 # Titre supérieur global
 plt.suptitle('Convergence histories for N=' + str(data['jacobi']['N']))
-plt.subplots_adjust(top=0.85) # ajuste la box
 # Affichage
 plt.tight_layout() # évite les chevauchements entre figures 
+plt.subplots_adjust(top=0.85) # ajuste la box
 plt.show()
 ```
 
