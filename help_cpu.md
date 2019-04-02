@@ -20,7 +20,7 @@ math = true
 [menu.4m053]
   parent = "help"
   name = "Temps CPU"
-  weight = 20
+  weight = 50
 
 +++
 

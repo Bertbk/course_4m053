@@ -1,5 +1,5 @@
 +++
-title = "Visualisation & Sortie"
+title = "Sortie : JSON"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -19,7 +19,7 @@ math = true
 # Add menu entry to sidebar.
 [menu.4m053]
   parent = "help"
-  name = "Visualisation & Sortie"
+  name = "Sortie : JSON"
   weight = 10
 
 +++
@@ -245,7 +245,7 @@ json.close();
 ```
 
 Le résultat serait le suivant :
-```
+```json
 {
   "jacobi": {
     "method": "jacobi",
@@ -262,27 +262,4 @@ Le résultat serait le suivant :
     "cpu_time": 1.397
   }
 }
-```
-## Python & Matplotlib
-
-Nous pouvons utiliser [Pandas](https://pandas.pydata.org/) pour lire le fichier JSON ou alors, le petit script ci-dessous affichera la courbe de convergence associée à la quantité `resvec` de la clé `jacobi`, du fichier JSON précédént :
-
-```python
-# Python 3
-import json
-import matplotlib.pyplot as plt
-
-# Importation des données depuis le fichier JSON
-data_file = open('data.json', 'r')
-data = json.load(data_file)
-data_file.close()
-
-# Test : affichage du tableau resvec
-print(data['jacobi']['resvec'])
-
-# Matplotlib : affichage des deux courbes
-fig, ax = plt.subplots()
-ax.plot(data['jacobi']['resvec'])
-ax.plot(data['gauss']['resvec'])
-plt.show()
 ```
