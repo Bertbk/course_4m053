@@ -1,5 +1,5 @@
 +++
-title = "Méthodes Itératives"
+title = "Gradient Conjugué Creux"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -19,14 +19,10 @@ math = true
 # Add menu entry to sidebar.
 [menu.4m053]
   parent = "sparse_matrices"
-  name = "Méthodes Itératives"
+  name = "Gradient Conjugué Creux"
   weight = 50
 
 +++
-
-{{% alert warning %}}
-En cours de construction !
-{{% /alert %}}
 
 ## Objectifs
 
@@ -42,7 +38,7 @@ La méthode du Gradient Conjugué nécessite, à chaque itération, un produit m
 
 
 {{% alert exercise %}}
-Implémenter une nouvelle classe pour résoudre le Gradient Conjugué avec une matrice creuse.
+Implémenter une nouvelle classe pour résoudre le Gradient Conjugué dont la matrice est au format CSR.
 {{% /alert %}}
 
 
@@ -50,8 +46,13 @@ Implémenter une nouvelle classe pour résoudre le Gradient Conjugué avec une m
 [Le templating](openclassrooms.com/courses/c-les-templates) de votre classe du Gradient Conjugué est possible mais alors il faut fusionner le fichier `.cpp` dans le `.hpp`.
 {{% /alert %}}
 
+
 ### Performances
 
 {{% alert exercise %}}
 Comparez les performances, en terme de temps CPU, entre la méthode du Gradient Conjugué *dense* et *creux* pour une matrice de taille suffisamment importante.
+{{% /alert %}}
+
+{{% alert tips %}}
+Le nombre d'itérations entre la version Dense et Creuse doit être exactement le même !
 {{% /alert %}}
