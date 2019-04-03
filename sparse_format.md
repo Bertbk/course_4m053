@@ -184,7 +184,7 @@ Quelques remarques :
 
 - `row[0]` est toujours égal à 0. Nous pourrions le supprimer du tableau mais le gain est minime (un `int`)
 - `row[i+1]` - `row[i]` = nombre de coefficients non-nuls dans la ligne `i`
-- `col[row[i]]`, `col[row[i]]` +1, ..., `col[row[i+1]-1]` =  indices colonne des coefficients non-nuls de la ligne `i`
+- `col[row[i]]`, `col[row[i] +1]`, ..., `col[row[i+1]-1]` =  indices colonne des coefficients non-nuls de la ligne `i`
 - `val[row[i]]` à `val[row[i+1]-1]` = coefficients non-nuls de la ligne `i`, rangés dans le même ordre que pour les indices colonne.
 
 {{% /alert %}}
@@ -200,7 +200,7 @@ y = zeros(row.size() - 1)
 for (i = 0; i < row.size(); i++)
   for (j = row[i]; j < row[i+1]; j++)
     // Parcours des indices colonnes de la ligne i
-    y[col[j]] = val[j];
+    y[i] += val[j]*x[col[j]];
   end
 end
 ```
