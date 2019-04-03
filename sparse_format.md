@@ -197,7 +197,7 @@ Le pseudo-code est le suivant
 ```
 // y = A*x
 y = zeros(row.size() - 1)
-for (i = 0; i < row.size(); i++)
+for (i = 0; i < row.size()-1; i++)
   for (j = row[i]; j < row[i+1]; j++)
     // Parcours des indices colonnes de la ligne i
     y[i] += val[j]*x[col[j]];
