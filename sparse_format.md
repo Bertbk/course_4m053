@@ -120,7 +120,7 @@ Un pseudo code serait le suivant :
 ```
 // y = A*x
 y = zeros(n) // vecteur nul
-for (i = 0; i < n; i++)
+for (i = 0; i < row.size(); i++)
   y[row[i]] += val[i] * x[col[i]]
 end
 ```
@@ -233,8 +233,6 @@ MatriceCSR B(n) // CSR
 A.add(0,0,2.);
 A.add(0,1,-1.1);
 [...]
-// Tri du tableau de triplets et fusion des doublons
-A.sort();
 // Convertisseur en CSR
 B = A.to_csr();
 ```
