@@ -168,7 +168,7 @@ Le pseudo code pour reconstruire la matrice dense associé ressemblerait à ceci
 
 ```
 A = zeros(N,N)
-for (i = 0; i < row.size(); i++)
+for (i = 0; i < row.size() - 1; i++)
   for (j = row[i]; j < row[i+1]; j++)
     A(i, col[j]) = val[j]
   end
