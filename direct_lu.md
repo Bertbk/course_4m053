@@ -28,15 +28,26 @@ math = true
 
 1. Calculer la factorisation LU d'une matrice
 2. Résoudre le système linéaire une fois la factorisation effectuée
-<!--3. Comparer le temps d'exécution de ces méthodes en fonction de la taille des matrices-->
 
 ## Principe
 
 Cette méthode permet de transformer une matrice carré $A$ en un produit d'une matrice triangulaire inférieur $L$ et d'une matrice triangulaire supérieur $U$. Cette décomposition permet notamment de résoudre des problèmes d'algèbre linéaire du type
-$$
+\begin{equation}
+\label{eq:Axb}
 AX=b \iff LUX = B
+\end{equation}
+où $X$ et $B$ sont respectivement les vecteurs solution et second membre. Au final, la solution $X$ est obtenu par deux résolutions successives :
 $$
-où $X$ et $B$ sont les vecteurs solution et second membre respectivement. En introduisant la quantité $Y = L^{-1}B$, nous remarquons que nous avons $X = U^{-1}Y$. Ainsi, pour calculer $X$, il suffit de résoudre successivement deux systèmes linéaires triangulaires, l'un inférieur et l'autre supérieur. C'est parfait, nous venons tout juste d'implémenter ces fonctions !
+X = U^{-1}(L^{-1}B).
+$$
+
+Ainsi, comme $L$ et $U$ sont triangulaires respectivement inférieur et supérieur, les trois étapes pour résoudre le système \eqref{eq:Axb} sont :
+
+1. Calculer la **factorisation LU**
+2. Résoudre un système linéaire **triangulaire inférieur** (avec des 1 sur la diagonale)
+3. Réoudre un système linéaire **triangulaire supérieur**
+
+C'est parfait, nous avons déjà implémenté [les fonctions de résolution]({{<relref "direct_triang.md">}}), il ne nous manque plus que le calcul de la factorisation LU !
 
 ## Factorisations partielle et complète
 
@@ -176,7 +187,7 @@ for k =0:N-1
 
 ### Factorisation *sur place*
 
-Plutôt que de stocker 3 matrices `L`, `U` et `S`, on remarque que l'on peut se passer de ...:
+Plutôt que de stocker 3 matrices `L`, `U` et `S`, dont [on sait que cela coûte très cher]({{<relref "dense_cost.md">}}), on remarque que l'on peut se passer de ...:
 
 - ... la matrice `S` en modifiant directement `U` : le bloc $U\_{k,k}$ (en "bas à droite") contiendra le complément de Schur
 - ... la matrice `L` en la stockant dans `U` et en supprimant son terme diagonal (qui vaut 1 et peut donc devenir "implicite")

@@ -26,19 +26,14 @@ math = true
 
 ## Objectif
 
-Résoudre un système linéaire triangulaire supérieur ou inférieur.
+Résoudre un système linéaire triangulaire inférieur ou supérieur.
 
 ## Préparation
 
-Comme les fonctions présentés dans ce chapitre font intervenir à la fois les matrices et les vecteurs, il semble judicieux de les placer dans des fichiers dédiés. Vous pouvez créer un fichier source et un fichier en-tête réservées aux solveurs directs, par exemple `include/direct_solvers.hpp` et `src/direct_solvers.cpp`. Cela permet de mieux compartimenter les fonctions. N'oubliez pas, alors, d'inclure les fichiers en-tête dont vous avez besoin (`Matrice.hpp` ? `Vecteur.hpp` ? ... ?)
+Il est judicieux de continuer à travailler dans les mêmes fichiers que [ceux utilisés pour les systèmes diagonaux]({{<relref "direct_diag.md">}}) et d'ajouter à la suite vos nouvelles fonctions.
 
 ## Problème
 
-Nous considérons un système linéaire $AX = b$ où la matrice $A$ est triangulaire. Pour résoudre ce problème, nous n'inversons pas la matrice $A$ car cette opération est coûteuse et nous disposons d'un algorithme permettant d'obtenir le vecteur $X$ connaissant $b$ et $A$.
-
-{{% alert note %}}
-Nous cherchons $X$ et non $A^{-1}$ ! C'est une nuance (très) importante...
-{{% /alert %}}
 
 Voici la forme globale de matrices triangulaires inférieures et supérieures  :
 $$
@@ -58,16 +53,23 @@ $$
 \end{pmatrix}}\_{\text{Triang. sup.}}.
 $$
 
+Nous considérons un système linéaire $AX = b$ où la matrice $A$ est triangulaire. Pour résoudre ce problème, nous n'inversons pas la matrice $A$ car cette opération est coûteuse et surtout, nous pouvons obtenir un algorithme performant qui, connaissant $b$ et $A$, permet d'obtenir le vecteur $X$.
+
+{{% alert note %}}
+Rappel : Nous cherchons $X$ et non $A^{-1}$ !
+{{% /alert %}}
+
+
 ## Algorithme de résolution
 
 {{% alert exercise %}}
-Écrivez (sur papier) l'algorithme permettant de résoudre le système linéaire quand la matrice est triangulaire supérieure. 
+Écrivez (sur papier) l'algorithme permettant de résoudre le système linéaire quand la matrice est triangulaire inférieure. 
 
-Par un raisonnement similaire, obtenez l'algorithme de résolution pour une matrice triangulaire inférieure.
+Par un raisonnement similaire, obtenez l'algorithme de résolution pour une matrice triangulaire supérieure.
 {{% /alert %}}
 
 {{% alert warning %}}
-Ces algorithms ne doivent en aucun cas calculer la matrice $A^{-1}$ mais uniquement le vecteur $A^{-1}b$ !
+Rappel : Ces algorithmes ne doivent en aucun cas calculer la matrice $A^{-1}$ mais uniquement le vecteur $A^{-1}b$ !
 {{% /alert %}}
 
 {{% alert tips %}}
@@ -77,31 +79,31 @@ Pour obtenir et comprendre ces algorithmes, n'hésitez pas à travailler sur une
 
 ## Implémentation
 
-### Triangulaire supérieure
+### Triangulaire Inférieure
 
-Implémentez une fonction qui prend en argument une `Matrice A`, **supposée** triangulaire supérieure, et un `Vecteur b` et qui renvoie le résultat $\texttt{A}^{-1}\texttt{b}$ :
+Implémentez une fonction qui prend en argument une `Matrice A`, **supposée triangulaire inférieure**, un `Vecteur b` et qui renvoie le résultat `X` = `A`<sup>-1</sup>`b` :
 
 ```c++
-Vecteur solve_triang_sup(const Matrice &A, const Vecteur& b);
+Vecteur solve_triang_inf(const Matrice &A, const Vecteur& b);
 ```
 {{% alert warning %}}
-Ne vérifiez pas si la matrice est bien triangulaire ou non. Une telle vérification serait nuisible pour la suite.
+**Ne vérifiez pas si la matrice est bien triangulaire** ou non. En plus de coûter cher, une telle vérification est inutile voire nuisible pour la suite.
 {{% /alert %}}
 
 
 
-### Triangulaire inférieure
+### Triangulaire Supérieure
 
-Pour une matrice triangulaire inférieure, programmez une fonction similaire en étant prudent(e) quant au sens de parcours de la `Matrice A` :
+Pour une matrice triangulaire supérieure, programmez une fonction similaire en étant prudent(e) quant au sens de parcours de la `Matrice A` :
 ```c++
-Vecteur solve_triang_inf(const Matrice &A, const Vecteur& b);
+Vecteur solve_triang_sup(const Matrice &A, const Vecteur& b);
 ```
 
-### Cas particulier d'une diagonale de 1
+### Cas particulier : Diagonale = 1
 
 Afin de faciliter ce qui suivra, construisez les deux autres fonctions suivantes :
 ```c++
-Vecteur solve_triang_sup_id(const Matrice &A, const Vecteur& b);
 Vecteur solve_triang_inf_id(const Matrice &A, const Vecteur& b);
+Vecteur solve_triang_sup_id(const Matrice &A, const Vecteur& b);
 ```
-Ces fonctions résolvent respectivement un système linéaire triangulaire supérieur ou inférieur, comme précédemment, à la différence près **que la diagonale de la `Matrice A` est supposée composée uniquement de 1**.
+Ces fonctions résolvent respectivement un système linéaire triangulaire inférieur et supérieur et tel **que la diagonale de la `Matrice A` est composée uniquement de 1**. Comme précédemment, nous ne vérifierons pas une telle propriété mais la supposerons vraie.
