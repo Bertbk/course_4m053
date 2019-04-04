@@ -136,3 +136,11 @@ L'utilisation d'un débugueur (un vrai) est conseillé, comme gdb (notez qu'il y
 ## Quelques mauvaises habitudes
 
  - Évitez le plus possible `using namespace std` : [voir ici](https://stackoverflow.com/a/1453605/14065) et surtout **à prohiber** [dans les fichiers header](https://stackoverflow.com/questions/5849457/using-namespace-in-c-headers) !
+ - Pas de `const double` en argument de fonction !
+ - Pas de `const double &` en argument de fonction !
+
+
+## Quelques liens utiles
+
+- [`friend operator<<` ou `operator<<` ?](https://stackoverflow.com/questions/236801/should-operator-be-implemented-as-a-friend-or-as-a-member-function)
+- [`operator` : méthode ou fonction ?](https://stackoverflow.com/questions/4622330/operator-overloading-member-function-vs-non-member-function)

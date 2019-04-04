@@ -85,31 +85,29 @@ double operator() (int i, int j) const; // Accès à la valeur (recopie)
 ```
 Le premier permet d'accéder au coefficient de la matrice par référence (permettant une modification ultérieure) tandis que le second ne fait que renvoyer (une copie de) la valeur du coefficient.
 
-{{% alert tips %}}
+{{% alert warning %}}
 À partir de maintenant, vous ne devriez plus jamais accéder aux coefficients via `coef_` mais uniquement via les accesseurs ! Par exemple `A(i,j) = ...`.
 {{% /alert %}}
 
 ## Opérations élémentaires
 
-En mathématique, une matrice n'est pas qu'un tableau de coefficients et des opérations comme la multiplication ou l'addition sont possibles : ne nous privons pas de les implémenter !
-
-{{% alert exercise %}}
-Améliorer votre classe `Matrice` avec les fonctionnalités suivantes :
+En mathématique, une matrice n'est pas qu'un tableau de coefficients et des opérations comme la multiplication ou l'addition sont possibles : ne nous privons pas de les implémenter :
 
 1. L'addition et la soustraction entre deux matrices en surchargeant les opérateur `+` et `-`
 2. La multiplication par une autre `Matrice`
 3. La multiplication par un scalaire
 
-Pour ces deux dernières opérations, vous pouvez soit construire un `operator` dans la classe (avec ou sans `friend`) ou à l'extérieur de celle-ci (comme pour les `Vecteur`).
+
+{{% alert exercise %}}
+En vous inspirant de ce qui a été réalisé pour la classe `Vecteur`, améliorez la classe `Matrice` avec les opérations arithmétiques précédentes (et d'autres si vous le souhaitez).
 {{% /alert %}}
 
 ## Produit Matrice-Vecteur
 
-Implémentez le produit matrice vecteur sous forme d'un `operator` :
+Implémentez le produit matrice vecteur sous forme d'un `operator*` :
 ```c++
-Vecteur operator*(const Matrice& M, const Vecteur& v);
+Vecteur operator*(const Matrice& A, const Vecteur& x);
 ```
-
 {{% alert note %}}
 N'oubliez pas, alors, d'inclure le fichier header des vecteurs.
 {{% /alert %}}
@@ -117,7 +115,7 @@ N'oubliez pas, alors, d'inclure le fichier header des vecteurs.
 {{% alert note %}}
 Quelques astuces générales :
 
-- Pensez à utiliser des références en argument pour éviter les copies inutiles d'objets qui peuvent être lourdes en mémoire, ce qui est le cas pour les matrices
-- Dans le cas des références passées en argument, pensez à les déclarer constantes dans les cas pertinents
-- De même, pensez à déclarer les méthodes de vos classes comme constantes dans les cas qui conviennent
+- Utilisez **des références en argument** pour éviter les **recopies inutiles** d'objets qui peuvent être lourdes en mémoire, ce qui est le cas pour les matrices.
+- Dans le cas des références passées en argument, **déclarez les constantes** (`const truc &`) si l'argument n'a pas vocation à être modifié par la fonction.
+- De même, déclarez **les méthodes de vos classes comme constantes** si l'objet appelant n'est pas modifié.
 {{% /alert %}}
