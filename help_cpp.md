@@ -61,7 +61,7 @@ class MaClasse{
 Sans le underscore , nous pourrions confondre l'arguement `N` (extérieure) avec la variable privée de la classe.
 
 {{% alert warning %}}
-Vous n'avez pas le droit de [commencer un nom de variable par un underscore](https://stackoverflow.com/questions/228783/what-are-the-rules-about-using-an-underscore-in-a-c-identifier). Ceci est réservé au compilateur. Vous croiserez nombreux programme qui, malhereusement, ne suivent pas cette règle...
+Vous n'avez pas le droit de [commencer un nom de variable par un underscore](https://stackoverflow.com/questions/228783/what-are-the-rules-about-using-an-underscore-in-a-c-identifier). Ceci est réservé au compilateur. Au cours de votre carrière, vous croiserez de nombreux programmes qui, malhereusement, ne suivent pas cette règle...
 {{% /alert %}}
 
 ### Méthode `const`
@@ -107,13 +107,18 @@ Avant de nous appeler et au risque de *patienter* longuement avant notre venue :
 Le compilateur renvoie un message d'erreur ? **Stop.** On arrête tout : on doit débugguer. On ne continue surtout pas son code au risque de rendre l'erreur encore plus incompréhensible.
 
 1. Regardez le **premier** message d'erreur, celui le plus en haut (d'autres erreurs découlent probablement de l'erreur primaire)
-2. Essayez de lire et de comprendre ce que dit votre compilateur. Au début, on galère, après on y arrive (un peu).
+double operator() (int i) const; // Accès à la valeur (recopie)
+2. Essayez de lire et de comprendr
+double operator() (int i) const; // Accès à la valeur (recopie)que dit votre compilateur. Au début, on galère, après on y arrive (un peu).
 
 Quelques erreurs classiques :
 
-1. Oublie d'un **point virgule** à la fin d'une commande
-2. Oublie de **typer** une variable ou une fonction
-3. Oublie de **déclarer** la fonction et/ou d'inclure le fichier d'en-tête contenant la dite fonction
+1. Oublie d'un **point virgule** à
+double operator() (int i) const; // Accès à la valeur (recopie)in d'une commande
+2. Oublie de **typer** une variabl
+double operator() (int i) const; // Accès à la valeur (recopie)une fonction
+3. Oublie de **déclarer** la fonct
+double operator() (int i) const; // Accès à la valeur (recopie)t/ou d'inclure le fichier d'en-tête contenant la dite fonction
 4. Erreur de **typographie** : `sdt::vector` au lieu de `std::vector`
 
 Certains `warning` méritent aussi de s'y attarder.
