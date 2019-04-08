@@ -19,7 +19,7 @@ math = true
 # Add menu entry to sidebar.
 [menu.4m053]
   parent = "direct_solvers"
-  name = "Factorisation LU: Pivotage"
+  name = "Factorisation LU : Pivotage"
   weight = 50
 
 +++
