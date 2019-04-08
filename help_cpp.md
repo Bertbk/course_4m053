@@ -141,11 +141,30 @@ L'utilisation d'un débugueur (un vrai) est conseillé, comme gdb (notez qu'il y
 ## Quelques mauvaises habitudes
 
  - Évitez le plus possible `using namespace std` : [voir ici](https://stackoverflow.com/a/1453605/14065) et surtout **à prohiber** [dans les fichiers header](https://stackoverflow.com/questions/5849457/using-namespace-in-c-headers) !
- - Pas de `const double` en argument de fonction !
- - Pas de `const double &` en argument de fonction !
+- Passage d'argument par recopie : en C++, les arguments sont **par défaut passés par copie***. Rendre **constant un argument passé par copie est alors inutile**. Nous banirons donc ce genre de pratique :
+
+```cpp
+... fonction(const Type T){...}
+```
+
+- Passage d'argument par référence : cette pratique permet d'envoyer non pas la valeur mais l'adresse de la variable à la fonction :
+```cpp
+... fonction(const Type &T){...}
+```
+  - Cette méthode est très intéressante quand `Type` **n'est pas élémentaire** (`double`, `float`, `int`, ...) et nécessite une taille mémoire importante (tableaux (`std::vector`) ou matrice par exemple) :
+
+```cpp
+... fonction(const std::vector<double> & v, ...){...}
+```
+  - Pour des **entités élémentaires**, c'est à la fois [**inutile et potentiellement dangereux**](https://stackoverflow.com/questions/4705593/int-vs-const-int). D'autre part, l'optimisation effectuée par le compilateur perd en efficacité avec de tels arguments. Ainsi, les prototypes de ce type seront *persona non grata* :
+
+```cpp
+... fonction(const double & d, const int & a, ...){...}
+```
 
 
 ## Quelques liens utiles
 
 - [`friend operator<<` ou `operator<<` ?](https://stackoverflow.com/questions/236801/should-operator-be-implemented-as-a-friend-or-as-a-member-function)
 - [`operator` : méthode ou fonction ?](https://stackoverflow.com/questions/4622330/operator-overloading-member-function-vs-non-member-function)
+- [`const int &` en argument de fonction ?](https://stackoverflow.com/questions/4705593/int-vs-const-int)
