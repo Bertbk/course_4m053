@@ -70,6 +70,16 @@ Quelques remarques :
 
 L'objectif est de trier par ordre croissant un tableau de N entiers positifs donné en argument. Il existe plusieurs stratégies possibles et nous proposons d'en implémenter quelques unes.
 
+{{% alert exercise %}}
+Pour chaque algorithme de tri :
+
+- Construire une fonction qui réalise le tri en respectant la structure du projet (*a priori*, placez chaque fonction dans le même fichier)
+- Vérifiez vos résultats
+
+Pour bien comprendre les algorithmes, rien ne vous empêche de les appliquer à de petits tableaux sur une feuille de papier. Cela vous permettra de bien comprendre chaque étape.
+{{% /alert  %}}
+
+
 ### Tri par sélection
 
 Cet algorithme est assez simple et consiste à :
@@ -94,12 +104,3 @@ Après un parcours du tableau, on remarque que l'élément le plus grand se situ
 ### Tri par insertion
 
 Il correspond à ce que l'on fait naturellement lorsqu'on trie des cartes à jouer. Cette stratégie est efficace avec les petits tableaux mais pas les grands. Supposons les k premiers termes du tableau triés par ordre croissant. L'objectif est d'insérer le k+1 élément à la bonne place parmi les k premiers éléments, qui sont déjà triés. Pour cela, on intervertit l'élément k et k+1, puis k-1 et k, et ainsi de suite jusqu'à ce que les k+1 premiers éléments du tableau soient triées. Puis on réitère en cherchant où insérer l'élément k+2. L'algorithme commence avec k=1.
-
-{{% alert exercise %}}
-Pour chaque algorithme de tri :
-
-- Construire une fonction qui réalise le tri en respectant la structure du projet (*a priori*, placez chaque fonction dans le même fichier)
-- Vérifiez vos résultats
-
-Pour bien comprendre les algorithmes, rien ne vous empêche de les appliquer à de petits tableaux sur une feuille de papier. Cela vous permettra de bien comprendre chaque étape.
-{{% /alert  %}}

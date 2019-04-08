@@ -137,7 +137,7 @@ En piste !
 
 {{% /alert %}}
 
-Cette arborescence et ce `Makefile` seront utilisé pour notre projet. La suite de cette partie permet de vous familiariser un peu plus avec le `C++`, l'algorithmique et le `Makefile`. 
+Cette arborescence et ce `Makefile` seront utilisés pour notre projet. La suite de cette partie permet de vous familiariser un peu plus avec le `C++`, l'algorithmique et le `Makefile`. 
 
 
 ## Quelques applications
