@@ -43,7 +43,7 @@ A(0,1) = -1;
 
 Cette méthode peut s'avérer longue, notamment pour construire des matrices sans réelles *pattern* (ou schéma) pour lesquelles l'automatisation peut s'avérer compliquée. D'autre part, la matrice peut avoir été construire *via* un autre logiciel ou une autre source comme [Matrix Market](https://math.nist.gov/MatrixMarket/).
 
-## I/O `Vecteur`
+## `Vecteur`
 
 Nous proposons le format de fichier à deux colonnes : 
 
@@ -62,9 +62,10 @@ Par exemple pour le vecteur $[1, 1.1, 1.2, 1.3, 0, 1.4]^T$
 5 1.4
 ```
 
-## I/O `Matrice`
+## `Matrice`
 
 Nous proposons le format similaire à [celui de Matrix Market](https://math.nist.gov/MatrixMarket/formats.html#mm). Similaire aux `Vecteur`, nous avons :
+
 - La première ligne contient le nombre de lignes de la `Matrice`
 - Chaque ligne est composées de trois nombres : indice ligne, indice colonne et la valeur du coefficient. 
 - **Seuls les coefficients non nuls sont indiqués !** 
@@ -93,8 +94,9 @@ serait sauvegardée dans le fichier suivant :
 ## Implémentation
 
 Pour les classes `Matrice` et `Vecteur`, nous vous conseillons vivement d'implémenter des méthodes permettant de :
-- Lire des fichiers aux formats présentés plus haut et de modifier l'objet appelant en fonction
-- Sauvegarder une `Matrice` ou un `Vecteur` sur disque au format proposé
+
+1. Lire des fichiers aux formats présentés plus haut et modifier l'objet appelant en fonction
+2. Sauvegarder une `Matrice` ou un `Vecteur` sur disque au format proposé (pour une réutilisation future)
 
 Vous pouvez aller plus loin en implémentant un constructeur qui prend en argument un nom de fichier et construit la `Matrice` ou le `Vecteur` associé. Il s'utiliserait alors de la façon suivante (exemple !) :
 

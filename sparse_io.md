@@ -34,6 +34,7 @@ Construire une matrice creuse à partir d'un fichier
 
 
 Le [format de fichier proposé précédemment]({{<relref "dense_io.md">}}) est en réalité parfaitement adapté au format COO. Implémentez, pour la classe `MatriceCOO` des méthodes permettant de :
+
 - Lire des fichiers aux formats présentés plus haut et de modifier l'objet appelant en fonction
 - Sauvegarder une `MatriceCOO` sur disque au format proposé
 
