@@ -140,26 +140,26 @@ A = L^{(0)} U^{(0)}= \ldots = L^{(k)} U^{(k)} = \ldots = L^{(N-1)} U^{(N-1)}.
 $$
 où les matrices $L^{(k)}$ et $U^{(k)}$ sont obtenues à la $k^{\text{eme}}$ itération. La petite animation suivante montre la forme de ces matrices dans le cas d'une taille N=5 :
 
-{{% div class="course_lu carousel_lu" %}}
-{{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
-{{% svg file="course/4m053/lu_algo_0.svg" %}}
-{{% /div %}}
-{{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
-{{% svg file="course/4m053/lu_algo_1.svg" %}}
-{{% /div %}}
-{{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
-{{% svg file="course/4m053/lu_algo_2.svg" %}}
-{{% /div %}}
-{{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
-{{% svg file="course/4m053/lu_algo_3.svg" %}}
-{{% /div %}}
-{{% div class="course_lu carousel-cell_lu" style="width:100%;" %}}
-{{% svg file="course/4m053/lu_algo_4.svg" %}}
-{{% /div %}}
-{{% div class="course_lu carousel-cell_lu" style="width:100%;"%}}
-{{% svg file="course/4m053/lu_algo_5.svg" %}}
-{{% /div %}}
-{{% /div %}}
+{{< div class="course_lu carousel_lu" >}}
+{{< div class="course_lu carousel-cell_lu" style="width:100%;">}}
+{{< svg file="course/4m053/lu_algo_0.svg" >}}
+{{< /div >}}
+{{< div class="course_lu carousel-cell_lu" style="width:100%;">}}
+{{< svg file="course/4m053/lu_algo_1.svg" >}}
+{{< /div >}}
+{{< div class="course_lu carousel-cell_lu" style="width:100%;">}}
+{{< svg file="course/4m053/lu_algo_2.svg" >}}
+{{< /div >}}
+{{< div class="course_lu carousel-cell_lu" style="width:100%;">}}
+{{< svg file="course/4m053/lu_algo_3.svg" >}}
+{{< /div >}}
+{{< div class="course_lu carousel-cell_lu" style="width:100%;" >}}
+{{< svg file="course/4m053/lu_algo_4.svg" >}}
+{{< /div >}}
+{{< div class="course_lu carousel-cell_lu" style="width:100%;">}}
+{{< svg file="course/4m053/lu_algo_5.svg" >}}
+{{< /div >}}
+{{< /div >}}
 
 
 ### Pseudo code
@@ -195,8 +195,7 @@ Plutôt que de stocker 3 matrices `L`, `U` et `S`, dont [on sait que cela coûte
 
 Cela donne le pseudo-code suivant :
 
-{{% div class="course_lu carousel" %}}
-{{% div class="course_lu carousel-cell" style="width:50%; margin-right: 10px;"%}}
+{{% div class="course_lu carousel" %}}{{% div class="course_lu carousel-cell" style="width:50%; margin-right: 10px;"%}}
 ```
 S = A;
 L = 0;
@@ -217,9 +216,7 @@ for k =0:N-1
     for j = k+1:N-1
       S(i,j) = S(i,j) - L(i,k)*U(k,j);
 ```
-Origine
-{{% /div %}}
-{{% div class="course_lu carousel-cell" style="width:50%; margin-right: 10px;"%}}
+Origine{{% /div %}}{{% div class="course_lu carousel-cell" style="width:50%; margin-right: 10px;"%}}
 ```
 
 L = 0;
@@ -240,9 +237,7 @@ for k =0:N-1
     for j = k+1:N-1
       U(i,j) = U(i,j) - L(i,k)*U(k,j);
 ```
-Suppression de S (stockée dans U)
-{{% /div %}}
-{{% div class="course_lu carousel-cell" style="width:50%; margin-right: 10px;"%}}
+Suppression de S (stockée dans U){{% /div %}}{{% div class="course_lu carousel-cell" style="width:50%; margin-right: 10px;"%}}
 ```
 
 
@@ -263,9 +258,7 @@ for k =0:N-1
     for j = k+1:N-1
       U(i,j) = U(i,j) - U(i,k)*U(k,j);
 ```
-Suppression de L (stockée dans U)
-{{% /div %}}
-{{% div class="course_lu carousel-cell" style="width:50%; margin-right: 10px;"%}}
+Suppression de L (stockée dans U){{% /div %}}{{% div class="course_lu carousel-cell" style="width:50%; margin-right: 10px;"%}}
 ```
 
 
@@ -286,9 +279,7 @@ for k =0:N-1
     for j = k+1:N-1
       A(i,j) -= A(i,k)*A(k,j);
 ```
-Suppression de U
-{{% /div %}}
-{{% /div %}}
+Suppression de U{{% /div %}}{{% /div %}}
 
 
 ## Implémentation en C++

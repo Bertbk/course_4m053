@@ -28,8 +28,8 @@ math = true
 
 Pour les différentes méthodes itératives standards, nous souhaitons comparer :
 
-1. Les **historiques de convergence** 
-2. Le **temps CPU** (*time to solution*)
+1. Les **historiques de convergence**
+2. Le **temps CPU** (_time to solution_)
 
 {{% alert tips %}}
 Pensez à préparer vos classes/fonctions pour [sortir et traiter vos données]({{< relref "help_format.md">}}).
@@ -38,6 +38,7 @@ Pensez à préparer vos classes/fonctions pour [sortir et traiter vos données](
 ## Problème modèle
 
 Nous utilisons toujours la matrice $A\_N$ du Laplacien, [introduite précédemment]({{<relref "dense_matrices_test.md">}}), de taille $N\times N$:
+
 $$
 A\_N =
 \begin{pmatrix}
@@ -49,13 +50,11 @@ A\_N =
 \end{pmatrix}
 $$
 
-
 ## Temps CPU
 
 Adaptez les fonctions membres `Solve()` de chaque classe de méthode itérative pour pouvoir calculer le temps d'exécution de la résolution. **Vous pouvez bien entendu ajouter des paramètres/méthodes si vous le désirez**.
 
 Naturellement, vous pouvez réutiliser [le code minimaliste proposé dans ces tps]({{<relref "help_cpu.md">}}).
-
 
 ## Historiques de Convergence
 
@@ -73,12 +72,14 @@ Vous devriez obtenir une courbe ressemblant à celle ci-dessous :
 
 Avec les résultats suivants (**le temps CPU dépend bien évidemment de l'ordinateur** et de l'implémentation !) :
 
-{{% setid "table_iterative_standard"%}}
+{{% div id="table_iterative_standard" %}}
+
 | Méthode             | Jacobi | Gauss-Seidel | Relaxation (optimal) |
 | ------------------- | ------ | ------------ | -------------------- |
-| Nombre d'itérations |   |          |                   |
-| Temps CPU (s) |   |          |                   |
-{{% /setid %}}
+| Nombre d'itérations |        |              |                      |
+| Temps CPU (s)       |        |              |                      |
+
+{{% /div %}}
 
 ## Temps CPU
 
@@ -87,7 +88,6 @@ Pour $N=10$ à $200$, avec un pas de $10$, calculez le temps CPU (en secondes) p
 
 Quelle méthode itérative est la plus rapide (en terme de secondes) ?
 {{% /alert %}}
-
 
 <script type="text/javascript" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script type="text/javascript" src="../standard_iterative.js"></script>

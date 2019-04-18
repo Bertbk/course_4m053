@@ -69,12 +69,12 @@ Vous devriez obtenir des résultats similaires à ceux ci-dessous (sauf pour le 
 
 <div id="convergence_history"></div>
 
-{{% setid "table_cg"%}}
+{{% div id="table_cg"%}}
 | Méthode             |     |     |     |     |
 | ------------------- | --- | --- | --- | --- |
 | Nombre d'itérations |     |     |     |     |
 | Temps CPU (s)       |     |     |     |     |
-{{% /setid %}}
+{{% /div %}}
 
 
 
