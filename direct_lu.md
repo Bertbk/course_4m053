@@ -10,11 +10,12 @@ type = "docs"  # Do not modify.
 
 math = true
 
+edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = "master", submodule_dir="content/course/4m053/"}
+
 [git]
   icon = "github"
   repo = "https://github.com/Bertbk/course_4m053"
-  issue = "https://github.com/Bertbk/course_4m053/issues"
-  prose = "https://prose.io/#Bertbk/course_4m053/edit/master/"
+  submodule_dir = "content/course/4m053/"
 
 # Add menu entry to sidebar.
 [menu.4m053]
