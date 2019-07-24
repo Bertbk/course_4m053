@@ -10,6 +10,10 @@ type = "docs"  # Do not modify.
 
 math = true
 
+weight = 30
+diagram = false
+#markup = "mmark"
+
 edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = "master", submodule_dir="content/course/4m053/"}
 
 [git]
