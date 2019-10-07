@@ -66,7 +66,7 @@ bool operator>(const Triplet &S, const Triplet &T);
 bool operator==(const Triplet &S, const Triplet &T);
 ```
 
-{{% thm definition "Comparaison de Triplets"%}}
+{{< thm/thm definition "Comparaison de Triplets" >}}
 Soient deux triplets S et T. Nous avons alors :
 
 - $\texttt{S} > \texttt{T}$ si et seulement si
@@ -81,7 +81,7 @@ $$
 $$
 \texttt{S.i} == \texttt{T.i} \text{ et } \texttt{S.j} == \texttt{T.j}
 $$
-{{% /thm %}}
+{{< /thm/thm >}}
 
 Autrement dit, soit les indices lignes sont différents et la comparaison est immédiate, soit les indices lignes sont identiques et on compare les indices colonnes. En cas d'égalité, nous dirons que les Triplets sont identiques, peu importe la valeur de `val`. Cependant, rappelons que ce cas posera des problèmes pour notre implémentation car nous n'autorisons pas les doublons !
 

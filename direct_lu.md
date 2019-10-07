@@ -113,7 +113,7 @@ $$
 
 Le lien entre factorisation partielle et factorisation complète est donné par le théorème suivant :
 
-{{% thm theorem %}}
+{{< thm/thm theorem >}}
 La matrice $A$ admet une factorisation $LU$ si et seulement si le bloc $A\_{0,0}$ et le complément de Schur $S\_{1,1}$ sont eux-mêmes factorisables. La décomposition $LU$ de la matrice est déterminée par les factorisations des blocs $A\_{0,0}=L\_{0,0}U\_{0,0} (=u\_{0,0})$ et $S\_{1,1} = L\_{1,1}U\_{1,1}$ selon la formule :
 $$
     \begin{pmatrix}
@@ -130,7 +130,7 @@ $$
      \end{pmatrix}
 $$
   où $L\_{1,0}$ et $U\_{0,1}$ sont ceux de la **factorisation partielle** \eqref{eq:factorisation_partielle}.
-{{% /thm %}}
+{{< /thm/thm >}}
 
 Ce théorème nous dit que dès lors qu'on arrive à décomposer un bloc de la diagonale $A\_{0,0}$ sous forme $LU$, nous n'avons plus qu'à calculer $L\_{1,0}$, $U\_{0,1}$ et $S\_{1,1}$ puis on cherche la décomposition $LU$ de $S\_{1,1}$. Autrement dit, si nous disposons d'une fonction permettant de réaliser une **factorisation partielle** d'une matrice donnée, nous pouvons envisager un algorithme itératif pour obtenir la **factorisation complète** de la matrice.
 

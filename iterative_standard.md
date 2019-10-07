@@ -14,7 +14,6 @@ weight = 230
 diagram = false
 #markup = "mmark"
 
-
 edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = "master", submodule_dir="content/course/4m053/"}
 
 [git]
