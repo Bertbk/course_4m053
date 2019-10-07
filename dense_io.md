@@ -1,5 +1,5 @@
 +++
-title = "Input / Output"
+title = "4. Input / Output"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -22,9 +22,9 @@ edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = 
 
 # Add menu entry to sidebar.
 [menu.4m053]
-  parent = "dense"
+  parent = "V. Stockage Dense"
   identifier = "io_denses"
-  name = "I/O"
+  name = "4. I/O"
   weight = 25
 
 +++

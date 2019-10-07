@@ -1,5 +1,5 @@
 +++
-title = "Analyse Numérique"
+title = "2. Analyse Numérique"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -23,8 +23,8 @@ edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = 
 
 # Add menu entry to sidebar.
 [menu.4m053]
-  parent = "iterative_solvers"
-  name = "Analyse Numérique"
+  parent = "VII. Solveurs Itératifs Stationnaires"
+  name = "2. Analyse Numérique"
   weight = 10
 
 +++

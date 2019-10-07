@@ -1,5 +1,5 @@
 +++
-title = "Introduction"
+title = "I. Introduction"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -24,7 +24,7 @@ edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = 
 
 # Add menu entry to sidebar.
 [menu.4m053]
-  name = "Introduction"
+  name = "I. Introduction"
   weight = 1
 
 
@@ -43,7 +43,7 @@ Les TPs associés au cours 4M053 "Calcul scientifique pour les grands systèmes 
 
 ### Pour le développement : `C++`
 
-Ces TPs vous demandent d'être **familié avec au moins un langage compilé** (`C`, `C++`, `Fortran`, ...) et le langage retenu ici sera le `C++`. Si vous n'êtes ni familié avec un langage compilé ni avec le `C++`, vous allez devoir **travailler dure** pour rattraper le retard : ces TPs **ne sont pas** des TPs d'informatique ! Rien n'est impossible mais nous **ne ferons pas le travail à votre place**. Nous avons mis en place [une section contenant des liens pour vous aider]({{<relref "menu_help.md">}}).
+Ces TPs vous demandent d'être **familié avec au moins un langage compilé** (`C`, `C++`, `Fortran`, ...) et le langage retenu ici sera le `C++`. Si vous n'êtes ni familié avec un langage compilé ni avec le `C++`, vous allez devoir **travailler dure** pour rattraper le retard : ces TPs **ne sont pas** des TPs d'informatique ! Rien n'est impossible mais nous **ne ferons pas le travail à votre place**. Nous avons mis en place [une section contenant des liens pour vous aider]({{<relref "help_cpp.md">}}).
 
 ### Pour l'analyse : `Python`, `Julia`, `MATLAB`, ...
 

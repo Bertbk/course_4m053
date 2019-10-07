@@ -1,5 +1,5 @@
 +++
-title = "Systèmes Diagonaux"
+title = "1. Systèmes Diagonaux"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -22,8 +22,8 @@ edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = 
 
 # Add menu entry to sidebar.
 [menu.4m053]
-  parent = "direct_solvers"
-  name = "Systèmes Diagonaux"
+  parent = "VI. Solveurs Directs"
+  name = "1. Systèmes Diagonaux"
   weight = 2
 
 +++

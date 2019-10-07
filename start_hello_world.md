@@ -1,5 +1,5 @@
 +++
-title = "Hello World!"
+title = "1. Hello World!"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -24,8 +24,8 @@ edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = 
 
 # Add menu entry to sidebar.
 [menu.4m053]
-  parent = "first_part"
-  name = "Hello World!"
+  parent = "III. Rappels & Prérequis"
+  name = "1. Hello World!"
   weight = 5
 
 +++

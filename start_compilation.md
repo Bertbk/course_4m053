@@ -1,5 +1,5 @@
 +++
-title = "Compilation : plus de détails"
+title = "2. Compilation : plus de détails"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -22,8 +22,8 @@ edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = 
 
 # Add menu entry to sidebar.
 [menu.4m053]
-  parent = "first_part"
-  name = "Compilation : plus de détails"
+  parent = "III. Rappels & Prérequis"
+  name = "2. Compilation : plus de détails"
   weight = 15
 
 

@@ -1,5 +1,5 @@
 +++
-title = "TPs : préparation"
+title = "1. Préparation"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -22,7 +22,8 @@ edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = 
 
 # Add menu entry to sidebar.
 [menu.4m053]
-  name = "TPs : préparation"
+  parent = "IV. TPs"
+  name = "1. Préparation"
   weight = 12
 
 

@@ -1,5 +1,5 @@
 +++
-title = "Gradient Conjugué Creux"
+title = "4. Gradient Conjugué Creux"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -22,8 +22,8 @@ edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = 
 
 # Add menu entry to sidebar.
 [menu.4m053]
-  parent = "sparse_matrices"
-  name = "Gradient Conjugué Creux"
+  parent = "VIIII. Matrices Creuses"
+  name = "4. Gradient Conjugué Creux"
   weight = 50
 
 +++

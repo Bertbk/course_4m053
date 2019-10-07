@@ -1,5 +1,5 @@
 +++
-title = "Factorisation LU : Pivotage"
+title = "6. Factorisation LU : Pivotage"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -22,8 +22,8 @@ edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = 
 
 # Add menu entry to sidebar.
 [menu.4m053]
-  parent = "direct_solvers"
-  name = "Factorisation LU : Pivotage"
+  parent = "VI. Solveurs Directs"
+  name = "6. Factorisation LU : Pivotage"
   weight = 50
 
 +++

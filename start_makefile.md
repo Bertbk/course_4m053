@@ -1,5 +1,5 @@
 +++
-title = "Arborescence et Makefile"
+title = "3. Arborescence et Makefile"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -22,8 +22,8 @@ diagram = false
 
 # Add menu entry to sidebar.
 [menu.4m053]
-  parent = "first_part"
-  name = "Arborescence et Makefile"
+  parent = "III. Rappels & Prérequis"
+  name = "3. Arborescence et Makefile"
   weight = 30
 
 +++

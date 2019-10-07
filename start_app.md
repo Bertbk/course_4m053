@@ -1,5 +1,5 @@
 +++
-title = "Quelques Applications"
+title = "4. Quelques Applications"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -22,8 +22,8 @@ diagram = false
 
 # Add menu entry to sidebar.
 [menu.4m053]
-  parent = "first_part"
-  name = "Quelques Applications"
+  parent = "III. Rappels & Prérequis"
+  name = "4. Quelques Applications"
   weight = 80
 
 +++
