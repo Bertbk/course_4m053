@@ -94,10 +94,16 @@ EXEC = main
 #Phony = do not represent a file
 #.PHONY: all
 all : makedir $(EXEC)
+debug : makedir $(DEBUG)
 
 # For multiple binaries
 $(EXEC) : %: %.cpp $(OBJS)
 	$(CC) $(CFLAGS) -o $(BINDIR)/$@ $^
+
+# ... With debug mode on
+$(DEBUG) : %: %.cpp $(OBJS)
+	$(CC) $(CFLAGS) -g -o $(BINDIR)/$@ $^
+
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
 	$(CC) $(CFLAGS) -c -o $@ $<
