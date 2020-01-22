@@ -69,83 +69,23 @@ Quand le projet devient important, il devient difficile de compiler tous les fic
 - [Cours sur Makefile](http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/)
 - [Manuel du logiciel `make`](https://www.gnu.org/software/make/manual/)
 
+Il vous est demandé à partir de maintenant **d'utiliser un fichier Makefile pour compiler votre projet**, nous vous recommandons d'être familié avec leur syntaxe pour pouvoir les modifier (au moins légèrement). Pour commencer, voici un exemple de `Makefile` que vous pouvez télécharger et qui vous simplifiera la compilation du projet composé des fichiers `main.cpp`, `hello_world.cpp` et `hello_world.hpp` :
 
-Il vous est demandé à partir de maintenant **d'utiliser des fichiers Makefile pour compiler vos projets**, nous vous recommandons d'être familié avec leur syntaxe pour pouvoir les modifier (au moins légèrement). Pour commencer, voici un exemple de `Makefile` présenté qui vous aidera à la compilation du projet composé des fichiers `main.cpp`, `hello_world.cpp` et `hello_world.hpp`:
-
-```makefile
-INCLDIR	:= include
-OBJDIR	:= obj
-SRCDIR	:= src
-BINDIR	:= bin
-
-CC      := g++
-VPATH	:=
-LDFLAGS :=
-LIBRARY :=
-CFLAGS  := -std=c++11 -Wall -I$(INCLDIR)
-
-#Source and object files (automatic)
-SRCS = $(wildcard $(SRCDIR)/*.cpp)
-OBJS = $(subst $(SRCDIR)/,$(OBJDIR)/, $(subst .cpp,.o, $(SRCS)))
-
-# Define here your main source files separated by spaces (without suffix!)
-EXEC = main
-
-#Phony = do not represent a file
-#.PHONY: all
-all : makedir $(EXEC)
-debug : makedir $(DEBUG)
-
-# For multiple binaries
-$(EXEC) : %: %.cpp $(OBJS)
-	$(CC) $(CFLAGS) -o $(BINDIR)/$@ $^
-
-# ... With debug mode on
-$(DEBUG) : %: %.cpp $(OBJS)
-	$(CC) $(CFLAGS) -g -o $(BINDIR)/$@ $^
-
-
-$(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-#Clean: delete every binaries and object files
-.PHONY: clean
-clean :
-	rm -rf $(OBJDIR)/*
-	rm -rf $(BINDIR)/*
-#Building folders (-p : no error if folder do not exist)
-.PHONY: makedir
-makedir :
-	mkdir -p $(BINDIR)
-	mkdir -p $(OBJDIR)
-
-#For some debug
-.PHONY: print
-print :
-	echo $(SRCS)
-	echo $(OBJS)
-
-#Remarks:
-# $@ : filename representing the target
-# $< : filename of the first prerequisite
-# $^ : filenames of all prerequisites, separated by spaces. Dupplicated are removed.
-# $? : names of all prerequisites that are newer than the target, separated by spaces
-# $+ : similar to $^ but include dupplicates
-# $* : stem of target file (filename without suffix)
-```
-
+{{% div style="text-align: center" %}}
+{{< button title="Téléchager le Makefile" src="https://plmlab.math.cnrs.fr/4m053/example/raw/master/Makefile" >}}
+{{% /div %}}
 
 Ce fichier est à mettre au même niveau que le reste des fichiers du projet. La compilation s'effectue maintenant avec un simple `make` dans le terminal au même niveau que les autres fichiers. On pourra faire `make clean` pour supprimer les fichiers objets et l'exécutable. Les binaires construits sont stockés dans le dossier `bin` (comme *binaries*) tandis que les objets (`.o`) le sont dans le dossier `obj` (*mais ceux là on ne les regarde jamais*).
 
 {{% alert exercise %}}
 En piste !
 
-1. Répartissez vos fichiers selon l'arborescence proposée
+- Répartissez vos fichiers selon l'arborescence proposée
 - Placez le `Makefile`
 - Lancez `make`
-- Admirez le résultat
-- Créez un deuxième fichier source principal à la racine (*i.e.* un fichier `.cpp` contenant une fonction `main`). Pour simplifier, copier/coller `main.cpp` en `youhou.cpp` par exemple). Modifiez le `Makefile` de manière adéquate pour compiler **en plus** ce nouveau fichier et lancez la commande `make` (ligne `EXEC`).
-- Vérifiez que le binaire a été construit et qu'il fonctionne.
+- Créez un deuxième fichier source principal à la racine (*i.e.* un fichier `.cpp` contenant une fonction `main`). Pour simplifier, copier/coller `main.cpp` en `youhou.cpp` par exemple). Modifiez le `Makefile` de manière adéquate pour compiler **en plus** ce nouveau fichier (ligne `EXEC`)
+- Lancez la commande `make` 
+- Vérifiez que le 2ème binaire a été construit et qu'il fonctionne.
 
 {{% /alert %}}
 

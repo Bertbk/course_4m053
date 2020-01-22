@@ -33,15 +33,14 @@ C'est ici que commence vraiment les tps et le projet d'implémentation d'une bib
 
 ## Préparation
 
-Nous vous conseillons de créer un nouveau dossier, par exemple `tp_4m053` dans lequel tout (absolument tout) ce qui suivra sera contenu dans ce dossier. Si vous utilisez Git, initialisez le :
+Nous vous conseillons de créer un nouveau dossier, par exemple `tp_4m053` dans lequel tout (absolument tout) ce qui suivra sera contenu dans ce dossier. Si vous utilisez Git, vous pouvez [télécharger l'exemple tout prêt](https://plmlab.math.cnrs.fr/4m053/example) proposé par nos soins (vous devrez supprimer les fichiers `main.cpp`, `src/hello.cpp` et `include/hello.hpp`) :
 ```bash
-# À lancer dans le dossier à versionner !
-git init
+git clone https://plmlab.math.cnrs.fr/4m053/example.git tp_4m053
+cd 4m053
+git remote remove origin
 ```
 
-
 ## Conservez l'arborescence (rappel)
-
 
 ```bash
 Dossier/
@@ -54,9 +53,14 @@ Dossier/
 ```
 
 - Construisez ensuite les dossiers `include` et `src` pour respectivement les fichiers *header* et les fichiers *sources* 
-- Copiez le fichier `Makefile` [introduit précédemment]({{<relref "start_makefile.md">}}) pour gérer la compilation
+- Copiez le fichier `Makefile` introduit précédemment pour gérer la compilation
 - Chaque classe doit être déclarée et définie dans un header et un fichier source qui lui sont propres et qui seront rangés respectivement dans le dossier `include` et `src`
 - Chaque fichier "main" (contenant la fonction `int main()`) doit être stocké à la racine du dossier et son nom ajouté dans le Makefile (pour être compilé).
+
+{{% div style="text-align: center" %}}
+{{< button title="Téléchager le Makefile" src="https://plmlab.math.cnrs.fr/4m053/example/raw/master/Makefile" >}}
+{{% /div %}}
+
 
 {{% alert note %}}
 La compilation s'effectue maintenant et uniquement par la commande suivante :
@@ -86,3 +90,11 @@ Un exemple simple : après avoir implémenté les matrices et vecteurs, vous dis
 
 Ce programme nous servira de référence : si, plus tard, il ne fonctionne plus, on en déduira que quelque chose a été cassé entre temps...
 {{% /alert %}}
+
+## Débuguer
+
+Une partie non négligeable de votre temps sera consacrée au *débugage*. N'hésitez pas à consulter la section [d'aide associée]({{<relref "help_debug.md">}}) et n'oubliez pas que, pour compiler en mode debug avec le `Makefile`, il suffit de faire
+```bash
+make debug
+```
+Les binaires pour le debug sont placé dans le dossier `debug`.
