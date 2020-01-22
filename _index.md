@@ -75,10 +75,10 @@ Un éditeur de textes peut intégrer un certain nombre d'outils qui peuvent vous
 
 #### Gérez vos sources avec [Git](https://git-scm.com/)
 
-Stockez votre dépôt sur [Github](https://github.com)[^1] ou [Gitlab](https://gitlab.com). Notez que des packages pour utiliser Git directement dans le traitement de textes sont disponibles pour VScode, Emacs et Vim.
+Stockez votre dépôt sur [Github](https://github.com)[^1] ou [Gitlab](https://gitlab.com). Notez que des packages pour utiliser Git directement dans le traitement de textes sont disponibles pour VScode, Emacs et Vim. Une [section d'aide y est consacrée]({{<relref "help_git.md">}}).
 
 {{% alert tips %}}
-Vous ne savez pas utiliser Git ? C'est le moment d'apprendre ! [Aidez vous de tutos](https://ljll.math.upmc.fr/infomath/tools/git/). Nous n'avons toutefois et malheureusement pas le temps d'apprendre à utiliser cet outil - pourtant extrêmement utile ! Cependant, nous sommes disponible pour vous aider. Nous vous **encourageons fortement** à apprendre à vous en servir.
+Vous ne savez pas utiliser Git ? C'est le moment d'apprendre ! Nous n'avons toutefois et malheureusement pas le temps d'apprendre à utiliser cet outil - pourtant extrêmement utile ! Cependant, nous sommes disponible pour vous aider. Nous vous **encourageons fortement** à apprendre à vous en servir.
 {{% /alert %}}
 
 [^1]: En tant qu'étudiant(e) vous pouvez souscrire au [Student Developper Pack](https://education.github.com/pack).

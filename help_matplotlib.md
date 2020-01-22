@@ -1,5 +1,5 @@
 +++
-title = "4. Visualisation : Matplotlib"
+title = "5. Visualisation : Matplotlib"
 
 date = 2018-09-09T00:00:00
 # lastmod = 2018-09-09T00:00:00
@@ -23,7 +23,7 @@ edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = 
 # Add menu entry to sidebar.
 [menu.4m053]
   parent = "II. Aides & Bonnes Pratiques"
-  name = "4. Visualisation : Matplotlib"
+  name = "5. Visualisation : Matplotlib"
   weight = 20
 
 +++
