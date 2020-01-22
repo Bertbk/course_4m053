@@ -60,7 +60,7 @@ Un autre raccourcis clavier très utile est `Ctrl + C`  pour annuler le programm
 
 1. Ouvrez un terminal
 2. Utilisez la commande `pwd` pour vous situer dans l'arborescence
-3. Déplacez vous à l'endroit de votre choix à l'aide de `d`
+3. Déplacez vous à l'endroit de votre choix à l'aide de `cd`
 4. Créez un répertoire `Test` avec la commande `mkdir Test`
 {{% /alert %}}
 
