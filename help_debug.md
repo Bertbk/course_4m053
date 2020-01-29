@@ -48,7 +48,7 @@ Lorsqu'il est lancé, GDB permet d'exécuter un code pas à pas, ou alors de le 
 Compiler (et exécuter) en mode débug est beaucoup plus lent qu'en mode standard ! N'utilisez cette option qu'en cas de débug.
 {{% /alert %}}
 
-La première chose à faire est de compiler en mode débug avec l'option `-g`. Le [`Makefile` proposé]({{<relref "start_makefile.md">}}) dispose déjà de l'option nativement, il suffit de compiler avec l'argument `debug` :
+La première chose à faire est de compiler en mode débug avec l'option `-g`. Le [`Makefile` proposé]({{<relref "projet.md">}}) dispose déjà de l'option nativement, il suffit de compiler avec l'argument `debug` :
 
 ```makefile
 make debug

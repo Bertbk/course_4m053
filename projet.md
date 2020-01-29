@@ -29,58 +29,76 @@ edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = 
 
 +++
 
-C'est ici que commence vraiment les tps et le projet d'implémentation d'une bibliothèque. 
+C'est ici que commence vraiment les tps et le projet d'implémentation d'une bibliothèque. Mais avant de se lancer dans la programmation proprement dite, prenez 2 minutes pour préparer votre *workflow*.
 
-## Préparation
+## Arborescence & Makefile
 
-Nous vous conseillons de créer un nouveau dossier, par exemple `tp_4m053` dans lequel tout (absolument tout) ce qui suivra sera contenu dans ce dossier. Si vous utilisez Git, vous pouvez [télécharger l'exemple tout prêt](https://plmlab.math.cnrs.fr/4m053/example) proposé par nos soins (vous devrez supprimer les fichiers `main.cpp`, `src/hello.cpp` et `include/hello.hpp`) :
-```bash
-git clone https://plmlab.math.cnrs.fr/4m053/example.git tp_4m053
-cd 4m053
-git remote remove origin
-```
-
-## Conservez l'arborescence (rappel)
-
-```bash
-Dossier/
-    └── Makefile     # Fichier Makefile
-    └── *.cpp        # Fichiers contenant "int main()"
-    └── include/     # Contient les fichiers header
-          └── *.hpp
-    └── src/         # Contient les fichiers sources
-          └── *.cpp
-```
-
-- Construisez ensuite les dossiers `include` et `src` pour respectivement les fichiers *header* et les fichiers *sources* 
-- Copiez le fichier `Makefile` introduit précédemment pour gérer la compilation
-- Chaque classe doit être déclarée et définie dans un header et un fichier source qui lui sont propres et qui seront rangés respectivement dans le dossier `include` et `src`
-- Chaque fichier "main" (contenant la fonction `int main()`) doit être stocké à la racine du dossier et son nom ajouté dans le Makefile (pour être compilé).
+- Créez un nouveau dossier, par exemple `tp_4m053`, dans lequel tout (absolument tout) ce qui suivra sera contenu dans ce dossier. 
+- Notre projet de bibliothèque contiendra de nombreux fichiers, il est donc important de disposer d'un bon système de rangement. Pour cela, nous proposons de :
+  -  Placer les fichiers header (`.hpp`) dans un dossier `include` et les fichiers source (`.cpp`) dans un dossier `src`
+  -  Chaque fichier qui contient la fonction `main()` sera compilé pour fournir un binaire et sera stocké à la racine du dossier.
+  -  Chaque classe disposera d'un fichier header et d'un fichier source. Par exemple pour la classe `Vecteur` :  `src/vecteur.cpp` et `include/vecteur.hpp`. Ne mélangez pas 2 classes dans un même fichier !
+- Compiler toutes la bibliothèque en utilisant directemenet `g++` *à la main* serait laborieux. **À partir de maintenant**, nous utiliserons [un fichier `Makefile`](https://en.wikipedia.org/wiki/Makefile). C'est un type de fichier utilisé par le programme `make` qui permet d'exécuter un ensemble d'actions. Il permet notamment d'automatiser la compilation des fichiers séparés, de telle sorte qu'une commande unique suffise pour ne (re)compiler que les fichiers nécessaires.  Nous vous en fournissons un que vous pouvez télécharger avec le lien ci-dessous et ensuite le placer à la racine de votre dossier :
 
 {{% div style="text-align: center" %}}
 {{< button title="Téléchager le Makefile" src="https://plmlab.math.cnrs.fr/4m053/example/raw/master/Makefile" >}}
 {{% /div %}}
 
 
-{{% alert note %}}
-La compilation s'effectue maintenant et uniquement par la commande suivante :
+Au final, votre arborescence ressemble à cela :
+
 ```bash
-make
+tp_4m053/
+    └── Makefile        # Fichier makefile
+    └── main.cpp        # Fichiers contenant "int main()"
+    └── test.cpp        # Fichiers contenant "int main()"
+    └── ...             
+    └── include/     # Contient les fichiers header
+          └── vecteur.hpp
+    └── src/         # Contient les fichiers sources
+          └── vecteur.cpp
 ```
-En cas de succès, les fichiers binaires (exécutables) sont stockés dans le dossier `bin`. Pour les lancer :
+
+Et la compilation de vos programmes s'effectue avec un simple `make` dans le terminal au même niveau que les autres fichiers :
+
 ```bash
-bin/mon_executable
+make # compilation
+bin/main # exécution (si le fichier compilé s'appelle main évidemment)
 ```
+
+
+{{% alert tips %}}
+
+Pour compiler un nouveau fichier "main", il faut modifier la ligne `EXEC = main` et ajouter, à la suite et espacé d'un "espace", le nom des fichiers (*e.g.* `EXEC = main test`). D'autres commandes sont de plus disponibles :
+
+- `make clean` : pour supprimer les fichiers objets et l'exécutable. Les binaires construits sont stockés dans le dossier `bin` (comme *binaries*) tandis que les objets (`.o`) le sont dans le dossier `obj` (*mais ceux là on ne les regarde jamais*)
+- `make debug` : pour [compiler en mode debug]({{<relref "help_debug.md">}}), les binaires ainsi compilés sont placés dans le dossier `debug`.
 {{% /alert %}}
 
 {{% alert tips %}}
-Il peut être parfois bon de supprimer tous les fichiers binaires et objets :
+Si vous utilisez Git, vous pouvez [télécharger l'exemple tout prêt](https://plmlab.math.cnrs.fr/4m053/example) proposé par nos soins (vous devrez supprimer les fichiers `main.cpp`, `src/hello.cpp` et `include/hello.hpp`) :
 ```bash
-make clean
+git clone https://plmlab.math.cnrs.fr/4m053/example.git tp_4m053
+cd 4m053
+git remote remove origin
 ```
 {{% /alert %}}
 
-## Multipliez les exécutables
+
+## Conseils
+
+### Éditeur de textes
+
+Sur les machines de l'université, [Emacs](https://www.gnu.org/software/emacs/) est accessible et sera votre meilleur allié (par rapport à `gedit` par exemple ...) :
+
+- Découpage de la fenêtre
+- Indentation automatique
+- ...
+
+Sur vos machines personnelles, [Emacs](https://www.gnu.org/software/emacs/) est bien entendu installable. Si vous préférez un logiciel plus *user-friendly*, nous vous conseillons l'excellent [VS Code](https://code.visualstudio.com/) avec ses extensions, notamment pour le `C++`.
+
+
+### Multipliez les exécutables
 
 
 Crééez autant de fichiers "main" que vous voulez ! Évitez surtout d'avoir un programme "main" gigantesque avec de grosses portions commentées selon les cas tests ! Préférez plusieurs petits programmes réalisant de petites opérations.
@@ -91,10 +109,14 @@ Un exemple simple : après avoir implémenté les matrices et vecteurs, vous dis
 Ce programme nous servira de référence : si, plus tard, il ne fonctionne plus, on en déduira que quelque chose a été cassé entre temps...
 {{% /alert %}}
 
-## Débuguer
+### Utilisez `git` ...
 
-Une partie non négligeable de votre temps sera consacrée au *débugage*. N'hésitez pas à consulter la section [d'aide associée]({{<relref "help_debug.md">}}) et n'oubliez pas que, pour compiler en mode debug avec le `Makefile`, il suffit de faire
-```bash
-make debug
-```
-Les binaires pour le debug sont placé dans le dossier `debug`.
+... Et faites de nombreux commits (et *pushez* sur votre serveur !). N'hésitez pas à vous référez [à la section d'aide]({{< relref "help_git.md">}}).
+
+### `Makefile`
+
+Voici quelques liens pour vous familiariser avec les `Makefile` :
+
+- [Developpez.com](http://gl.developpez.com/tutoriel/outil/makefile/)
+- [Cours sur Makefile](http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/)
+- [Manuel du logiciel `make`](https://www.gnu.org/software/make/manual/)
