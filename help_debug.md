@@ -40,7 +40,7 @@ Lorsqu'il est lancé, GDB permet d'exécuter un code pas à pas, ou alors de le 
 
 - D'accéder aux valeurs des variables en mémoire et leur adresse mémoire
 - De remonter la trace (_backtrace_) de la fonction ayant causé l'erreur
-- Placer des points d'arrêt (_breakpoints_) dans le programme, pour lancer le programme pas à pas
+- Placer des points d'arrêt (_breakpoints_) dans le programm  e, pour lancer le programme pas à pas
 
 ## Compiler en mode debug
 

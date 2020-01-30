@@ -10,8 +10,7 @@ type = "docs"  # Do not modify.
 
 math = true
 weight = 120
-diagram = false
-#markup = "mmark"
+diagram = true
 
 edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = "master", submodule_dir="content/course/4m053/"}
 
@@ -129,7 +128,10 @@ Vecteur::Vecteur(const Vecteur &v){
 
 Voici deux méthodes qui nous seront utiles
 
-- Méthode constante qui renvoie la taille du `Vecteur`
+- Méthode constante qui renvoie la taille du `Vecteur`, par exemple
+```c++
+int size() const;
+```
 - Accesseurs :
 
 ```c++
@@ -151,34 +153,46 @@ C'est parti :
 
 ## Affichage
 
-Afficher un `Vecteur` (ses coefficients et/ou toute autre info utile) dans le terminal nous sera utile, ne serait-ce que pour l'étape de vérification. Vous disposez de plusieurs choix pour se faire :
-
-1. Par une méthode qui affiche le `Vecteur`, du nom que vous souhaitez
-2. Par une surcharge de [l'opérateur de flux](https://stackoverflow.com/questions/236801/should-operator-be-implemented-as-a-friend-or-as-a-member-function) `operator<<` :
+Afficher un `Vecteur` (ses coefficients et/ou toute autre info utile) dans le terminal nous sera utile, ne serait-ce que pour l'étape de vérification. Vous disposez de plusieurs choix pour se faire, la méthode la plus adaptée au `C++` est la surcharge de l'opérateur de flux sortant `<<`.
 
 ```cpp
 class Vecteur{
   [...]
-  friend std::ostream & operator<<(std::ostream &os, const Vecteur& v);
-  [...]
 };
+// En dehors de la classe Vecteur (mais dans le même fichier)
+std::ostream & operator<<(std::ostream &os, const Vecteur& v);
 ```
-
-La deuxième méthode a l'avantage de pouvoir *chaîner* les opérations :
+Le fait de retourner un `std::ostream` (typiquement `std::cout`) présente l'avantage de pouvoir *chaîner* les opérations :
 ```cpp
 Vecteur v;
 [...]
 std::cout << "Mon vecteur : " << v << std::endl;
 ```
-Mais aussi de pouvoir s'utiliser de la même manière pour imprimer sur disque (au lieu `std::cout` il suffit de choisir un *file stream*).
+La surcharge de l'opérateur de flux sortant permet aussi de choisr le flux : affichage sur le terminal, écriture sur un fichier, ...
+
+
+{{% alert exercise %}}
+Implémentez la méthode d'affichage et validez la (=compiler + exécuter).
+{{% /alert %}}
 
 {{% alert note %}}
 La commande `const Vecteur &v` permet d'envoyer le `Vecteur` `v` par référence (plutôt que par copie), le mot clé `const` nous garanti qu'il ne sera pas modifié par la fonction appelante.
 {{% /alert %}}
 
-{{% alert exercise %}}
-Implémentez une méthode d'affichage et validez la.
+{{% alert note %}}
+
+To be `friend` or not to be ? Parfois cet surcharge d'opérateur est déclarée à l'intérieur de la classe `Vecteur` auquel on adjoint le mot clé `friend` :
+```cpp
+class Vecteur{
+  [...]
+  friend std::ostream & operator<<(std::ostream &os, const Vecteur& v);
+};
+```
+Une fonction (et non méthode) `friend` est une fonction qui a le droit d'accéder aux données privées de la classe "amie" (ici `Vecteur`). En pratique, ce n'est pas forcément une bonne idée [comme expliqué sur StackOverflow](https://stackoverflow.com/questions/236801/should-operator-be-implemented-as-a-friend-or-as-a-member-function) car cela brise l'encapsulation (la privatisation des données). 
+
+La règle est la suivante : utilisez le mot clé `friend` **si et seulement si** vous avez un besoin impérieux d'accéder aux données privées (et en général cela se fait via une méthode d'accès aux données comme notre fonction `size()` décrite plus haut).
 {{% /alert %}}
+
 
 ## Opérations arithmétiques
 
@@ -189,36 +203,18 @@ Implémentez une méthode d'affichage et validez la.
 3. Le produit entre un scalaire (`double`) et un `Vecteur` : `operator*`
 4. Le produit scalaire entre deux `Vecteur` : `operator*`
 
-Mathématiquement, ces opérations sont des *opérations binaires*, qui nécessitent deux arguments. Informatiquement, nous avons le choix de définir certaines d'entre elles de manière *unaire* ou *binaire*, c'est à dire :
+Mathématiquement, ces opérations sont des *opérations binaires*, qui nécessitent deux arguments. Informatiquement, nous avons le choix de définir certaines d'entre elles de manière *unaire* ou *binaire*, c'est à dire sous forme de méthodes ou de fonctions. 
 
-1. Comme fonction de classe **unaire** (= un argument). Dans ce cas, le deuxième argument est implicite et il s'agit de l'objet appelant (`*this`) :
-        
-        class Vecteur{
-          [...]
-          public: 
-            Vecteur operator+(const Vecteur &w) const;
-            [...]
-        };
-        
-2. Comme fonction de classe **binaire** (= deux arguments) mais avec le mot clé `friend `, qui permet **d'accéder aux paramètres** (même privés) des arguments. La fonction n'est en réalité plus une fonction de classe (méthode).
+Pour rester proche des mathématiques, nous conseillons plutôt de définir ces opérateurs sous forme binaire. Comme nous avons définit un `operator()` qui permet d'accéder aux coefficients d'un `Vecteur`, nous n'avons aucune raison d'utiliser le mot clé `friend` et conservons ainsi le principe d'encapsulation cher au `C++`. Plus d'infos sont disponibles [sur cette discussion](https://stackoverflow.com/questions/4622330/operator-overloading-member-function-vs-non-member-function) :
 
-        class Vecteur{
-          [...]
-          public: 
-            friend Vecteur operator+(const Vecteur &v, const Vecteur &w);
-            [...]
-        };
+```cpp
+class Vecteur{
+  [...]
+};
+// En dehors de la classe Vecteur
+Vecteur operator+(const Vecteur &v, const Vecteur &w);
+```
 
-3. Comme fonction **binaire** en dehors de la classe. Cette procédure conserve le principed 'encapsulation puisque la fonction n'a pas accès aux données privés des arguments (`Vecteur`) : 
-
-        class Vecteur{
-          [...]
-        };
-        Vecteur operator+(const Vecteur &v, const Vecteur &w);
-
-Pour rester proche des mathématiques, nous conseillons plutôt les options 2. ou 3. Utilisez l'option 2., c'est à dire le mot clé `friend`, si (et seulement si) vous **avez besoin d'accéder aux paramètres privés de l'objet**. Plus d'infos sont disponibles [sur cette discussion](https://stackoverflow.com/questions/4622330/operator-overloading-member-function-vs-non-member-function).
-
-Comme nous avons définit un `operator()` qui permet d'accéder aux coefficients d'un `Vecteur`, nous n'avons aucune raison d'utiliser la méthode 2. et le mot clé `friend`. Nous privilégierons donc la méthode 3.
 
 {{% alert exercise %}}
 Déclarez et définissez les opérateurs arithmétiques habituels pour les `Vecteur`. Pour le produit avec un scalaire, regardez le **warning** ci-dessous.
@@ -229,17 +225,13 @@ Déclarez et définissez les opérateurs arithmétiques habituels pour les `Vect
 Validez, validez, validez puis re-validez, tous vos `operator` **avant** de passer à la suite.
 {{% /alert %}}
 
-{{% alert warning %}}
-**Ne définissez jamais** plusieurs opérateurs pour la même opération ! Autrement dit, n'implémentez pas les méthodes 1., 2. et 3. mais une seule !
-{{% /alert %}}
-
 
 {{% alert warning %}}
 **Remarque sur la Multiplication par un Scalaire.** 
 
-En C++, `v*alpha` et `alpha*v` sont deux opérations différentes et doivent toutes deux être définies correctement ! Autrement dit, vous devez définir un `operator*` correspondant à ces deux opérations, bien que le code sera identique.
+En C++, `v*alpha` et `alpha*v` sont deux opérations différentes et doivent toutes deux être définies correctement ! Autrement dit, vous devez définir un `operator*` correspondant à ces deux opérations, bien que le code soit identique. 
 
-Supposons que vous ne définissez que l'un des deux, par exemple : 
+Pourquoi ? Supposons que vous ne définissez que l'un des deux, par exemple : 
 ```cpp
 Vecteur operator*(const Vecteur &v, double alpha);
 ```
@@ -257,5 +249,19 @@ Vecteur operator*(double alpha, const Vecteur &v);
 ```
 {{% /alert %}}
 
+## Résumé en diagrame
 
-
+{{< diagram >}}
+classDiagram
+  class Vecteur{
+    -int N_
+    -std::vector double coef_
+    +Vecteur()
+    +Vecteur(int N)
+    +Vecteur(const Vecteur & )
+    +~Vecteur()
+    +int size() const
+    +double operator()(int i) const
+    + & double operator()(int i)
+    }
+{{< /diagram >}}

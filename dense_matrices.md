@@ -10,7 +10,7 @@ type = "docs"  # Do not modify.
 
 math = true
 weight = 130
-diagram = false
+diagram = true
 #markup = "mmark"
 
 edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = "master", submodule_dir="content/course/4m053/"}
@@ -36,7 +36,7 @@ edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = 
 
 ## Fichiers
 
-Tout comme les vecteurs, il est largement préférable de créer un fichier header et un fichier source pour les matrices. 
+Tout comme les vecteurs, il est largement préférable de créer un fichier header et un fichier source pour les matrices.
 
 ## Stockage
 
@@ -47,55 +47,52 @@ La classe `Matrice` représente des matrices **carrées** (uniquement) et les st
 
 Les coefficients sont stockés de la façon suivante. Le coefficient positionné en $(i,j)$ dans la matrice sera à la position `j+i*N_` dans le vecteur de coefficients, où `N_` est le nombre de colonnes ou de lignes.
 
-Comme pour la classe `Vecteur`, la classe `Matrice` comporte des constructeurs :
-```c++
-Matrice (); // constructeur vide
-Matrice (int N); // constructeur créant une matrice nulle de taille N
-Matrice (const Matrice & M); // constructeur par recopie
-```
-et un destructeur 
-```c++
-~Matrice() = default;
-```
-
-Le fichier header pour les matrices ressemble à
+Comme pour la classe `Vecteur`, la classe `Matrice` comporte des constructeurs et son fichier header ressemble ainsi à ceci
 
 ```cpp
 // Fichier include/matrice.hpp
 #pragma once
-#include<vector> // pour les std::vector
+#include<vector>   // pour les std::vector
+#include<iostream> // pour std::ostream
 
 class Matrice{
 private:
   int N_;
   std::vector<double> coef_;
-public: 
+public:
   Matrice (); // constructeur vide
   Matrice (int N); // constructeur créant une matrice nulle de taille N
   Matrice (const Matrice & M); // constructeur par recopie
   ~Matrice() = default;
 };
+
+std::ostream & operator<<(std::ostream & os, const Matrice &A);
+
 ```
 
 ## Quelques méthodes
 
-- Méthode (constante) qui renvoie la taille de la matrice
-- Méthode (constante) qui affiche la matrice dans le terminal
-- Accesseurs :
-
+1. Méthode (constante) qui renvoie la taille de la matrice
+2. Les 2 accesseurs (l'un pour modifier, l'autre pour obtenir la valeur) :
 ```c++
 double & operator() (int i, int j);     // Accès à la référence
 double operator() (int i, int j) const; // Accès à la valeur (recopie)
 ```
-Le premier permet d'accéder au coefficient de la matrice par référence (permettant une modification ultérieure) tandis que le second ne fait que renvoyer (une copie de) la valeur du coefficient.
+3. Une Fonction qui affiche la matrice dans le terminal en utilisant les flux (en utilisant l'opérateur `(i,j)` et non directement `coef_` !)
+```c++
+std::ostream & operator<<(std::ostream & os, const Matrice &A);
+```
 
 {{% alert warning %}}
-À partir de maintenant, vous ne devriez plus jamais accéder aux coefficients via `coef_` mais uniquement via les accesseurs ! Par exemple `A(i,j) = ...`.
+À partir de maintenant, vous ne devriez plus jamais accéder aux coefficients via `coef_` mais **uniquement via l'opérateur `()`** !
+
+En effet, si nous décidons de modifier la façon dont sont stockés les coefficients, nous aurons à répercuter cette modification  **uniquement** dans les `operator()`.
 {{% /alert %}}
+
 
 ## Opérations élémentaires
 
-En mathématique, une matrice n'est pas qu'un tableau de coefficients et des opérations comme la multiplication ou l'addition sont possibles : ne nous privons pas de les implémenter :
+En mathématique, une matrice n'est pas qu'un tableau de coefficients et des opérations comme la multiplication ou l'addition sont possibles : ne nous privons pas de les implémenter ! Comme pour la classe `Vecteur`, nous vous invitons à définir ses fonctions **en dehors de la classe `Matrice`** et **sans utiliser de `friend`** :
 
 1. L'addition et la soustraction entre deux matrices en surchargeant les opérateur `+` et `-`
 2. La multiplication par une autre `Matrice`
@@ -123,3 +120,21 @@ Quelques astuces générales :
 - Dans le cas des références passées en argument, **déclarez les constantes** (`const truc &`) si l'argument n'a pas vocation à être modifié par la fonction.
 - De même, déclarez **les méthodes de vos classes comme constantes** si l'objet appelant n'est pas modifié.
 {{% /alert %}}
+
+
+## Résumé en diagrame
+
+{{< diagram >}}
+classDiagram
+  class Matrice{
+    -int N_
+    -std::vector double coef_
+    +Matrice()
+    +Matrice(int N)
+    +Matrice(const Matrice & )
+    +~Matrice()
+    +int size() const
+    +double operator()(int i, int j) const
+    + & double operator()(int i, int j)
+    }
+{{< /diagram >}}
