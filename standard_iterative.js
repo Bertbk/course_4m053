@@ -1,27 +1,3 @@
-//Credit :
-//https://codepen.io/KryptoniteDove/post/load-json-file-locally-using-pure-javascript
-function loadJSON(callback) {   
-
-  var xobj = new XMLHttpRequest();
-      xobj.overrideMimeType("application/json");
-  xobj.open('GET', '../data_standard_iterative.json', true); 
-  xobj.onreadystatechange = function () {
-        if (xobj.readyState == 4 && xobj.status == "200") {
-          callback(xobj.responseText);
-        }
-  };
-  xobj.send(null);  
-}
-
-
-function makeplot() {
-  loadJSON(function(response) {
-    // Parse JSON string into object
-      var data = JSON.parse(response);
-      makePlotly(data);
-    });
-};
-
 var layout = {
   title: {text:'Historique de convergence'},
   xaxis: {
@@ -53,4 +29,5 @@ function makePlotly(data){
   Plotly.newPlot('convergence_history', traces,layout, {responsive: true});
 };
 
-makeplot();
+// data is assumed to be already loaded
+makePlotly(data);

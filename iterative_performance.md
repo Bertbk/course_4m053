@@ -14,6 +14,8 @@ weight = 250
 diagram = false
 #markup = "mmark"
 
+plotly = true
+
 edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = "master", submodule_dir="content/course/4m053/"}
 
 [git]
@@ -94,5 +96,5 @@ Pour $N=10$ à $200$, avec un pas de $10$, calculez le temps CPU (en secondes) p
 Quelle méthode itérative est la plus rapide (en terme de secondes) ?
 {{% /alert %}}
 
-<script type="text/javascript" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript" src="../data_standard_iterative.js"></script>
 <script type="text/javascript" src="../standard_iterative.js"></script>
