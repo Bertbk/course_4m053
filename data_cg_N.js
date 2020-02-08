@@ -1,4 +1,4 @@
-{
+data={
   "CG = f(N)" : {
     "method" : "Gradient Conjugué",
     "tol" : 0.001000,

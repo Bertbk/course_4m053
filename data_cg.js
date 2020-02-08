@@ -1,4 +1,4 @@
-{
+data={
   "Jacobi" : {
     "method" : "Jacobi",
     "N" : 1000,
