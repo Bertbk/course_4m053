@@ -24,7 +24,7 @@ edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = 
 [menu.4m053]
   parent = "V. Stockage Dense"
   identifier = "io_denses"
-  name = "4. I/O"
+  name = "4. Input / Output"
   weight = 25
 
 +++

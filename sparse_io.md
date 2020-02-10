@@ -24,7 +24,7 @@ edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = 
 [menu.4m053]
   parent = "VIIII. Matrices Creuses"
   identifier = "io_sparse"
-  name = "3. I/O"
+  name = "3. Input / Output"
   weight = 45
 
 +++
