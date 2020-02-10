@@ -168,7 +168,7 @@ int main(){
   j["gauss"]["N"] = 4;
   j["gauss"]["niter"] = 2;
   j["gauss"]["resvec"] = resvec_gauss;
-  j["gauss"]["cputime"] = 1.397;
+  j["gauss"]["cputime"] = gauss_cpu;
 
   std::ofstream f("data.json");
   // std::setw(2) impose tabulation = 2 espace (plus joli)
