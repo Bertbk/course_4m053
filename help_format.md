@@ -29,7 +29,6 @@ edit_page = {repo_url = "https://github.com/Bertbk/course_4m053", repo_branch = 
 
 +++
 
-https://github.com/nlohmann/json
 ## Contexte
 
 Nous serons amenés à calculer des quantités d'intérêts de différents types comme :
@@ -99,7 +98,6 @@ Une clé peut aussi faire référence à un objet, entouré alors d'accolades, c
 
 Nous pouvons concaténer ainsi plusieurs résultats de simulations dans un même fichier :
 
-
 ```json
 {
   "jacobi": {
@@ -124,147 +122,109 @@ Nous pouvons concaténer ainsi plusieurs résultats de simulations dans un même
 Selon les lecteurs JSONS, il n'est pas nécessaire que le dernier élément se termine par une virgule `,`. Cependant, en Python, il faut éviter de placer une virgule à chaque dernier élément d'une liste.
 {{% /alert %}}
 
-## *Writer* JSON
+## JSON : Input/Output (I/O)
 
-Il existe naturellement des [parser JSON pour le C++](https://github.com/nlohmann/json), cependant nous proposons d'apprendre à le faire nous même, étant donné nos besoins "minimes".
-
-Nous pouvons créer un writer "manuellement", c'est à dire ouvrir un fichier et le remplir au fur et à mesure de vos besoins : cela fonctionnera parfaitement.
-
-
-{{% alert tips %}}
-Vous pouvez vous aider de lecteur en ligne pour mieux comprendre le format, comme [jsonviewer](http://jsonviewer.stack.hu/), et valider les fichiers de sortie.
-{{% /alert %}}
-
-Nous proposons une classe `JSON` relativement simple qui ajoute les données ligne par ligne dans le fichier de sortie. Cela simplifie les méthodes mais rend impossible la modification a posteriori de données déjà imprimées sur disque : à l'utilisateur / utilisatrice d'utiliser correctement cette classe. Nous vous fournissons les débuts, à vous de l'adapter pour ajouter d'autres fonctionnalités. Nous vous fournissons les fichiers `src/JSON.cpp` et `include/JSON.hpp` permettant de créer cette classe avec le constructeur de base ainsi qu'une méthode pour ajouter des entiers.
-
-### `JSON.hpp`
-
-```cpp
-#pragma once
-#include<fstream>
-#include<string>
-class JSON{
-private:
-  std::ofstream file_;
-  bool comma_add_;   // Should we place a comma between two JSON::add ?
-  bool comma_start_; // same for JSON::start
-public:
-  JSON(std::string filename); // Constructeur  
-  void start(std::string key); // Début d'un jeu de données
-  void end(); // Clôture d'un jeu de données
-  void add(std::string key, int val); // Ajout d'une donnée de type int
-  void close();  // Fermeture du fichier
-};
-```
-
-### `JSON.cpp`
-
+Nous utilisons un parser JSON pour le C++ [disponible sur Github](https://github.com/nlohmann/json). Très simple à utiliser, vous devez uniquement télécharger [le fichier *header* json.hpp](https://raw.githubusercontent.com/nlohmann/json/develop/single_include/nlohmann/json.hpp) et le placer dans votre dossier `include`. Ensuite, il vous suffit de l'inclure via
 ```cpp
 #include "json.hpp"
-#include <string>
-//Constructeur
-JSON::JSON(std::string filename)
-{
-  file_.open(filename, std::ofstream::out);
-  file_ << "{";
-  comma_add_ = false;
-  comma_start_ = false;
-}
-
-// Fermeture du fichier
-void JSON::close(){
-  if(file_.is_open())
-    {
-      file_ << "\n}";
-      file_.close();
-    }
-}
-
-// Début d'un jeu de données
-void JSON::start(std::string key){
-  if(file_.is_open())
-    {
-      if(comma_start_)
-	file_ << ",";
-      file_ << "\n  \"" << key << "\" : {";
-      comma_start_ = true; // Le prochain appel à JSON::start écrira une virgule
-      comma_add_ = false;  // Mais pas le prochain appel à JSON::add()
-    }
-}
-
-// Clôture d'un jeu de données
-void JSON::end(){
-  if(file_.is_open())
-    {
-    file_ << "\n  }";
-    comma_add_ = false; // Le prochain appel à JSON::add n'écrira pas de virgule
-    }
-}
-
-// Ajout d'une donnée de type int
-void JSON::add(std::string key, int val){
-  if(file_.is_open())
-    {
-      if(comma_add_)
-	file_ << ",";
-      file_ << "\n    \"" << key << "\" : " << std::to_string(val);
-      comma_add_ = true; // Pas de virgule pour les prochains appels
-    }
-}
+// for convenience
+using json = nlohmann::json;
 ```
-{{% alert tips %}}
-Un des soucis est la virgule en fin de ligne : doit-on la placer ou non ? Ce problème est ici contourné par l'ajout de deux paramètres de type `bool` permettant de détecter si `JSON::start()` a déjà été appelé ou non, de même pour `add()` au sein d'un jeu de données.
+
+Les opérateurs de flux entrant et sortant, il est très facile d'écrire sur disque et de lire un tel fichier.
+
+{{% alert warning %}}
+Du fait de notre configuration, **vous ne pouvez pas inclure** `json.hpp` dans **un fichier source** `.cpp` placé dans le dossier `src` ! En effet cela pourrait amener à une erreur de compilation (multiple définitions de fonctions) : le fichier `json.hpp` sera compilé autant de fois qu'il sera appelé...
+
+Réservez `json.hpp` **uniquement** pour vos fichiers principaux (contenant la fonction `main()`).
 {{% /alert %}}
 
-
-{{% alert note %}}
-Le programme que nous vous fournissons ne peut ajouter que des entiers, à vous de rajouter des méthodes `JSON::add(...)` pour pouvoir ajouter des `std::vector<double>` ou autre...
-{{% /alert %}}
-
-### Exemple d'utilisation
+### Écriture : exemple
 
 ```cpp
-//Les données sont écrites ici en "dure" pour l'exemple...
-int N=4;
-std::vector<double> resvecJ = {12.1, 8.2, 5.4, 3.2};
-std::vector<double> resvecG = {6.1, 2.2};
-//
-JSON json("sortie.json");
-//Jacobi
-json.start("jacobi");
-json.add("method", "jacobi");
-json.add("N", 4);
-json.add("n_iter", static_cast<int>(resvecJ.size());
-json.add("resvec", resvecJ);
-json.add("cpu_time", 3.2323);
-json.end()
-//Gauss
-json.start("gauss");
-json.add("method", "Gauss");
-json.add("N", 2);
-json.add("n_iter", static_cast<int>(resvecG.size());
-json.add("resvec", resvecG);
-json.add("cpu_time", 1.397);
-json.end();
-json.close();
+#include <iomanip> // Pour std::setw(2)
+#include <fstream>
+#include <vector>
+#include "json.hpp"
+
+// for convenience
+using json = nlohmann::json;
+
+int main(){
+  //Jacobi
+  double cpu_jac = 3.2323;
+  std::vector<double> resvec_jac({12.1, 8.2, 5.4, 3.2});
+  // create an empty structure (null)
+  json j;
+  j["jacobi"]["method"] = "jacobi";
+  j["jacobi"]["N"] = 4;
+  j["jacobi"]["niter"] = 4;
+  j["jacobi"]["resvec"] = resvec_jac;
+  j["jacobi"]["cputime"] = cpu_jac;
+  // Gauss
+  double gauss_cpu = 1.397;
+  std::vector<double> resvec_gauss({6.1, 2.2});
+  j["gauss"]["method"] = "gauss";
+  j["gauss"]["N"] = 4;
+  j["gauss"]["niter"] = 2;
+  j["gauss"]["resvec"] = resvec_gauss;
+  j["gauss"]["cputime"] = 1.397;
+
+  std::ofstream f("data.json");
+  // std::setw(2) impose tabulation = 2 espace (plus joli)
+  f << std::setw(2)<< j;
+  f.close();
+  return 0;
+}
 ```
 
-Le résultat serait le suivant :
+Le résultat est alors celui souhaité plus haut :
 ```json
 {
-  "jacobi": {
-    "method": "jacobi",
-    "N": 4,
-    "ntier": 4,
-    "resvec":  [ 12.1, 8.2, 5.4, 3.2],
-    "cpu_time": 3.2323
-  },
   "gauss": {
-    "method": "gauss",
     "N": 4,
-    "ntier": 2,
-    "resvec":  [ 6.1, 2.2],
-    "cpu_time": 1.397
+    "cputime": 1.397,
+    "method": "gauss",
+    "niter": 2,
+    "resvec": [
+      6.1,
+      2.2
+    ]
+  },
+  "jacobi": {
+    "N": 4,
+    "cputime": 3.2323,
+    "method": "jacobi",
+    "niter": 4,
+    "resvec": [
+      12.1,
+      8.2,
+      5.4,
+      3.2
+    ]
   }
+}
+```
+
+
+### Lecture : exemple
+
+En général, nous ne lirons pas les fichiers en `C++` mais en Python avec Matplotlib, [comme expliqué ensuite]({{<relref "help_matplotlib.md">}}). Cependant, la lecture d'un fichier avec ce parser JSON est aisée :
+
+```cpp
+#include <iomanip> // Pour std::setw(2)
+#include <iostream>
+#include <fstream>
+#include "json.hpp"
+
+// for convenience
+using json = nlohmann::json;
+
+int main(){
+  json j;
+  std::ifstream f("data.json");
+  f >> j;
+  f.close();
+  return 0;
 }
 ```
