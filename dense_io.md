@@ -51,18 +51,18 @@ Cette méthode peut s'avérer longue, notamment pour construire des matrices san
 
 Nous proposons le format de fichier à deux colonnes : 
 
-- Sur la première ligne est indiqué le nombre de lignes du `Vecteur`
-- Puis, première contenant les indices lignes et la seconde les coefficients. 
-- **Seuls les coefficients non nuls sont indiqués !** 
-  
+- La première ligne contient le nombre de lignes du `Vecteur`
+- Chaque ligne suivante contient 2 valeurs : l'indice (`int`) et la valeur du coefficient (`double`)
+ 
 Par exemple pour le vecteur $[1, 1.1, 1.2, 1.3, 0, 1.4]^T$ 
 
-```
+```bash
 6
 0 1.
 1 1.1
 2 1.2
 3 1.3
+4 0.
 5 1.4
 ```
 
@@ -71,8 +71,7 @@ Par exemple pour le vecteur $[1, 1.1, 1.2, 1.3, 0, 1.4]^T$
 Nous proposons le format similaire à [celui de Matrix Market](https://math.nist.gov/MatrixMarket/formats.html#mm). Similaire aux `Vecteur`, nous avons :
 
 - La première ligne contient le nombre de lignes de la `Matrice`
-- Chaque ligne est composées de trois nombres : indice ligne, indice colonne et la valeur du coefficient. 
-- **Seuls les coefficients non nuls sont indiqués !** 
+- Chaque ligne est ensuite composée de trois nombres : indice ligne, indice colonne et la valeur du coefficient. 
 
 Par exemple pour la matrice suivante :
 $$
@@ -84,16 +83,32 @@ A = \begin{pmatrix}
 $$
 serait sauvegardée dans le fichier suivant :
 
-```
+```bash
 3
 0 0 1.1
 0 1 2.
+0 2 0.
+1 0 0.
 1 1 5.
+1 2 0.
+2 1 0.
 2 1 2.3
 2 2 3.
 ```
 
-
+{{% alert tips %}}
+Nous pouvons aussi sauvegarder de l'espace disque en ne sauvegardant pas les coefficients nuls ! Du fait des erreurs d'arrondi numérique, un coefficient peut être nul théoriquement mais pas dans la pratique. La condition `if(a == 0.)` est souvent à éviter, source d'erreurs. Nous préférerons utiliser une tolérance :
+```cpp
+#include <cmath>
+[...]
+double a;
+[...]
+if (abs(a) < 1e14)
+  // est considéré comme nul
+else
+  // non nul
+```
+{{% /alert %}}
 
 ## Implémentation
 

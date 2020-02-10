@@ -8,8 +8,8 @@ draft = false  # Is this a draft? true/false
 toc = true  # Show table of contents? true/false
 type = "docs"  # Do not modify.
 
-math = true
-
+math = false
+plotly = true
 weight = 260
 diagram = false
 #markup = "mmark"
@@ -64,10 +64,10 @@ Implémentez la méthode du Gradient Conjugué. Validez ensuite votre code la su
 
 ## Comparaison  des performances
 
-### Entre solveur 
+### Entre solveurs
 
 {{% alert exercise %}}
-Pour une tolérance de 0.1, une taille de matrice N = 1000 et un nombre maximal d'itération égal à N, affichez les historiques de convergence du gradient conjugué et des autres méthodes itératives. Comparez également le temps CPU entre les différentes méthodes.
+Pour une tolérance de 0.1, une taille de matrice N = 1000 et un nombre maximal d'itérations égal à N, affichez les historiques de convergence du gradient conjugué et des autres méthodes itératives. Comparez également le temps CPU entre les différentes méthodes.
 {{% /alert %}}
 
 Vous devriez obtenir des résultats similaires à ceux ci-dessous (sauf pour le temps CPU !) :
@@ -99,6 +99,6 @@ Vous devriez obtenir des résultats proches de ceux-ci (sauf pour le temps CPU) 
 | Temps CPU (s)       | 0.0534 | 0.178 | 0.613 | 1.429 | 3.303 | 7.485 | 11.771 | 15.939 | 24.415 | 34.409 |
 
 
-<script type="text/javascript" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript" src="../data_cg.js"></script>
 <script type="text/javascript" src="../cg.js"></script>
 

@@ -8,7 +8,7 @@ var flkty = new Flickity('.carousel', {
 
 
 var flkty_lu = new Flickity('.carousel_lu', {
-  draggable:true,
+  draggable:false,
   isWrapped:false,
   selectedAttraction: 1,
   friction: 1

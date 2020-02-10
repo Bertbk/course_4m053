@@ -144,23 +144,23 @@ A = L^{(0)} U^{(0)}= \ldots = L^{(k)} U^{(k)} = \ldots = L^{(N-1)} U^{(N-1)}.
 $$
 où les matrices $L^{(k)}$ et $U^{(k)}$ sont obtenues à la $k^{\text{eme}}$ itération. La petite animation suivante montre la forme de ces matrices dans le cas d'une taille N=5 :
 
-{{< div class="course_lu carousel_lu" >}}
-{{< div class="course_lu carousel-cell_lu" style="width:100%;">}}
+{{< div class="course_lu carousel_lu"  style="text-align:center">}}
+{{< div class="course_lu carousel-cell_lu">}}
 {{< svg file="course/4m053/lu_algo_0.svg" >}}
 {{< /div >}}
-{{< div class="course_lu carousel-cell_lu" style="width:100%;">}}
+{{< div class="course_lu carousel-cell_lu">}}
 {{< svg file="course/4m053/lu_algo_1.svg" >}}
 {{< /div >}}
-{{< div class="course_lu carousel-cell_lu" style="width:100%;">}}
+{{< div class="course_lu carousel-cell_lu">}}
 {{< svg file="course/4m053/lu_algo_2.svg" >}}
 {{< /div >}}
-{{< div class="course_lu carousel-cell_lu" style="width:100%;">}}
+{{< div class="course_lu carousel-cell_lu">}}
 {{< svg file="course/4m053/lu_algo_3.svg" >}}
 {{< /div >}}
-{{< div class="course_lu carousel-cell_lu" style="width:100%;" >}}
+{{< div class="course_lu carousel-cell_lu">}}
 {{< svg file="course/4m053/lu_algo_4.svg" >}}
 {{< /div >}}
-{{< div class="course_lu carousel-cell_lu" style="width:100%;">}}
+{{< div class="course_lu carousel-cell_lu">}}
 {{< svg file="course/4m053/lu_algo_5.svg" >}}
 {{< /div >}}
 {{< /div >}}
@@ -356,5 +356,5 @@ où $A$ est la matrice de l'exercice précédent et $b = [1,1,1,1,1]^T$. La solu
 {{% /alert %}}
 
 
-<script type="text/javascript" src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js"></script>
-<script type="text/javascript" src="../lu_fact.js"></script>
+{{% js type="text/javascript" src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js" %}}
+{{% js type="text/javascript" src="../lu_fact.js" %}}
