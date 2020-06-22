@@ -167,7 +167,6 @@ et le rayon spectral de la matrice d'itération est alors donné par $\rho(G\_{\
 
 <div id="relaxation"></div>
 
-![Rayon spectral vs. omega](../courbe_w.png)
 
 {{% alert note %}}
 Pour $\omega \geq \omega^\*$, nous avons $\rho(G\_{\omega}) = \omega - 1$. La courbe ci-dessus montre qu'il est préférable de choisir $\omega$ légèrement plus grand que $\omega^\*$ plutôt que plus petit.
